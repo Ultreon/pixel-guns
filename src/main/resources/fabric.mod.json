@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "id": "animated_guns",
-  "version": "1.0.0",
-  "name": "Animated Guns",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "id": "pixel_guns",
+  "version": "${version}",
+  "name": "Pixel Guns",
+  "description": "Is your generic gun mod not good enough? We may have one for you!",
   "authors": [
-    "Elidhan"
+    "Qboi123", "DrAlpha", "Dr. Random"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://ultreon.github.io/web/",
+    "sources": "https://github.com/Ultreon/pixel_guns"
   },
   "license": "MIT",
   "icon": "assets/anim_guns/icon.png",
@@ -26,10 +26,10 @@
     "anim_guns.mixins.json"
   ],
   "depends": {
-    "fabricloader": "\u003e\u003d0.13.3",
+    "fabricloader": ">=0.13.3",
     "fabric": "*",
     "minecraft": "1.18.x",
-    "java": "\u003e\u003d17"
+    "java": ">=17"
   },
   "suggests": {
     "another-mod": "*"
