@@ -10,10 +10,10 @@
       "tag": "minecraft:planks"
     },
     "p": {
-      "item": "anim_guns:plastic"
+      "item": "pixel_guns:plastic"
     }
   },
   "result": {
-    "item": "anim_guns:wooden_stock"
+    "item": "pixel_guns:wooden_stock"
   }
 }

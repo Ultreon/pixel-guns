@@ -16,7 +16,7 @@ import net.minecraft.resources.ResourceLocation;
 
 @Environment(value = EnvType.CLIENT)
 public class BulletEntityRenderer extends EntityRenderer<BulletEntity> {
-    public static final ResourceLocation TEXTURE = new ResourceLocation("anim_guns", "textures/entity/projectiles/bullet.png");
+    public static final ResourceLocation TEXTURE = new ResourceLocation("pixel_guns", "textures/entity/projectiles/bullet.png");
     private static final RenderType LAYER = RenderType.entityCutoutNoCull(TEXTURE);
 
     public BulletEntityRenderer(EntityRendererProvider.Context ctx) {

@@ -7,10 +7,10 @@
   ],
   "key": {
     "p": {
-      "item": "anim_guns:plastic"
+      "item": "pixel_guns:plastic"
     }
   },
   "result": {
-    "item": "anim_guns:pistol_grip"
+    "item": "pixel_guns:pistol_grip"
   }
 }

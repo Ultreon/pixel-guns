@@ -7,17 +7,17 @@
   ],
   "key": {
     "n": {
-      "item": "anim_guns:hardened_iron_nugget"
+      "item": "pixel_guns:hardened_iron_nugget"
     },
     "g": {
       "item": "minecraft:gunpowder"
     },
     "i": {
-      "item": "anim_guns:hardened_iron_ingot"
+      "item": "pixel_guns:hardened_iron_ingot"
     }
   },
   "result": {
-    "item": "anim_guns:heavy_handgun_cartridge",
+    "item": "pixel_guns:heavy_handgun_cartridge",
     "count": 4
   }
 }

@@ -10,10 +10,10 @@
       "item": "minecraft:glass"
     },
     "i": {
-      "item": "anim_guns:hardened_iron_ingot"
+      "item": "pixel_guns:hardened_iron_ingot"
     }
   },
   "result": {
-    "item": "anim_guns:gun_scope"
+    "item": "pixel_guns:gun_scope"
   }
 }

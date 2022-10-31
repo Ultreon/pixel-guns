@@ -1,8 +1,8 @@
 package com.ultreon.mods.pixelguns.item;
 
 import io.netty.buffer.Unpooled;
-import com.ultreon.mods.pixelguns.AnimatedGuns;
-import com.ultreon.mods.pixelguns.AnimatedGunsClient;
+import com.ultreon.mods.pixelguns.PixelGuns;
+import com.ultreon.mods.pixelguns.PixelGunsClient;
 import com.ultreon.mods.pixelguns.entity.projectile.BulletEntity;
 import com.ultreon.mods.pixelguns.util.InventoryUtil;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -38,7 +38,7 @@ public abstract class GunItem extends Item implements FabricItem {
     private final SoundEvent reload1;
     private final SoundEvent reload2;
     private final SoundEvent reload3;
-    private final SoundEvent shootSound;
+    protected final SoundEvent shootSound;
     private final int reloadCycles;
     private final boolean isScoped;
     private final int reloadStage1;
@@ -93,10 +93,10 @@ public abstract class GunItem extends Item implements FabricItem {
         if (!(nbtCompound.contains("reloadTick") && nbtCompound.contains("Clip") && nbtCompound.contains("isScoped") && nbtCompound.contains("isReloading"))) {
             this.setDefaultNBT(nbtCompound);
         }
-        if (world.isClientSide() && ((Player) entity).getItemInHand(InteractionHand.MAIN_HAND) == stack && AnimatedGunsClient.reloadToggle.isDown() && GunItem.remainingAmmo(stack) < this.magSize && GunItem.reserveAmmoCount((Player) entity, this.ammoType) > 0 && !nbtCompound.getBoolean("isReloading")) {
+        if (world.isClientSide() && ((Player) entity).getItemInHand(InteractionHand.MAIN_HAND) == stack && PixelGunsClient.reloadToggle.isDown() && GunItem.remainingAmmo(stack) < this.magSize && GunItem.reserveAmmoCount((Player) entity, this.ammoType) > 0 && !nbtCompound.getBoolean("isReloading")) {
             FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
             buf.writeBoolean(true);
-            ClientPlayNetworking.send(new ResourceLocation("anim_guns", "reload"), buf);
+            ClientPlayNetworking.send(new ResourceLocation("pixel_guns", "reload"), buf);
         }
         if (nbtCompound.getBoolean("isReloading") && (((Player) entity).getItemInHand(InteractionHand.MAIN_HAND) != stack || GunItem.reserveAmmoCount((Player) entity, this.ammoType) <= 0 && this.reloadCycles <= 1 || nbtCompound.getInt("reloadTick") >= this.reloadCooldown || GunItem.remainingAmmo(stack) >= this.magSize && this.reloadCycles <= 1)) {
             nbtCompound.putBoolean("isReloading", false);
@@ -157,7 +157,7 @@ public abstract class GunItem extends Item implements FabricItem {
         return InteractionResultHolder.fail(itemStack);
     }
 
-    public void shoot(Level world, Player user, ItemStack itemStack) {
+    public void shoot(Level world, Player user, ItemStack stack) {
         float kick = user.getXRot() - this.getRecoil(user);
         user.getCooldowns().addCooldown(this, this.rateOfFire);
         if (!world.isClientSide()) {
@@ -170,12 +170,16 @@ public abstract class GunItem extends Item implements FabricItem {
             }
             FriendlyByteBuf buf = PacketByteBufs.create();
             buf.writeFloat(kick);
-            ServerPlayNetworking.send((ServerPlayer) user, AnimatedGuns.RECOIL_PACKET_ID, buf);
+            ServerPlayNetworking.send((ServerPlayer) user, PixelGuns.RECOIL_PACKET_ID, buf);
         }
         if (!user.getAbilities().instabuild) {
-            this.useAmmo(itemStack);
-            itemStack.hurtAndBreak(10, (LivingEntity) user, e -> e.broadcastBreakEvent(EquipmentSlot.MAINHAND));
+            this.useAmmo(stack);
+            stack.hurtAndBreak(10, (LivingEntity) user, e -> e.broadcastBreakEvent(EquipmentSlot.MAINHAND));
         }
+        playShootSound(world, user, stack);
+    }
+
+    public void playShootSound(Level world, Player user, ItemStack stack) {
         world.playSound(null, user.getX(), user.getY(), user.getZ(), this.shootSound, SoundSource.MASTER, 1.0f, 1.0f);
     }
 

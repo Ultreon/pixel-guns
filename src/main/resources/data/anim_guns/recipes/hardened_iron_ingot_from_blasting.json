@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:iron_ingot"
   },
-  "result": "anim_guns:hardened_iron_ingot",
+  "result": "pixel_guns:hardened_iron_ingot",
   "experience": 1.0,
   "cookingtime": 200
 }

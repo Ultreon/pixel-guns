@@ -7,13 +7,13 @@
   ],
   "key": {
     "#": {
-      "item": "anim_guns:hardened_iron_ingot"
+      "item": "pixel_guns:hardened_iron_ingot"
     },
     "p": {
-      "item": "anim_guns:plastic"
+      "item": "pixel_guns:plastic"
     }
   },
   "result": {
-    "item": "anim_guns:modern_handguard"
+    "item": "pixel_guns:modern_handguard"
   }
 }

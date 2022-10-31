@@ -7,10 +7,10 @@
   ],
   "key": {
     "#": {
-      "item": "anim_guns:hardened_iron_ingot"
+      "item": "pixel_guns:hardened_iron_ingot"
     }
   },
   "result": {
-    "item": "anim_guns:long_barrel"
+    "item": "pixel_guns:long_barrel"
   }
 }

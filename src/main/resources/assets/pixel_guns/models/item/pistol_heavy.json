@@ -1,0 +1,37 @@
+{
+  "parent": "pixel_guns:item/pistol_heavy_standby",
+  "overrides":
+  [
+    {"predicate":  {"pixel_guns:sprinting": 1},"model": "pixel_guns:item/gun_sprint/pistol_heavy"},
+    {"predicate":  {"pixel_guns:aiming": 1},"model": "pixel_guns:item/gun_aim/pistol_heavy"},
+
+    {"predicate":  {"pixel_guns:aiming": 0,"minecraft:cooldown": 0.2},"model": "pixel_guns:item/pistol_heavy_standby"},
+    {"predicate":  {"pixel_guns:aiming": 0,"minecraft:cooldown": 0.4},"model": "pixel_guns:item/gun_fire/hip/pistol_heavy/4"},
+    {"predicate":  {"pixel_guns:aiming": 0,"minecraft:cooldown": 0.6},"model": "pixel_guns:item/gun_fire/hip/pistol_heavy/3"},
+    {"predicate":  {"pixel_guns:aiming": 0,"minecraft:cooldown": 0.8},"model": "pixel_guns:item/gun_fire/hip/pistol_heavy/2"},
+    {"predicate":  {"pixel_guns:aiming": 0,"minecraft:cooldown": 1},"model": "pixel_guns:item/gun_fire/hip/pistol_heavy/1"},
+
+    {"predicate":  {"pixel_guns:aiming": 1,"minecraft:cooldown": 0.2},"model": "pixel_guns:item/gun_aim/pistol_heavy"},
+    {"predicate":  {"pixel_guns:aiming": 1,"minecraft:cooldown": 0.4},"model": "pixel_guns:item/gun_fire/aim/pistol_heavy/4"},
+    {"predicate":  {"pixel_guns:aiming": 1,"minecraft:cooldown": 0.6},"model": "pixel_guns:item/gun_fire/aim/pistol_heavy/3"},
+    {"predicate":  {"pixel_guns:aiming": 1,"minecraft:cooldown": 0.8},"model": "pixel_guns:item/gun_fire/aim/pistol_heavy/2"},
+    {"predicate":  {"pixel_guns:aiming": 1,"minecraft:cooldown": 1},"model": "pixel_guns:item/gun_fire/aim/pistol_heavy/1"},
+
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.01},"model": "pixel_guns:item/gun_rld/pistol_heavy/1"},
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.015},"model": "pixel_guns:item/gun_rld/pistol_heavy/2"},
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.02},"model": "pixel_guns:item/gun_rld/pistol_heavy/3"},
+
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.03},"model": "pixel_guns:item/gun_rld/pistol_heavy/4"},
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.035},"model": "pixel_guns:item/gun_rld/pistol_heavy/5"},
+
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.08},"model": "pixel_guns:item/gun_rld/pistol_heavy/6"},
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.085},"model": "pixel_guns:item/gun_rld/pistol_heavy/7"},
+
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.1},"model": "pixel_guns:item/gun_rld/pistol_heavy/8"},
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.105},"model": "pixel_guns:item/gun_rld/pistol_heavy/9"},
+
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.12},"model": "pixel_guns:item/gun_rld/pistol_heavy/10"},
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.125},"model": "pixel_guns:item/gun_rld/pistol_heavy/11"},
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.13},"model": "pixel_guns:item/gun_rld/pistol_heavy/12"}
+  ]
+}

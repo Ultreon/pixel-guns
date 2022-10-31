@@ -12,23 +12,23 @@
     "sources": "https://github.com/Ultreon/pixel_guns"
   },
   "license": "MIT",
-  "icon": "assets/anim_guns/icon.png",
+  "icon": "assets/pixel_guns/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.ultreon.mods.pixelguns.AnimatedGuns"
+      "com.ultreon.mods.pixelguns.PixelGuns"
     ],
     "client": [
-      "com.ultreon.mods.pixelguns.AnimatedGunsClient"
+      "com.ultreon.mods.pixelguns.PixelGunsClient"
     ]
   },
   "mixins": [
-    "anim_guns.mixins.json"
+    "pixel_guns.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.13.3",
     "fabric": "*",
-    "minecraft": "1.18.x",
+    "minecraft": "1.19.x",
     "java": ">=17"
   },
   "suggests": {

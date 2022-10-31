@@ -20,10 +20,10 @@ public class ModelPredicateProvider {
     }
 
     public static void registerGun(Item gun) {
-        ItemProperties.register(gun, new ResourceLocation("anim_guns", "load_tick"), (stack, world, entity, seed) -> entity != null && stack.getOrCreateTag().getBoolean("isReloading") ? (float) stack.getOrCreateTag().getInt("reloadTick") / 200.0f : 0.0f);
-        ItemProperties.register(gun, new ResourceLocation("anim_guns", "loading"), (stack, world, entity, seed) -> entity != null && stack.getOrCreateTag().getBoolean("isReloading") ? 1.0f : 0.0f);
-        ItemProperties.register(gun, new ResourceLocation("anim_guns", "aiming"), (stack, world, entity, seed) -> entity != null && entity.isShiftKeyDown() && GunItem.isLoaded(stack) ? 1.0f : 0.0f);
-        ItemProperties.register(gun, new ResourceLocation("anim_guns", "sprinting"), (stack, world, entity, seed) -> entity != null && entity.getItemInHand(InteractionHand.MAIN_HAND) == stack && entity.isSprinting() ? 1.0f : 0.0f);
+        ItemProperties.register(gun, new ResourceLocation("pixel_guns", "load_tick"), (stack, world, entity, seed) -> entity != null && stack.getOrCreateTag().getBoolean("isReloading") ? (float) stack.getOrCreateTag().getInt("reloadTick") / 200.0f : 0.0f);
+        ItemProperties.register(gun, new ResourceLocation("pixel_guns", "loading"), (stack, world, entity, seed) -> entity != null && stack.getOrCreateTag().getBoolean("isReloading") ? 1.0f : 0.0f);
+        ItemProperties.register(gun, new ResourceLocation("pixel_guns", "aiming"), (stack, world, entity, seed) -> entity != null && entity.isShiftKeyDown() && GunItem.isLoaded(stack) ? 1.0f : 0.0f);
+        ItemProperties.register(gun, new ResourceLocation("pixel_guns", "sprinting"), (stack, world, entity, seed) -> entity != null && entity.getItemInHand(InteractionHand.MAIN_HAND) == stack && entity.isSprinting() ? 1.0f : 0.0f);
     }
 }
 

@@ -7,25 +7,25 @@
   ],
   "key": {
     "b": {
-      "item": "anim_guns:long_barrel"
+      "item": "pixel_guns:long_barrel"
     },
     "p": {
-      "item": "anim_guns:blueprint_sniper_classic"
+      "item": "pixel_guns:blueprint_sniper_classic"
     },
     "#": {
-      "item": "anim_guns:gun_scope"
+      "item": "pixel_guns:gun_scope"
     },
     "f": {
-      "item": "anim_guns:wooden_handguard"
+      "item": "pixel_guns:wooden_handguard"
     },
     "i": {
-      "item": "anim_guns:hardened_iron_ingot"
+      "item": "pixel_guns:hardened_iron_ingot"
     },
     "s": {
-      "item": "anim_guns:wooden_stock"
+      "item": "pixel_guns:wooden_stock"
     }
   },
   "result": {
-    "item": "anim_guns:sniper_classic"
+    "item": "pixel_guns:sniper_classic"
   }
 }

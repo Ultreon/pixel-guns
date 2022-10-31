@@ -1,6 +1,6 @@
 package com.ultreon.mods.pixelguns.sound;
 
-import com.ultreon.mods.pixelguns.AnimatedGuns;
+import com.ultreon.mods.pixelguns.PixelGuns;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -27,24 +27,24 @@ public class ModSounds {
     public static SoundEvent RELOAD_HEAVY_AR_P2 = ModSounds.registerSoundEvent("heavy_ar_p2");
     public static SoundEvent RELOAD_HEAVY_AR_P3 = ModSounds.registerSoundEvent("heavy_ar_p3");
     public static SoundEvent ASSAULTRIFLE_HEAVY = ModSounds.registerSoundEvent("assaultrifle_heavy");
+    public static SoundEvent ASSAULTRIFLE_HEAVY_EG = ModSounds.registerSoundEvent("assaultrifle_heavy_eg");
     public static SoundEvent RELOAD_COMBAT_SHOTGUN_P1 = ModSounds.registerSoundEvent("combat_shotgun_p1");
     public static SoundEvent RELOAD_COMBAT_SHOTGUN_P2 = ModSounds.registerSoundEvent("combat_shotgun_p2");
     public static SoundEvent RELOAD_COMBAT_SHOTGUN_P3 = ModSounds.registerSoundEvent("combat_shotgun_p3");
     public static SoundEvent SHOTGUN_COMBAT = ModSounds.registerSoundEvent("shotgun_combat");
     public static SoundEvent RELOAD_GENERIC_SNIPER_P1 = ModSounds.registerSoundEvent("generic_sniper_p1");
-    public static SoundEvent
-            RELOAD_GENERIC_SNIPER_P2 = ModSounds.registerSoundEvent("generic_sniper_p2");
+    public static SoundEvent RELOAD_GENERIC_SNIPER_P2 = ModSounds.registerSoundEvent("generic_sniper_p2");
     public static SoundEvent RELOAD_GENERIC_SNIPER_P3 = ModSounds.registerSoundEvent("generic_sniper_p3");
     public static SoundEvent RELOAD_CLASSIC_SNIPER_P2 = ModSounds.registerSoundEvent("classic_sniper_p2");
     public static SoundEvent SNIPER_CLASSIC = ModSounds.registerSoundEvent("sniper_classic");
 
     private static SoundEvent registerSoundEvent(String name) {
-        ResourceLocation id = new ResourceLocation("anim_guns", name);
+        ResourceLocation id = new ResourceLocation("pixel_guns", name);
         return Registry.register(Registry.SOUND_EVENT, id, new SoundEvent(id));
     }
 
     public static void registerSounds() {
-        AnimatedGuns.LOGGER.info("Registering ModSounds for anim_guns");
+        PixelGuns.LOGGER.info("Registering ModSounds for pixel_guns");
     }
 }
 

@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "anim_guns:hardened_iron_ingot"
+      "item": "pixel_guns:hardened_iron_ingot"
     }
   ],
   "result": {
-    "item": "anim_guns:hardened_iron_nugget",
+    "item": "pixel_guns:hardened_iron_nugget",
     "count": 9
   }
 }
