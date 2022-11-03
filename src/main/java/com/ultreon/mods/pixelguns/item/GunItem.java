@@ -171,6 +171,7 @@ public abstract class GunItem extends Item implements FabricItem {
             FriendlyByteBuf buf = PacketByteBufs.create();
             buf.writeFloat(kick);
             ServerPlayNetworking.send((ServerPlayer) user, PixelGuns.RECOIL_PACKET_ID, buf);
+//            user.setXRot(kick);
         }
         if (!user.getAbilities().instabuild) {
             this.useAmmo(stack);

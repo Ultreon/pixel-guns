@@ -23,7 +23,9 @@ public class PixelGunsClient implements ClientModInitializer {
             float kick = buf.readFloat();
             client.execute(() -> {
                 if (client.player != null) {
-                    client.player.setXRot(kick);
+                    if (Config.DO_RECOIL.get()) {
+                        client.player.setXRot(kick);
+                    }
                 }
             });
         });

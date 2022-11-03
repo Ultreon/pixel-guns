@@ -36,6 +36,8 @@ public class PixelGuns implements ModInitializer {
                 player.getItemInHand(InteractionHand.MAIN_HAND).getOrCreateTag().putBoolean("isReloading", buf.readBoolean());
             }
         });
+
+        Config.init();
     }
 }
 
