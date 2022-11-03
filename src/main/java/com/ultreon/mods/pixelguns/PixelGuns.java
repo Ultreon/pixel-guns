@@ -28,6 +28,10 @@ public class PixelGuns implements ModInitializer {
     public static final EntityType<BulletEntity> BulletEntityType = Registry.register(Registry.ENTITY_TYPE, new ResourceLocation("pixel_guns", "bullet"), FabricEntityTypeBuilder.<BulletEntity>create(MobCategory.MISC, BulletEntity::new).dimensions(EntityDimensions.fixed(0.125f, 0.125f)).trackRangeBlocks(4).trackedUpdateRate(10).build());
     public static final String NBT_NAME = "pixelGuns";
 
+    public static ResourceLocation res(String path) {
+        return new ResourceLocation(MOD_ID, path);
+    }
+
     public void onInitialize() {
         ModItems.registerModItems();
         ModSounds.registerSounds();

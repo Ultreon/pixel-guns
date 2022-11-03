@@ -24,6 +24,12 @@ repositories {
             includeGroup "curse.maven"
         }
     }
+
+    maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
+}
+
+loom {
+    accessWidenerPath = file("src/main/resources/pixel_guns.accesswidener")
 }
 
 dependencies {
@@ -34,6 +40,7 @@ dependencies {
 
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    modImplementation 'software.bernie.geckolib:geckolib-fabric-1.19:3.1.14'
 
     modImplementation "curse.maven:forge-config-api-547434:3960064"
     modImplementation 'com.electronwill.night-config:core:3.6.5'

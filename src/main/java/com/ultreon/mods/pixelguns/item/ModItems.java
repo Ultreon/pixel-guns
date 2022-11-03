@@ -34,6 +34,7 @@ public class ModItems {
     public static final Item STANDARD_RIFLE_BULLET = ModItems.registerItem("standard_rifle_cartridge", new Item(new FabricItemSettings().group(PixelGuns.GUNS).maxCount(64)));
     public static final Item HEAVY_RIFLE_BULLET = ModItems.registerItem("heavy_rifle_cartridge", new Item(new FabricItemSettings().group(PixelGuns.GUNS).maxCount(64)));
     public static final Item SHOTGUN_SHELL = ModItems.registerItem("shotgun_shell", new Item(new FabricItemSettings().group(PixelGuns.GUNS).maxCount(64)));
+    public static final Item ENERGY_GUN_BATTERY = ModItems.registerItem("energy_gun_battery", new Item(new FabricItemSettings().group(PixelGuns.GUNS).maxCount(12)));
     public static final Item PISTOL = ModItems.registerItem("pistol_light", new GunItem(new FabricItemSettings().group(PixelGuns.GUNS).maxCount(1), 5.5f, 4, 17, STANDARD_HANDGUN_BULLET, 26, 0.25f, 2.5f, 1, 1, ModSounds.RELOAD_GENERIC_PISTOL_P1, ModSounds.RELOAD_GENERIC_PISTOL_P2, ModSounds.RELOAD_GENERIC_PISTOL_P3, ModSounds.PISTOL_LIGHT, 1, false, 6, 16, 20) {
     });
     public static final Item HEAVY_PISTOL = ModItems.registerItem("pistol_heavy", new GunItem(new FabricItemSettings().group(PixelGuns.GUNS).maxCount(1), 11.0f, 5, 7, HEAVY_HANDGUN_BULLET, 26, 0.25f, 7.5f, 1, 1, ModSounds.RELOAD_GENERIC_PISTOL_P1, ModSounds.RELOAD_GENERIC_PISTOL_P2, ModSounds.RELOAD_GENERIC_PISTOL_P3, ModSounds.PISTOL_HEAVY, 1, false, 6, 16, 20) {
@@ -49,6 +50,8 @@ public class ModItems {
     public static final Item COMBAT_SHOTGUN = ModItems.registerItem("shotgun_combat", new GunItem(new FabricItemSettings().group(PixelGuns.GUNS).maxCount(1), 5.5f, 14, 6, SHOTGUN_SHELL, 26, 9.25f, 8.25f, 5, 2, ModSounds.RELOAD_COMBAT_SHOTGUN_P1, ModSounds.RELOAD_COMBAT_SHOTGUN_P2, ModSounds.RELOAD_COMBAT_SHOTGUN_P3, ModSounds.SHOTGUN_COMBAT, 6, false, 1, 4, 13) {
     });
     public static final Item CLASSIC_SNIPER_RIFLE = ModItems.registerItem("sniper_classic", new GunItem(new FabricItemSettings().group(PixelGuns.GUNS).maxCount(1), 22.0f, 20, 5, HEAVY_RIFLE_BULLET, 26, 0.01f, 8.25f, 1, 2, ModSounds.RELOAD_GENERIC_SNIPER_P1, ModSounds.RELOAD_CLASSIC_SNIPER_P2, ModSounds.RELOAD_GENERIC_SNIPER_P3, ModSounds.SNIPER_CLASSIC, 5, true, 1, 8, 17) {
+    });
+    public static final Item INFINITY_GUN = ModItems.registerItem("infinity_gun", new InfinityGunItem(new FabricItemSettings().group(PixelGuns.GUNS).maxCount(1)) {
     });
 
     private static Item registerItem(String name, Item item) {

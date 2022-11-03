@@ -1,7 +1,10 @@
 package com.ultreon.mods.pixelguns;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.ultreon.mods.pixelguns.entity.projectile.BulletEntityRenderer;
+import com.ultreon.mods.pixelguns.item.ModItems;
+import com.ultreon.mods.pixelguns.model.InfinityGunRenderer;
 import com.ultreon.mods.pixelguns.util.ModelPredicateProvider;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -9,7 +12,9 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.minecraft.client.KeyMapping;
+import software.bernie.geckolib3.renderers.geo.GeoItemRenderer;
 
 @Environment(value = EnvType.CLIENT)
 public class PixelGunsClient implements ClientModInitializer {
@@ -29,6 +34,8 @@ public class PixelGunsClient implements ClientModInitializer {
                 }
             });
         });
+
+        GeoItemRenderer.registerItemRenderer(ModItems.INFINITY_GUN, new InfinityGunRenderer());
     }
 }
 

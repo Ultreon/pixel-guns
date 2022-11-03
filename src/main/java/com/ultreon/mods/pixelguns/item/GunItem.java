@@ -26,7 +26,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 public abstract class GunItem extends Item implements FabricItem {
-    private final float gunDamage;
+    protected final float gunDamage;
     private final int rateOfFire;
     private final int magSize;
     private final Item ammoType;
@@ -162,7 +162,7 @@ public abstract class GunItem extends Item implements FabricItem {
         user.getCooldowns().addCooldown(this, this.rateOfFire);
         if (!world.isClientSide()) {
             for (int i = 0; i < this.pelletCount; ++i) {
-                BulletEntity bullet = new BulletEntity(user, world, this.gunDamage);
+                BulletEntity bullet = createBulletEntity(user, world, stack);
                 bullet.setPosRaw(user.getX(), user.getEyeY(), user.getZ());
                 bullet.shootFromRotation(user, user.getXRot(), user.getYRot(), 0.0f, 4.0f, this.bulletSpread);
                 bullet.setAccel(bullet.getDeltaMovement());
@@ -178,6 +178,10 @@ public abstract class GunItem extends Item implements FabricItem {
             stack.hurtAndBreak(10, (LivingEntity) user, e -> e.broadcastBreakEvent(EquipmentSlot.MAINHAND));
         }
         playShootSound(world, user, stack);
+    }
+
+    public BulletEntity createBulletEntity(Player user, Level world, ItemStack stack) {
+        return new BulletEntity(user, world, this.gunDamage);
     }
 
     public void playShootSound(Level world, Player user, ItemStack stack) {
