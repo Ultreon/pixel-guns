@@ -1,7 +1,8 @@
 package com.ultreon.mods.pixelguns;
 
+import com.ultreon.mods.pixelguns.entity.projectile.EnergyOrb;
 import com.ultreon.mods.pixelguns.item.GunItem;
-import com.ultreon.mods.pixelguns.entity.projectile.BulletEntity;
+import com.ultreon.mods.pixelguns.entity.projectile.Bullet;
 import com.ultreon.mods.pixelguns.item.ModItems;
 import com.ultreon.mods.pixelguns.sound.ModSounds;
 import net.fabricmc.api.ModInitializer;
@@ -25,7 +26,8 @@ public class PixelGuns implements ModInitializer {
     public static final ResourceLocation RECOIL_PACKET_ID = new ResourceLocation("pixel_guns", "recoil");
     public static final CreativeModeTab MISC = FabricItemGroupBuilder.build(new ResourceLocation("pixel_guns", "misc"), () -> new ItemStack(ModItems.MAGNUM_REVOLVER_BLUEPRINT));
     public static final CreativeModeTab GUNS = FabricItemGroupBuilder.build(new ResourceLocation("pixel_guns", "guns"), () -> new ItemStack(ModItems.MAGNUM_REVOLVER));
-    public static final EntityType<BulletEntity> BulletEntityType = Registry.register(Registry.ENTITY_TYPE, new ResourceLocation("pixel_guns", "bullet"), FabricEntityTypeBuilder.<BulletEntity>create(MobCategory.MISC, BulletEntity::new).dimensions(EntityDimensions.fixed(0.125f, 0.125f)).trackRangeBlocks(4).trackedUpdateRate(10).build());
+    public static final EntityType<Bullet> BULLET_ENTITY_TYPE = Registry.register(Registry.ENTITY_TYPE, new ResourceLocation("pixel_guns", "bullet"), FabricEntityTypeBuilder.<Bullet>create(MobCategory.MISC, Bullet::new).dimensions(EntityDimensions.fixed(0.125f, 0.125f)).trackRangeBlocks(4).trackedUpdateRate(10).build());
+    public static final EntityType<EnergyOrb> ENERGY_ORB_ENTITY_TYPE = Registry.register(Registry.ENTITY_TYPE, new ResourceLocation("pixel_guns", "energy_orb"), FabricEntityTypeBuilder.<EnergyOrb>create(MobCategory.MISC, EnergyOrb::new).dimensions(EntityDimensions.fixed(0.125f, 0.125f)).trackRangeBlocks(4).trackedUpdateRate(10).build());
     public static final String NBT_NAME = "pixelGuns";
 
     public static ResourceLocation res(String path) {

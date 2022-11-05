@@ -1,7 +1,9 @@
 package com.ultreon.mods.pixelguns.item;
 
 import com.ultreon.mods.pixelguns.NbtNames;
-import com.ultreon.mods.pixelguns.entity.projectile.BulletEntity;
+import com.ultreon.mods.pixelguns.entity.projectile.AbstractBulletEntity;
+import com.ultreon.mods.pixelguns.entity.projectile.Bullet;
+import com.ultreon.mods.pixelguns.entity.projectile.EnergyOrb;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Player;
@@ -53,8 +55,8 @@ public class InfinityGunItem extends GunItem implements IAnimatable {
     }
 
     @Override
-    public BulletEntity createBulletEntity(Player user, Level world, ItemStack stack) {
-        return new BulletEntity(user, world, this.gunDamage);
+    public AbstractBulletEntity createBulletEntity(Player user, Level world, ItemStack stack) {
+        return new EnergyOrb(user, world, this.gunDamage);
     }
 }
 

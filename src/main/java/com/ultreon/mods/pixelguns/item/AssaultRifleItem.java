@@ -9,6 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public class AssaultRifleItem extends GunItem {
     private final SoundEvent shootSoundEasterEgg;
@@ -31,7 +32,7 @@ public class AssaultRifleItem extends GunItem {
     }
 
     @Override
-    public void onCraftedBy(ItemStack itemStack, Level level, Player player) {
+    public void onCraftedBy(@NotNull ItemStack itemStack, @NotNull Level level, @NotNull Player player) {
         super.onCraftedBy(itemStack, level, player);
     }
 }

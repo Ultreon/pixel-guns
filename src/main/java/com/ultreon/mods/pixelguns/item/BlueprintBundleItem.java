@@ -9,13 +9,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public class BlueprintBundleItem extends Item {
     public BlueprintBundleItem(Properties settings) {
         super(settings);
     }
 
-    public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+    public InteractionResultHolder<ItemStack> use(@NotNull Level world, Player user, @NotNull InteractionHand hand) {
         ItemStack itemStack = user.getItemInHand(hand);
         for (int i = 0; i < BlueprintItem.BLUEPRINT_ITEM_LIST.size(); ++i) {
             ItemStack bluePrint = new ItemStack(BlueprintItem.BLUEPRINT_ITEM_LIST.get(i));

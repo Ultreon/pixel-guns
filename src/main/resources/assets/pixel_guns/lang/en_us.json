@@ -40,5 +40,7 @@
 	"item.pixel_guns.assaultrifle_light" : "Assault Rifle",
 	"item.pixel_guns.assaultrifle_heavy" : "Heavy Assault Rifle",
 	"item.pixel_guns.shotgun_combat" : "Combat Shotgun",
-	"item.pixel_guns.sniper_classic" : "Hunting Rifle"
+	"item.pixel_guns.sniper_classic" : "Hunting Rifle",
+
+	"attack.pixel_guns.energy_orb": "%1$s got obliterated from an Energy Orb"
 }

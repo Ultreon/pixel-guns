@@ -1,9 +1,10 @@
 package com.ultreon.mods.pixelguns.item;
 
+import com.ultreon.mods.pixelguns.entity.projectile.AbstractBulletEntity;
 import io.netty.buffer.Unpooled;
 import com.ultreon.mods.pixelguns.PixelGuns;
 import com.ultreon.mods.pixelguns.PixelGunsClient;
-import com.ultreon.mods.pixelguns.entity.projectile.BulletEntity;
+import com.ultreon.mods.pixelguns.entity.projectile.Bullet;
 import com.ultreon.mods.pixelguns.util.InventoryUtil;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
@@ -24,6 +25,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public abstract class GunItem extends Item implements FabricItem {
     protected final float gunDamage;
@@ -88,7 +90,7 @@ public abstract class GunItem extends Item implements FabricItem {
         nbtCompound.putBoolean("isReloading", false);
     }
 
-    public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
+    public void inventoryTick(ItemStack stack, @NotNull Level world, @NotNull Entity entity, int slot, boolean selected) {
         CompoundTag nbtCompound = stack.getOrCreateTag();
         if (!(nbtCompound.contains("reloadTick") && nbtCompound.contains("Clip") && nbtCompound.contains("isScoped") && nbtCompound.contains("isReloading"))) {
             this.setDefaultNBT(nbtCompound);
@@ -144,7 +146,7 @@ public abstract class GunItem extends Item implements FabricItem {
         }
     }
 
-    public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+    public InteractionResultHolder<ItemStack> use(@NotNull Level world, Player user, @NotNull InteractionHand hand) {
         ItemStack itemStack = user.getItemInHand(hand);
         if (hand == InteractionHand.MAIN_HAND && !user.isSprinting() && GunItem.isLoaded(itemStack)) {
             this.shoot(world, user, itemStack);
@@ -162,7 +164,7 @@ public abstract class GunItem extends Item implements FabricItem {
         user.getCooldowns().addCooldown(this, this.rateOfFire);
         if (!world.isClientSide()) {
             for (int i = 0; i < this.pelletCount; ++i) {
-                BulletEntity bullet = createBulletEntity(user, world, stack);
+                AbstractBulletEntity bullet = createBulletEntity(user, world, stack);
                 bullet.setPosRaw(user.getX(), user.getEyeY(), user.getZ());
                 bullet.shootFromRotation(user, user.getXRot(), user.getYRot(), 0.0f, 4.0f, this.bulletSpread);
                 bullet.setAccel(bullet.getDeltaMovement());
@@ -180,8 +182,8 @@ public abstract class GunItem extends Item implements FabricItem {
         playShootSound(world, user, stack);
     }
 
-    public BulletEntity createBulletEntity(Player user, Level world, ItemStack stack) {
-        return new BulletEntity(user, world, this.gunDamage);
+    public AbstractBulletEntity createBulletEntity(Player user, Level world, ItemStack stack) {
+        return new Bullet(user, world, this.gunDamage);
     }
 
     public void playShootSound(Level world, Player user, ItemStack stack) {

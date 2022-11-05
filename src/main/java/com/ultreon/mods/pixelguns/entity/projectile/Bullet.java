@@ -16,18 +16,19 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 
-public class BulletEntity extends ThrowableItemProjectile {
+public class Bullet extends AbstractBulletEntity {
     private Vec3 accel;
     private float damage;
     private int lifeTick;
 
-    public BulletEntity(EntityType<? extends ThrowableItemProjectile> entityType, Level world) {
+    public Bullet(EntityType<? extends ThrowableItemProjectile> entityType, Level world) {
         super(entityType, world);
     }
 
-    public BulletEntity(LivingEntity livingEntity, Level world, float dmg) {
-        super(PixelGuns.BulletEntityType, livingEntity, world);
+    public Bullet(LivingEntity livingEntity, Level world, float dmg) {
+        super(PixelGuns.BULLET_ENTITY_TYPE, livingEntity, world);
         this.damage = dmg;
         this.lifeTick = 0;
         this.setNoGravity(true);
@@ -52,7 +53,7 @@ public class BulletEntity extends ThrowableItemProjectile {
         }
     }
 
-    protected void onHitEntity(EntityHitResult entityHitResult) {
+    protected void onHitEntity(@NotNull EntityHitResult entityHitResult) {
         super.onHitEntity(entityHitResult);
         if (this.level.isClientSide || entityHitResult.getEntity() instanceof WitherBoss && ((WitherBoss) entityHitResult.getEntity()).isPowered()) {
             return;
@@ -63,13 +64,14 @@ public class BulletEntity extends ThrowableItemProjectile {
         entity.invulnerableTime = 0;
     }
 
-    protected void onHit(HitResult hitResult) {
+    protected void onHit(@NotNull HitResult hitResult) {
         super.onHit(hitResult);
         if (!this.level.isClientSide()) {
             this.discard();
         }
     }
 
+    @Override
     public void setAccel(Vec3 velocity) {
         this.accel = velocity;
     }

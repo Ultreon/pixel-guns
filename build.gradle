@@ -54,6 +54,8 @@ processResources {
     filesMatching("fabric.mod.json") {
         expand "version": getViewVersion()
     }
+
+    exclude("**/*.xcf")
 }
 
 def targetJavaVersion = 17
