@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "pp ",
+    " p ",
+    " p "
+  ],
+  "key": {
+    "p": {
+      "item": "pixel_guns:plastic"
+    }
+  },
+  "result": {
+    "item": "pixel_guns:pistol_grip"
+  }
+}

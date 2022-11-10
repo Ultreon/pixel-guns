@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    " # ",
+    "  #"
+  ],
+  "key": {
+    "#": {
+      "item": "pixel_guns:hardened_iron_ingot"
+    }
+  },
+  "result": {
+    "item": "pixel_guns:short_barrel"
+  }
+}
