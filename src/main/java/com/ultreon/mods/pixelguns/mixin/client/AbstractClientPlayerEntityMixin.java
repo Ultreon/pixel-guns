@@ -2,6 +2,8 @@ package com.ultreon.mods.pixelguns.mixin.client;
 
 import com.mojang.authlib.GameProfile;
 import com.ultreon.mods.pixelguns.item.GunItem;
+
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -25,7 +27,7 @@ public abstract class AbstractClientPlayerEntityMixin extends Player {
     @Inject(method = "getFieldOfViewModifier", at = @At(value = "TAIL"), cancellable = true)
     public void zoomLevel(CallbackInfoReturnable<Float> ci) {
         ItemStack gun = this.getItemInHand(InteractionHand.MAIN_HAND);
-        if (gun.getItem() instanceof GunItem && this.isShiftKeyDown() && GunItem.isLoaded(gun)) {
+        if (gun.getItem() instanceof GunItem && Minecraft.getInstance().mouseHandler.isRightPressed() && GunItem.isLoaded(gun)) {
             CompoundTag nbtCompound = gun.getOrCreateTag();
             if (nbtCompound.getBoolean("isScoped")) {
                 ci.setReturnValue(0.2f);

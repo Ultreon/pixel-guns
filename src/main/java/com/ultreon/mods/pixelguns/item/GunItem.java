@@ -7,9 +7,9 @@ import com.ultreon.mods.pixelguns.PixelGunsClient;
 import com.ultreon.mods.pixelguns.entity.projectile.Bullet;
 import com.ultreon.mods.pixelguns.util.InventoryUtil;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.item.v1.FabricItem;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -27,7 +27,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
-public abstract class GunItem extends Item implements FabricItem {
+public abstract class GunItem extends Item {
     protected final float gunDamage;
     private final int rateOfFire;
     private final int magSize;
@@ -148,6 +148,9 @@ public abstract class GunItem extends Item implements FabricItem {
 
     public InteractionResultHolder<ItemStack> use(@NotNull Level world, Player user, @NotNull InteractionHand hand) {
         ItemStack itemStack = user.getItemInHand(hand);
+        if (!Minecraft.getInstance().options.keyAttack.isDown()) {
+            return InteractionResultHolder.fail(itemStack);
+        }
         if (hand == InteractionHand.MAIN_HAND && !user.isSprinting() && GunItem.isLoaded(itemStack)) {
             this.shoot(world, user, itemStack);
             if (this.reloadCycles > 1) {
@@ -191,7 +194,7 @@ public abstract class GunItem extends Item implements FabricItem {
     }
 
     private float getRecoil(Player user) {
-        return user.isShiftKeyDown() ? this.gunRecoil / 2.0f : this.gunRecoil;
+        return Minecraft.getInstance().options.keyUse.isDown() ? this.gunRecoil / 2.0f : this.gunRecoil;
     }
 
     private void useAmmo(ItemStack stack) {
