@@ -5,6 +5,8 @@ import com.ultreon.mods.pixelguns.sound.ModSounds;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 
 @SuppressWarnings("unused")
@@ -53,6 +55,11 @@ public class ModItems {
     });
     public static final Item INFINITY_GUN = ModItems.registerItem("infinity_gun", new InfinityGunItem(new FabricItemSettings().group(PixelGuns.GUNS).maxCount(1)) {
     });
+
+    public static final Item ARMORED_VEST = ModItems.registerItem(
+        "armored_vest",
+        new ArmoredArmorItem(ModArmorMaterials.ARMORED, EquipmentSlot.CHEST, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT))
+    );
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registry.ITEM, new ResourceLocation("pixel_guns", name), item);
