@@ -7,6 +7,8 @@
 *.ipr
 *.iws
 
+# VS Code
+.vscode/*
 # IntelliJ
 out/
 # mpeltonen/sbt-idea plugin
