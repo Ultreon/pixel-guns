@@ -1,3 +1,0 @@
-accessWidener v2 named
-accessible method net/minecraft/client/renderer/blockentity/BeaconRenderer renderBeaconBeam (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;FJII[F)V
-accessible method net/minecraft/client/renderer/blockentity/BeaconRenderer renderBeaconBeam (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/resources/ResourceLocation;FFJII[FFF)V
