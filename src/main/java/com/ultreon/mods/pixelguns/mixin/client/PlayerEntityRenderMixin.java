@@ -2,19 +2,21 @@ package com.ultreon.mods.pixelguns.mixin.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Quaternion;
+
 import com.ultreon.mods.pixelguns.NbtNames;
 import com.ultreon.mods.pixelguns.item.GunItem;
 import com.ultreon.mods.pixelguns.item.InfinityGunItem;
+
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BeaconRenderer;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BeaconBlockEntity;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -38,8 +40,8 @@ public class PlayerEntityRenderMixin {
         }
         ci.setReturnValue(HumanoidModel.ArmPose.ITEM);
     }
-    @Inject(method="render(Lnet/minecraft/world/entity/Entity;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V", at=@At(value="TAIL"))
-    private void render(Entity entity, float f, float g, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, CallbackInfo ci) {
+    @Inject(method="render(Lnet/minecraft/client/player/AbstractClientPlayer;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V", at=@At(value="TAIL"))
+    private void render(AbstractClientPlayer entity, float f, float g, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, CallbackInfo ci) {
         Player player = (Player) entity;
         ItemStack itemInHand = player.getItemInHand(InteractionHand.MAIN_HAND);
         if (itemInHand.getItem() instanceof InfinityGunItem) {
