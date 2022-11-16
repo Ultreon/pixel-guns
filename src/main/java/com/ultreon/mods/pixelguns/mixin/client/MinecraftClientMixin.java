@@ -1,7 +1,7 @@
 package com.ultreon.mods.pixelguns.mixin.client;
 
-import com.ultreon.mods.pixelguns.PixelGuns;
 import com.ultreon.mods.pixelguns.item.GunItem;
+
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
@@ -11,13 +11,14 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
+
 import org.jetbrains.annotations.Nullable;
+
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -47,7 +48,7 @@ public abstract class MinecraftClientMixin {
     @Shadow public abstract void startUseItem();
     @Shadow public abstract void continueAttack(boolean bl);
 
-    @Inject(method = "handleKeybinds", at = @At(value = "INVOKE", target = "continueAttack", shift = At.Shift.BEFORE))
+    @Inject(method = "handleKeybinds", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;continueAttack(Z)V", shift = At.Shift.BEFORE))
     public void handleGunKeybind(CallbackInfo info) {
         if (this.options.keyAttack.isDown() && this.rightClickDelay == 0 && !this.player.isUsingItem() && this.player.getMainHandItem().getItem() instanceof GunItem) {
             this.startUseItem();
