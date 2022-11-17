@@ -195,9 +195,9 @@ public abstract class GunItem extends Item {
                 // TODO spread, balancing, testing
                 int maxDistance = 0;
                 if (this.ammoType == ModItems.STANDARD_HANDGUN_BULLET) maxDistance = 25;
-                if (this.ammoType == ModItems.HEAVY_HANDGUN_BULLET) maxDistance = 35;
-                if (this.ammoType == ModItems.STANDARD_RIFLE_BULLET) maxDistance = 50;
-                if (this.ammoType == ModItems.HEAVY_RIFLE_BULLET) maxDistance = 75;
+                if (this.ammoType == ModItems.HEAVY_HANDGUN_BULLET) maxDistance = 50;
+                if (this.ammoType == ModItems.STANDARD_RIFLE_BULLET) maxDistance = 100;
+                if (this.ammoType == ModItems.HEAVY_RIFLE_BULLET) maxDistance = 200;
                 if (this.ammoType == ModItems.SHOTGUN_SHELL) maxDistance = 25;
 
                 HitResult result = getHitResult(world, user, user.getEyePosition(), user.getLookAngle(), maxDistance);
