@@ -79,5 +79,11 @@
 		"category": "master", "sounds": [
 			"pixel_guns:gun/fire/sniper_classic_1"
 		]
+	},
+
+	"katana_swoop": {
+		"category": "master", "sounds": [
+			"pixel_guns:katana/katana_swoop_1"
+		]
 	}
 }

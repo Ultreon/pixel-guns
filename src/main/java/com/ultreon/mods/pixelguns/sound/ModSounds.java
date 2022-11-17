@@ -38,6 +38,8 @@ public class ModSounds {
     public static SoundEvent RELOAD_CLASSIC_SNIPER_P2 = ModSounds.registerSoundEvent("classic_sniper_p2");
     public static SoundEvent SNIPER_CLASSIC = ModSounds.registerSoundEvent("sniper_classic");
 
+    public static SoundEvent KATANA_SWING = ModSounds.registerSoundEvent("katana_swoop");
+
     private static SoundEvent registerSoundEvent(String name) {
         ResourceLocation id = new ResourceLocation("pixel_guns", name);
         return Registry.register(Registry.SOUND_EVENT, id, new SoundEvent(id));
