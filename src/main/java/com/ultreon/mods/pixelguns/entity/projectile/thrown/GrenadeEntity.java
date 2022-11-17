@@ -25,10 +25,7 @@ public class GrenadeEntity extends ThrowableItemProjectile implements IAnimatabl
 
     private AnimationFactory factory = new AnimationFactory(this);
 
-    public static GrenadeEntity register(EntityType<? extends GrenadeEntity> entityType, Level world) {
-        return new GrenadeEntity(entityType, world);
-    }
-    private GrenadeEntity(EntityType<? extends GrenadeEntity> entityType, Level world) {
+    public GrenadeEntity(EntityType<? extends GrenadeEntity> entityType, Level world) {
         super(entityType, world);
     }
 
