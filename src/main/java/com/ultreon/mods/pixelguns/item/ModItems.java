@@ -8,6 +8,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.Tiers;
 
 @SuppressWarnings("unused")
 public class ModItems {
@@ -59,6 +61,11 @@ public class ModItems {
     public static final Item ARMORED_VEST = ModItems.registerItem(
         "armored_vest",
         new ArmoredArmorItem(ModArmorMaterials.ARMORED, EquipmentSlot.CHEST, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT))
+    );
+
+    public static final Item KATANA = ModItems.registerItem(
+        "katana",
+        new KatanaItem(Tiers.DIAMOND, 3, -2.4f, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT))
     );
 
     private static Item registerItem(String name, Item item) {
