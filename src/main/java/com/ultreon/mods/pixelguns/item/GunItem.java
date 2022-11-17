@@ -28,6 +28,9 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class GunItem extends Item {
+
+    private final Minecraft client;
+
     protected final float gunDamage;
     private final int rateOfFire;
     private final int magSize;
@@ -67,6 +70,8 @@ public abstract class GunItem extends Item {
         this.reloadStage1 = reloadStage1;
         this.reloadStage2 = reloadStage2;
         this.reloadStage3 = reloadStage3;
+
+        client = Minecraft.getInstance();
     }
 
     public static boolean isLoaded(ItemStack stack) {
@@ -148,7 +153,7 @@ public abstract class GunItem extends Item {
 
     public InteractionResultHolder<ItemStack> use(@NotNull Level world, Player user, @NotNull InteractionHand hand) {
         ItemStack itemStack = user.getItemInHand(hand);
-        if (!Minecraft.getInstance().options.keyAttack.isDown()) {
+        if (!client.options.keyAttack.isDown()) {
             return InteractionResultHolder.fail(itemStack);
         }
         if (hand == InteractionHand.MAIN_HAND && !user.isSprinting() && GunItem.isLoaded(itemStack)) {
@@ -194,7 +199,7 @@ public abstract class GunItem extends Item {
     }
 
     private float getRecoil(Player user) {
-        return Minecraft.getInstance().options.keyUse.isDown() ? this.gunRecoil / 2.0f : this.gunRecoil;
+        return client.options.keyUse.isDown() ? this.gunRecoil / 2.0f : this.gunRecoil;
     }
 
     private void useAmmo(ItemStack stack) {
