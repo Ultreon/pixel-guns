@@ -25,7 +25,6 @@ public class PixelGunsClient implements ClientModInitializer {
     public static KeyMapping reloadToggle = new KeyMapping("key.pixel_guns.reloadtoggle", InputConstants.Type.KEYSYM, 82, "category.pixel_guns.binds");
 
     public void onInitializeClient() {
-        // Test change
         KeyBindingHelper.registerKeyBinding(reloadToggle);
 
         ModelPredicateProvider.registerModels();
