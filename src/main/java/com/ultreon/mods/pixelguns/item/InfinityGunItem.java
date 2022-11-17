@@ -2,13 +2,14 @@ package com.ultreon.mods.pixelguns.item;
 
 import com.ultreon.mods.pixelguns.NbtNames;
 import com.ultreon.mods.pixelguns.entity.projectile.AbstractBulletEntity;
-import com.ultreon.mods.pixelguns.entity.projectile.Bullet;
 import com.ultreon.mods.pixelguns.entity.projectile.EnergyOrb;
+
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
@@ -59,4 +60,3 @@ public class InfinityGunItem extends GunItem implements IAnimatable {
         return new EnergyOrb(user, world, this.gunDamage);
     }
 }
-
