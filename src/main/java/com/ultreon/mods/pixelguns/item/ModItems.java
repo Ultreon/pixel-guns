@@ -70,7 +70,7 @@ public class ModItems {
 
     public static final Item CROWBAR = ModItems.registerItem(
         "crowbar",
-        new KatanaItem(Tiers.IRON, 3, -2.4f, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT))
+        new CrowbarItem(Tiers.IRON, 3, -2.4f, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT))
     );
 
     private static Item registerItem(String name, Item item) {
