@@ -1,6 +1,5 @@
 package com.ultreon.mods.pixelguns.entity.projectile;
 
-import com.ultreon.mods.pixelguns.PixelGuns;
 import com.ultreon.mods.pixelguns.entity.ModEntities;
 
 import net.minecraft.sounds.SoundEvents;
