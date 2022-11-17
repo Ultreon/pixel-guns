@@ -2,7 +2,7 @@ package com.ultreon.mods.pixelguns;
 
 import com.mojang.blaze3d.platform.InputConstants;
 
-import com.ultreon.mods.pixelguns.client.renderer.ArmoredArmorRenderer;
+import com.ultreon.mods.pixelguns.client.renderer.*;
 import com.ultreon.mods.pixelguns.entity.projectile.BulletRenderer;
 import com.ultreon.mods.pixelguns.entity.projectile.EnergyOrbModel;
 import com.ultreon.mods.pixelguns.entity.projectile.EnergyOrbRenderer;
@@ -46,5 +46,6 @@ public class PixelGunsClient implements ClientModInitializer {
         });
         
         GeoItemRenderer.registerItemRenderer(ModItems.INFINITY_GUN, new InfinityGunRenderer());
+        GeoItemRenderer.registerItemRenderer(ModItems.KATANA, new KatanaItemRenderer());
     }
 }
