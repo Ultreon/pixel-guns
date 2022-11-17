@@ -3,6 +3,7 @@ package com.ultreon.mods.pixelguns;
 import com.mojang.blaze3d.platform.InputConstants;
 
 import com.ultreon.mods.pixelguns.client.renderer.*;
+import com.ultreon.mods.pixelguns.entity.ModEntities;
 import com.ultreon.mods.pixelguns.entity.projectile.BulletRenderer;
 import com.ultreon.mods.pixelguns.entity.projectile.EnergyOrbModel;
 import com.ultreon.mods.pixelguns.entity.projectile.EnergyOrbRenderer;
@@ -28,11 +29,17 @@ public class PixelGunsClient implements ClientModInitializer {
     public static KeyMapping reloadToggle = new KeyMapping("key.pixel_guns.reloadtoggle", InputConstants.Type.KEYSYM, 82, "category.pixel_guns.binds");
 
     public void onInitializeClient() {
+
         KeyBindingHelper.registerKeyBinding(reloadToggle);
+
         ModelPredicateProvider.registerModels();
+
         EntityRendererRegistry.register(PixelGuns.BULLET_ENTITY_TYPE, BulletRenderer::new);
         EntityRendererRegistry.register(PixelGuns.ENERGY_ORB_ENTITY_TYPE, EnergyOrbRenderer::new);
+        EntityRendererRegistry.register(ModEntities.GRENADE, GrenadeEntityRenderer::new);
+
         GeoArmorRenderer.registerArmorRenderer(new ArmoredArmorRenderer(), ModItems.ARMORED_VEST);
+        
         EntityModelLayerRegistry.registerModelLayer(EnergyOrbModel.LAYER_LOCATION, EnergyOrbModel::createBodyLayer);
         ClientPlayNetworking.registerGlobalReceiver(PixelGuns.RECOIL_PACKET_ID, (client, handler, buf, sender) -> {
             float kick = buf.readFloat();
@@ -48,5 +55,6 @@ public class PixelGunsClient implements ClientModInitializer {
         GeoItemRenderer.registerItemRenderer(ModItems.INFINITY_GUN, new InfinityGunRenderer());
         GeoItemRenderer.registerItemRenderer(ModItems.KATANA, new KatanaItemRenderer());
         GeoItemRenderer.registerItemRenderer(ModItems.CROWBAR, new CrowbarItemRenderer());
+        GeoItemRenderer.registerItemRenderer(ModItems.GRENADE, new GrenadeItemRenderer());
     }
 }
