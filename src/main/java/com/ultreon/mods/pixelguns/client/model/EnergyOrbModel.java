@@ -1,4 +1,4 @@
-package com.ultreon.mods.pixelguns.entity.projectile;// Made with Blockbench 4.4.3
+package com.ultreon.mods.pixelguns.client.model;// Made with Blockbench 4.4.3
 // Exported for Minecraft version 1.17 - 1.18 with Mojang mappings
 // Paste this class into your mod and generate all required imports
 
@@ -6,6 +6,8 @@ package com.ultreon.mods.pixelguns.entity.projectile;// Made with Blockbench 4.4
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.ultreon.mods.pixelguns.PixelGuns;
+import com.ultreon.mods.pixelguns.entity.projectile.EnergyOrb;
+
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;

@@ -1,14 +1,10 @@
 package com.ultreon.mods.pixelguns;
 
 import com.mojang.blaze3d.platform.InputConstants;
-
+import com.ultreon.mods.pixelguns.client.model.EnergyOrbModel;
 import com.ultreon.mods.pixelguns.client.renderer.*;
 import com.ultreon.mods.pixelguns.entity.ModEntities;
-import com.ultreon.mods.pixelguns.entity.projectile.BulletRenderer;
-import com.ultreon.mods.pixelguns.entity.projectile.EnergyOrbModel;
-import com.ultreon.mods.pixelguns.entity.projectile.EnergyOrbRenderer;
 import com.ultreon.mods.pixelguns.item.ModItems;
-import com.ultreon.mods.pixelguns.model.InfinityGunRenderer;
 import com.ultreon.mods.pixelguns.util.ModelPredicateProvider;
 
 import net.fabricmc.api.ClientModInitializer;

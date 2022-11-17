@@ -1,10 +1,13 @@
-package com.ultreon.mods.pixelguns.entity.projectile;
+package com.ultreon.mods.pixelguns.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Matrix3f;
 import com.mojang.math.Matrix4f;
 import com.mojang.math.Vector3f;
+import com.ultreon.mods.pixelguns.client.model.EnergyOrbModel;
+import com.ultreon.mods.pixelguns.entity.projectile.EnergyOrb;
+
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
