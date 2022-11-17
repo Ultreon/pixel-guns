@@ -1,14 +1,14 @@
 package com.ultreon.mods.pixelguns.item;
 
-import com.ultreon.mods.pixelguns.entity.projectile.AbstractBulletEntity;
 import io.netty.buffer.Unpooled;
 import com.ultreon.mods.pixelguns.PixelGuns;
 import com.ultreon.mods.pixelguns.PixelGunsClient;
-import com.ultreon.mods.pixelguns.entity.projectile.Bullet;
 import com.ultreon.mods.pixelguns.util.InventoryUtil;
+
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
@@ -18,13 +18,21 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
+
 import org.jetbrains.annotations.NotNull;
 
 public abstract class GunItem extends Item {
@@ -167,16 +175,40 @@ public abstract class GunItem extends Item {
         return InteractionResultHolder.fail(itemStack);
     }
 
+    public HitResult getHitResult(Level world, Player player, Vec3 origin, Vec3 direction, double maxDistance) {
+        Vec3 destination = origin.add(direction.scale(maxDistance));
+        HitResult hitResult = world.clip(new ClipContext(origin, destination, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, player));
+        if (hitResult.getType() != HitResult.Type.MISS) {
+            destination = hitResult.getLocation();
+        }
+        EntityHitResult entityHitResult = ProjectileUtil.getEntityHitResult(world, player, origin, destination, player.getBoundingBox().expandTowards(direction.scale(maxDistance)).inflate(1.0), (entity) -> true);
+        if (entityHitResult != null) {
+            hitResult = entityHitResult;
+        }
+        return hitResult;
+    }
+
     public void shoot(Level world, Player user, ItemStack stack) {
         float kick = user.getXRot() - this.getRecoil(user);
         user.getCooldowns().addCooldown(this, this.rateOfFire);
         if (!world.isClientSide()) {
             for (int i = 0; i < this.pelletCount; ++i) {
-                AbstractBulletEntity bullet = createBulletEntity(user, world, stack);
-                bullet.setPosRaw(user.getX(), user.getEyeY(), user.getZ());
-                bullet.shootFromRotation(user, user.getXRot(), user.getYRot(), 0.0f, 4.0f, this.bulletSpread);
-                bullet.setAccel(bullet.getDeltaMovement());
-                world.addFreshEntity(bullet);
+                // TODO spread, balancing, testing
+                int maxDistance = 0;
+                if (this.ammoType == ModItems.STANDARD_HANDGUN_BULLET) maxDistance = 25;
+                if (this.ammoType == ModItems.HEAVY_HANDGUN_BULLET) maxDistance = 35;
+                if (this.ammoType == ModItems.STANDARD_RIFLE_BULLET) maxDistance = 50;
+                if (this.ammoType == ModItems.HEAVY_RIFLE_BULLET) maxDistance = 75;
+                if (this.ammoType == ModItems.SHOTGUN_SHELL) maxDistance = 25;
+
+                HitResult result = getHitResult(world, user, user.getEyePosition(), user.getLookAngle(), maxDistance);
+                if (result instanceof EntityHitResult) {
+                    EntityHitResult entityHitResult = (EntityHitResult) result;
+                    float damage = user.distanceTo(entityHitResult.getEntity()) < maxDistance/2 : this.gunDamage, this.gunDamage/
+                    entityHitResult.getEntity().hurt(DamageSource.playerAttack(user), damage);
+                
+                    PixelGuns.LOGGER.info(damage + " " + entityHitResult.getEntity().getType().toShortString());
+                }
             }
             FriendlyByteBuf buf = PacketByteBufs.create();
             buf.writeFloat(kick);
@@ -188,10 +220,6 @@ public abstract class GunItem extends Item {
             stack.hurtAndBreak(10, (LivingEntity) user, e -> e.broadcastBreakEvent(EquipmentSlot.MAINHAND));
         }
         playShootSound(world, user, stack);
-    }
-
-    public AbstractBulletEntity createBulletEntity(Player user, Level world, ItemStack stack) {
-        return new Bullet(user, world, this.gunDamage);
     }
 
     public void playShootSound(Level world, Player user, ItemStack stack) {
