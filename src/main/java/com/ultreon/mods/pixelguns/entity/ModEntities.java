@@ -1,7 +1,6 @@
 package com.ultreon.mods.pixelguns.entity;
 
 import com.ultreon.mods.pixelguns.PixelGuns;
-import com.ultreon.mods.pixelguns.entity.projectile.Bullet;
 import com.ultreon.mods.pixelguns.entity.projectile.EnergyOrb;
 import com.ultreon.mods.pixelguns.entity.projectile.thrown.GrenadeEntity;
 
@@ -25,15 +24,6 @@ public class ModEntities {
         .trackRangeBlocks(4).trackedUpdateRate(20)
     );
 
-    public static final EntityType<Bullet> BULLET_ENTITY_TYPE = ModEntities.register(
-        "bullet",
-        FabricEntityTypeBuilder.<Bullet>create(
-            MobCategory.MISC,
-            Bullet::new
-        )
-        .dimensions(EntityDimensions.fixed(0.125f, 0.125f))
-        .trackRangeBlocks(4).trackedUpdateRate(10)
-    );
     public static final EntityType<EnergyOrb> ENERGY_ORB_ENTITY_TYPE = ModEntities.register(
         "energy_orb", 
         FabricEntityTypeBuilder.<EnergyOrb>create(
