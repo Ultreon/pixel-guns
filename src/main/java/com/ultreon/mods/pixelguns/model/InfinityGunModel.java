@@ -4,7 +4,6 @@ import com.ultreon.mods.pixelguns.PixelGuns;
 import com.ultreon.mods.pixelguns.item.InfinityGunItem;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
-import software.bernie.geckolib3.model.provider.GeoModelProvider;
 
 public class InfinityGunModel extends AnimatedGeoModel<InfinityGunItem> {
     private static final ResourceLocation modelResource = PixelGuns.res("geo/infinity_gun.geo.json");
