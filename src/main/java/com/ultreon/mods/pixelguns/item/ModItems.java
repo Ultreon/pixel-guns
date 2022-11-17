@@ -77,6 +77,11 @@ public class ModItems {
         return Registry.register(Registry.ITEM, new ResourceLocation("pixel_guns", name), item);
     }
 
+    public static final Item GRENADE = ModItems.registerItem(
+        "grenade",
+        new GrenadeItem(new Item.Properties().stacksTo(16).tab(CreativeModeTab.TAB_COMBAT))
+    );
+
     public static void registerModItems() {
         PixelGuns.LOGGER.info("Registering ModItems for pixel_guns");
     }
