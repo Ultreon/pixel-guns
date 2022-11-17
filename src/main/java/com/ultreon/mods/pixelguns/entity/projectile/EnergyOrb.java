@@ -1,6 +1,6 @@
 package com.ultreon.mods.pixelguns.entity.projectile;
 
-import com.ultreon.mods.pixelguns.PixelGuns;
+import com.ultreon.mods.pixelguns.entity.ModEntities;
 import com.ultreon.mods.pixelguns.entity.damagesource.EnergyOrbDamageSource;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -37,7 +37,7 @@ public class EnergyOrb extends AbstractBulletEntity {
     }
 
     public EnergyOrb(LivingEntity livingEntity, Level world, float dmg) {
-        super(PixelGuns.ENERGY_ORB_ENTITY_TYPE, livingEntity, world);
+        super(ModEntities.ENERGY_ORB_ENTITY_TYPE, livingEntity, world);
         this.damage = dmg;
         this.lifeTick = 0;
         this.setNoGravity(true);

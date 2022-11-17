@@ -1,6 +1,8 @@
 package com.ultreon.mods.pixelguns.entity.projectile;
 
 import com.ultreon.mods.pixelguns.PixelGuns;
+import com.ultreon.mods.pixelguns.entity.ModEntities;
+
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
@@ -28,7 +30,7 @@ public class Bullet extends AbstractBulletEntity {
     }
 
     public Bullet(LivingEntity livingEntity, Level world, float dmg) {
-        super(PixelGuns.BULLET_ENTITY_TYPE, livingEntity, world);
+        super(ModEntities.BULLET_ENTITY_TYPE, livingEntity, world);
         this.damage = dmg;
         this.lifeTick = 0;
         this.setNoGravity(true);
