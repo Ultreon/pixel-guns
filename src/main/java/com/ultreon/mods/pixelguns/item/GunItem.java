@@ -28,7 +28,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -204,7 +203,10 @@ public abstract class GunItem extends Item {
                 HitResult result = getHitResult(world, user, user.getEyePosition(), user.getLookAngle(), maxDistance);
                 if (result instanceof EntityHitResult) {
                     EntityHitResult entityHitResult = (EntityHitResult) result;
-                    float damage = user.distanceTo(entityHitResult.getEntity()) < maxDistance/2 : this.gunDamage, this.gunDamage/
+                    float damage = this.gunDamage;
+                    if (user.distanceTo(entityHitResult.getEntity()) > maxDistance / 2) {
+                        damage /= 2;
+                    }
                     entityHitResult.getEntity().hurt(DamageSource.playerAttack(user), damage);
                 
                     PixelGuns.LOGGER.info(damage + " " + entityHitResult.getEntity().getType().toShortString());
