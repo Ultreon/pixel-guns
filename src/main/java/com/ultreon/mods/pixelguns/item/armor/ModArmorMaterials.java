@@ -1,4 +1,4 @@
-package com.ultreon.mods.pixelguns.item;
+package com.ultreon.mods.pixelguns.item.armor;
 
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -13,6 +13,17 @@ public enum ModArmorMaterials implements ArmorMaterial {
         "armored",
         new DurabilityAmounts(0, 225, 0, 0),
         new ProtectionAmounts(0, 10, 0, 0),
+        15,
+        SoundEvents.ARMOR_EQUIP_LEATHER,
+        0.0f,
+        0.0f,
+        Ingredient.of(Items.BEDROCK)
+    ),
+
+    HAZARD(
+        "hazard",
+        new DurabilityAmounts(225, 0, 0, 0),
+        new ProtectionAmounts(0, 0, 0, 0),
         15,
         SoundEvents.ARMOR_EQUIP_LEATHER,
         0.0f,
