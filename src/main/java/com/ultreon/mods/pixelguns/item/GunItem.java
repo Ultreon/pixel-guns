@@ -194,22 +194,19 @@ public abstract class GunItem extends Item {
             for (int i = 0; i < this.pelletCount; ++i) {
                 // TODO spread, balancing, testing
                 int maxDistance = 0;
-                if (this.ammoType == ModItems.STANDARD_HANDGUN_BULLET) maxDistance = 25;
-                if (this.ammoType == ModItems.HEAVY_HANDGUN_BULLET) maxDistance = 50;
-                if (this.ammoType == ModItems.STANDARD_RIFLE_BULLET) maxDistance = 100;
-                if (this.ammoType == ModItems.HEAVY_RIFLE_BULLET) maxDistance = 200;
-                if (this.ammoType == ModItems.SHOTGUN_SHELL) maxDistance = 25;
+                if (this.ammoType == ModItems.STANDARD_HANDGUN_BULLET) maxDistance = 50;
+                if (this.ammoType == ModItems.HEAVY_HANDGUN_BULLET) maxDistance = 100;
+                if (this.ammoType == ModItems.STANDARD_RIFLE_BULLET) maxDistance = 250;
+                if (this.ammoType == ModItems.HEAVY_RIFLE_BULLET) maxDistance = 500;
+                if (this.ammoType == ModItems.SHOTGUN_SHELL) maxDistance = 50;
 
                 HitResult result = getHitResult(world, user, user.getEyePosition(), user.getLookAngle(), maxDistance);
                 if (result instanceof EntityHitResult) {
                     EntityHitResult entityHitResult = (EntityHitResult) result;
                     float damage = this.gunDamage;
-                    if (user.distanceTo(entityHitResult.getEntity()) > maxDistance / 2) {
-                        damage /= 2;
-                    }
                     entityHitResult.getEntity().hurt(DamageSource.playerAttack(user), damage);
                 
-                    PixelGuns.LOGGER.info(damage + " " + entityHitResult.getEntity().getType().toShortString());
+                    PixelGuns.LOGGER.info(user.distanceTo(entityHitResult.getEntity()) + " " + damage + " " + entityHitResult.getEntity().getType().toShortString());
                 }
             }
             FriendlyByteBuf buf = PacketByteBufs.create();
