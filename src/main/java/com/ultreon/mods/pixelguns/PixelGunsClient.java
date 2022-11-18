@@ -33,6 +33,7 @@ public class PixelGunsClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.GRENADE, GrenadeEntityRenderer::new);
 
         GeoArmorRenderer.registerArmorRenderer(new ArmoredArmorRenderer(), ModItems.ARMORED_VEST);
+        GeoArmorRenderer.registerArmorRenderer(new HazardArmorRenderer(), ModItems.GAS_MASK);
         
         EntityModelLayerRegistry.registerModelLayer(EnergyOrbModel.LAYER_LOCATION, EnergyOrbModel::createBodyLayer);
         ClientPlayNetworking.registerGlobalReceiver(PixelGuns.RECOIL_PACKET_ID, (client, handler, buf, sender) -> {
