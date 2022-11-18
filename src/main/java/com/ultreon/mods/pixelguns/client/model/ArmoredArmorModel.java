@@ -1,7 +1,7 @@
 package com.ultreon.mods.pixelguns.client.model;
 
 import com.ultreon.mods.pixelguns.PixelGuns;
-import com.ultreon.mods.pixelguns.item.ArmoredArmorItem;
+import com.ultreon.mods.pixelguns.item.armor.ArmoredArmorItem;
 
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
