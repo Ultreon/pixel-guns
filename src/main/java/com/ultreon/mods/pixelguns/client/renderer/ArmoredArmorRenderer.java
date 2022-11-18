@@ -1,7 +1,7 @@
 package com.ultreon.mods.pixelguns.client.renderer;
 
 import com.ultreon.mods.pixelguns.client.model.ArmoredArmorModel;
-import com.ultreon.mods.pixelguns.item.ArmoredArmorItem;
+import com.ultreon.mods.pixelguns.item.armor.ArmoredArmorItem;
 
 import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 
