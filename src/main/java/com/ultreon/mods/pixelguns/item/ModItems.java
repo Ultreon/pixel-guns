@@ -89,8 +89,12 @@ public class ModItems {
         new GrenadeItem(new Item.Settings().maxCount(16).group(ItemGroup.COMBAT))
     );
 
+    public static final Item POLICE_SHIELD = ModItems.registerItem(
+        "police_shield",
+        new PoliceShieldItem(new Item.Settings().maxDamage(336).group(ItemGroup.COMBAT))
+    );
+
     public static void registerModItems() {
         PixelGuns.LOGGER.info("Registering ModItems for pixel_guns");
     }
 }
-
