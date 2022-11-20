@@ -6,13 +6,12 @@ import com.ultreon.mods.pixelguns.item.armor.HazardArmorItem;
 import com.ultreon.mods.pixelguns.item.armor.ModArmorMaterials;
 import com.ultreon.mods.pixelguns.sound.ModSounds;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.Tiers;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ToolMaterials;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 @SuppressWarnings("unused")
 public class ModItems {
@@ -63,31 +62,31 @@ public class ModItems {
 
     public static final Item ARMORED_VEST = ModItems.registerItem(
         "armored_vest",
-        new ArmoredArmorItem(ModArmorMaterials.ARMORED, EquipmentSlot.CHEST, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT))
+        new ArmoredArmorItem(ModArmorMaterials.ARMORED, EquipmentSlot.CHEST, new Item.Settings().group(ItemGroup.COMBAT))
     );
 
     public static final Item GAS_MASK = ModItems.registerItem(
         "gas_mask",
-        new HazardArmorItem(ModArmorMaterials.HAZARD, EquipmentSlot.HEAD, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT))
+        new HazardArmorItem(ModArmorMaterials.HAZARD, EquipmentSlot.HEAD, new Item.Settings().group(ItemGroup.COMBAT))
     );
 
     public static final Item KATANA = ModItems.registerItem(
         "katana",
-        new KatanaItem(Tiers.DIAMOND, 3, -2.4f, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT))
+        new KatanaItem(ToolMaterials.DIAMOND, 3, -2.4f, new Item.Settings().group(ItemGroup.COMBAT))
     );
 
     public static final Item CROWBAR = ModItems.registerItem(
         "crowbar",
-        new CrowbarItem(Tiers.IRON, 3, -2.4f, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT))
+        new CrowbarItem(ToolMaterials.IRON, 3, -2.4f, new Item.Settings().group(ItemGroup.COMBAT))
     );
 
     private static Item registerItem(String name, Item item) {
-        return Registry.register(Registry.ITEM, new ResourceLocation("pixel_guns", name), item);
+        return Registry.register(Registry.ITEM, new Identifier("pixel_guns", name), item);
     }
 
     public static final Item GRENADE = ModItems.registerItem(
         "grenade",
-        new GrenadeItem(new Item.Properties().stacksTo(16).tab(CreativeModeTab.TAB_COMBAT))
+        new GrenadeItem(new Item.Settings().maxCount(16).group(ItemGroup.COMBAT))
     );
 
     public static void registerModItems() {

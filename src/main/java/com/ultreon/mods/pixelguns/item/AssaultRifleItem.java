@@ -1,38 +1,38 @@
 package com.ultreon.mods.pixelguns.item;
 
 import com.ultreon.mods.pixelguns.PixelGuns;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 public class AssaultRifleItem extends GunItem {
     private final SoundEvent shootSoundEasterEgg;
 
-    public AssaultRifleItem(Properties settings, float gunDamage, int rateOfFire, int magSize, Item ammoType, int reloadCooldown, float bulletSpread, float gunRecoil, int pelletCount, int loadingType, SoundEvent reload1, SoundEvent reload2, SoundEvent reload3, SoundEvent shootSound, SoundEvent shootSoundEasterEgg, int reloadCycles, boolean isScoped, int reloadStage1, int reloadStage2, int reloadStage3) {
+    public AssaultRifleItem(Settings settings, float gunDamage, int rateOfFire, int magSize, Item ammoType, int reloadCooldown, float bulletSpread, float gunRecoil, int pelletCount, int loadingType, SoundEvent reload1, SoundEvent reload2, SoundEvent reload3, SoundEvent shootSound, SoundEvent shootSoundEasterEgg, int reloadCycles, boolean isScoped, int reloadStage1, int reloadStage2, int reloadStage3) {
         super(settings, gunDamage, rateOfFire, magSize, ammoType, reloadCooldown, bulletSpread, gunRecoil, pelletCount, loadingType, reload1, reload2, reload3, shootSound, reloadCycles, isScoped, reloadStage1, reloadStage2, reloadStage3);
         this.shootSoundEasterEgg = shootSoundEasterEgg;
     }
 
     @Override
-    public void playShootSound(Level world, Player user, ItemStack stack) {
-        CompoundTag nbtElement = stack.getOrCreateTagElement(PixelGuns.NBT_NAME);
+    public void playShootSound(World world, PlayerEntity user, ItemStack stack) {
+        NbtCompound nbtElement = stack.getOrCreateSubNbt(PixelGuns.NBT_NAME);
         boolean easterEgg;
-        if (!nbtElement.contains("easterEgg", Tag.TAG_BYTE))
+        if (!nbtElement.contains("easterEgg", NbtElement.BYTE_TYPE))
             nbtElement.putBoolean("easterEgg", (easterEgg = user.getRandom().nextInt(100) == 0));
         else
             easterEgg = nbtElement.getBoolean("easterEgg");
 
-        world.playSound(null, user.getX(), user.getY(), user.getZ(), easterEgg ? this.shootSoundEasterEgg : this.shootSound, SoundSource.MASTER, 1.0f, 1.0f);
+        world.playSound(null, user.getX(), user.getY(), user.getZ(), easterEgg ? this.shootSoundEasterEgg : this.shootSound, SoundCategory.MASTER, 1.0f, 1.0f);
     }
 
     @Override
-    public void onCraftedBy(@NotNull ItemStack itemStack, @NotNull Level level, @NotNull Player player) {
-        super.onCraftedBy(itemStack, level, player);
+    public void onCraft(@NotNull ItemStack itemStack, @NotNull World level, @NotNull PlayerEntity player) {
+        super.onCraft(itemStack, level, player);
     }
 }

@@ -2,17 +2,15 @@ package com.ultreon.mods.pixelguns.entity.projectile.thrown;
 
 import com.ultreon.mods.pixelguns.entity.ModEntities;
 import com.ultreon.mods.pixelguns.item.ModItems;
-
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.Explosion.BlockInteraction;
-import net.minecraft.world.phys.EntityHitResult;
-import net.minecraft.world.phys.HitResult;
-
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
+import net.minecraft.item.Item;
+import net.minecraft.util.hit.EntityHitResult;
+import net.minecraft.util.hit.HitResult;
+import net.minecraft.world.World;
+import net.minecraft.world.explosion.Explosion.DestructionType;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -21,38 +19,38 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class GrenadeEntity extends ThrowableItemProjectile implements IAnimatable {
+public class GrenadeEntity extends ThrownItemEntity implements IAnimatable {
 
     private AnimationFactory factory = new AnimationFactory(this);
 
-    public GrenadeEntity(EntityType<? extends GrenadeEntity> entityType, Level world) {
+    public GrenadeEntity(EntityType<? extends GrenadeEntity> entityType, World world) {
         super(entityType, world);
     }
 
-    public GrenadeEntity(Level world, LivingEntity owner) {
+    public GrenadeEntity(World world, LivingEntity owner) {
         super(ModEntities.GRENADE, owner, world);
     }
 
-    public GrenadeEntity(Level world, double x, double y, double z) {
+    public GrenadeEntity(World world, double x, double y, double z) {
         super(ModEntities.GRENADE, x, y, z, world);
     }
 
     @Override
-    protected void onHitEntity(EntityHitResult entityHitResult) {
-        super.onHitEntity(entityHitResult);
-        entityHitResult.getEntity().hurt(DamageSource.thrown(this, this.getOwner()), 0.0f);
+    protected void onEntityHit(EntityHitResult entityHitResult) {
+        super.onEntityHit(entityHitResult);
+        entityHitResult.getEntity().damage(DamageSource.thrownProjectile(this, this.getOwner()), 0.0f);
     }
 
     private void explode() {
-        if (this.level.isClientSide) return;
+        if (this.world.isClient) return;
 
-        this.level.explode(this, this.getX(), this.getY(), this.getZ(), 1.0f, false, BlockInteraction.DESTROY);
+        this.world.createExplosion(this, this.getX(), this.getY(), this.getZ(), 1.0f, false, DestructionType.DESTROY);
         this.discard();
     }
 
     @Override
-    protected void onHit(HitResult hitResult) {
-        super.onHit(hitResult);
+    protected void onCollision(HitResult hitResult) {
+        super.onCollision(hitResult);
         explode();
     }
 

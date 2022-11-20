@@ -1,15 +1,14 @@
 package com.ultreon.mods.pixelguns.item;
 
-import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Tier;
-
+import net.minecraft.item.SwordItem;
+import net.minecraft.item.ToolMaterial;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class KatanaItem extends SwordItem implements IAnimatable {
 
-    public KatanaItem(Tier tier, int i, float f, Properties properties) {
+    public KatanaItem(ToolMaterial tier, int i, float f, Settings properties) {
         super(tier, i, f, properties);
     }
     

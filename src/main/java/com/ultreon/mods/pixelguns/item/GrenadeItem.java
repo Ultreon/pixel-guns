@@ -5,16 +5,15 @@ import java.util.function.Predicate;
 import com.ultreon.mods.pixelguns.entity.projectile.thrown.GrenadeEntity;
 
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.stats.Stats;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ProjectileWeaponItem;
-import net.minecraft.world.level.Level;
-
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.RangedWeaponItem;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.stat.Stats;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
+import net.minecraft.world.World;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -27,37 +26,37 @@ import software.bernie.geckolib3.network.ISyncable;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 import software.bernie.geckolib3.world.storage.GeckoLibIdTracker;
 
-public class GrenadeItem extends ProjectileWeaponItem implements IAnimatable, ISyncable {
+public class GrenadeItem extends RangedWeaponItem implements IAnimatable, ISyncable {
 
-    public GrenadeItem(Properties settings) {
+    public GrenadeItem(Settings settings) {
         super(settings);
 		GeckoLibNetwork.registerSyncable(this);
     }
 
     @Override
-    public void releaseUsing(ItemStack stack, Level world, LivingEntity user, int remainingUseTicks) {
-        if (!(user instanceof Player)) return;
-		if (!world.isClientSide) {
-			stack.removeTagKey("GeckoLibID");
+    public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
+        if (!(user instanceof PlayerEntity)) return;
+		if (!world.isClient) {
+			stack.removeSubNbt("GeckoLibID");
 		}
 		if (remainingUseTicks < 0) return;
 
-        Player playerEntity = (Player) user;
+        PlayerEntity playerEntity = (PlayerEntity) user;
 
         if (stack.isEmpty() && !playerEntity.isCreative()) return;
-		int useTicks = this.getUseDuration(stack) - remainingUseTicks;
+		int useTicks = this.getMaxUseTime(stack) - remainingUseTicks;
 		if (useTicks < 10) return;
 		float throwStrength = GrenadeItem.getThrowStrength(useTicks);
-        if (!world.isClientSide) {
+        if (!world.isClient) {
 			GrenadeEntity grenade = new GrenadeEntity(world, playerEntity);
-			grenade.shootFromRotation(playerEntity, playerEntity.getXRot(), playerEntity.getYRot(), 0.0f, throwStrength * 1.5f, 1.0f);
-            world.addFreshEntity(grenade);
+			grenade.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0f, throwStrength * 1.5f, 1.0f);
+            world.spawnEntity(grenade);
         }
         if (!playerEntity.isCreative()) {
-            stack.shrink(1);
+            stack.decrement(1);
         }
-		user.swing(InteractionHand.MAIN_HAND);
-        playerEntity.awardStat(Stats.ITEM_USED.get(this));
+		user.swingHand(Hand.MAIN_HAND);
+        playerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
     }
 
     public static float getThrowStrength(int useTicks) {
@@ -67,42 +66,42 @@ public class GrenadeItem extends ProjectileWeaponItem implements IAnimatable, IS
     }
 
     @Override
-    public int getUseDuration(ItemStack stack) {
+    public int getMaxUseTime(ItemStack stack) {
         return 120;
     }
 
 	@Override
-	public boolean allowNbtUpdateAnimation(Player player, InteractionHand hand, ItemStack oldStack, ItemStack newStack) {
+	public boolean allowNbtUpdateAnimation(PlayerEntity player, Hand hand, ItemStack oldStack, ItemStack newStack) {
 		return false;
 	}
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
-        ItemStack stack = player.getItemInHand(hand);
-        player.startUsingItem(hand);
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        ItemStack stack = player.getStackInHand(hand);
+        player.setCurrentHand(hand);
 
-		if (!world.isClientSide) {
-			dispatchAnimationToClients((ServerLevel) world, player, stack, GrenadeState.PULLING_PIN);
+		if (!world.isClient) {
+			dispatchAnimationToClients((ServerWorld) world, player, stack, GrenadeState.PULLING_PIN);
 		}
-		return InteractionResultHolder.fail(stack);
+		return TypedActionResult.fail(stack);
     }
 
 	@Override
-	public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity user) {
-		if (user instanceof Player) {
-			((Player) user).getCooldowns().addCooldown(this, 20);
+	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+		if (user instanceof PlayerEntity) {
+			((PlayerEntity) user).getItemCooldownManager().set(this, 20);
 		}
-        stack.removeTagKey("GeckoLibID");
+        stack.removeSubNbt("GeckoLibID");
         return stack;
     }
 
     @Override
-    public Predicate<ItemStack> getAllSupportedProjectiles() {
-        return stack -> stack.is(ModItems.GRENADE);
+    public Predicate<ItemStack> getProjectiles() {
+        return stack -> stack.isOf(ModItems.GRENADE);
     }
 
     @Override
-    public int getDefaultProjectileRange() {
+    public int getRange() {
         return 15;
     }
 
@@ -113,11 +112,11 @@ public class GrenadeItem extends ProjectileWeaponItem implements IAnimatable, IS
 
 	private AnimationFactory factory = new AnimationFactory(this);
 
-	private void dispatchAnimationToClients(ServerLevel world, Player player, ItemStack stack, int animation) {
+	private void dispatchAnimationToClients(ServerWorld world, PlayerEntity player, ItemStack stack, int animation) {
 		final int id = GeckoLibIdTracker.from(world).getNextId(GeckoLibIdTracker.Type.ITEM);
-		stack.getOrCreateTag().putInt("GeckoLibID", id);
+		stack.getOrCreateNbt().putInt("GeckoLibID", id);
 		GeckoLibNetwork.syncAnimation(player, this, id, animation);
-		for (Player otherPlayer : PlayerLookup.tracking(player)) {
+		for (PlayerEntity otherPlayer : PlayerLookup.tracking(player)) {
 			GeckoLibNetwork.syncAnimation(otherPlayer, this, id, animation);
 		}
 	}

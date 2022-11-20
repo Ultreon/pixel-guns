@@ -1,6 +1,6 @@
 package com.ultreon.mods.pixelguns.entity.damagesource;
 
-import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.entity.damage.DamageSource;
 
 public class EnergyOrbDamageSource extends DamageSource {
     public EnergyOrbDamageSource() {

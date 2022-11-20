@@ -1,9 +1,9 @@
 package com.ultreon.mods.pixelguns.sound;
 
 import com.ultreon.mods.pixelguns.PixelGuns;
-import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 public class ModSounds {
     public static SoundEvent RELOAD_GENERIC_PISTOL_P1 = ModSounds.registerSoundEvent("generic_pistol_p1");
@@ -41,7 +41,7 @@ public class ModSounds {
     public static SoundEvent KATANA_SWING = ModSounds.registerSoundEvent("katana_swoop");
 
     private static SoundEvent registerSoundEvent(String name) {
-        ResourceLocation id = new ResourceLocation("pixel_guns", name);
+        Identifier id = new Identifier("pixel_guns", name);
         return Registry.register(Registry.SOUND_EVENT, id, new SoundEvent(id));
     }
 

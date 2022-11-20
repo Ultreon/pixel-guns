@@ -1,58 +1,56 @@
 package com.ultreon.mods.pixelguns.client.renderer;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Matrix3f;
-import com.mojang.math.Matrix4f;
-import com.mojang.math.Vector3f;
 import com.ultreon.mods.pixelguns.client.model.EnergyOrbModel;
 import com.ultreon.mods.pixelguns.entity.projectile.EnergyOrb;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
+import net.minecraft.client.render.OverlayTexture;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.entity.EntityRenderer;
+import net.minecraft.client.render.entity.EntityRendererFactory;
+import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3f;
 import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings({"deprecation", "unused"})
 @Environment(value = EnvType.CLIENT)
 public class EnergyOrbRenderer extends EntityRenderer<EnergyOrb> {
-    public static final ResourceLocation TEXTURE = new ResourceLocation("pixel_guns", "textures/entity/projectiles/energy_orb.png");
-    private static final RenderType LAYER = RenderType.entityCutoutNoCull(TEXTURE);
+    public static final Identifier TEXTURE = new Identifier("pixel_guns", "textures/entity/projectiles/energy_orb.png");
+    private static final RenderLayer LAYER = RenderLayer.getEntityCutoutNoCull(TEXTURE);
     private final EnergyOrbModel model;
 
-    public EnergyOrbRenderer(EntityRendererProvider.Context ctx) {
+    public EnergyOrbRenderer(EntityRendererFactory.Context ctx) {
         super(ctx);
-        this.model = new EnergyOrbModel(ctx.bakeLayer(EnergyOrbModel.LAYER_LOCATION));
+        this.model = new EnergyOrbModel(ctx.getPart(EnergyOrbModel.LAYER_LOCATION));
     }
 
-    public void render(@NotNull EnergyOrb energyOrb, float f, float g, PoseStack matrixStack, MultiBufferSource vertexConsumerProvider, int i) {
-        matrixStack.pushPose();
-        float h = Mth.rotlerp(energyOrb.yRotO, energyOrb.getYRot(), g);
-        float j = Mth.lerp(g, energyOrb.xRotO, energyOrb.getXRot());
-        float k = (float)energyOrb.tickCount + g;
+    public void render(@NotNull EnergyOrb energyOrb, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
+        matrixStack.push();
+        float h = MathHelper.lerpAngle(energyOrb.prevYaw, energyOrb.getYaw(), g);
+        float j = MathHelper.lerp(g, energyOrb.prevPitch, energyOrb.getPitch());
+        float k = (float)energyOrb.age + g;
         matrixStack.translate(0.0, 0.15f, 0.0);
-        matrixStack.mulPose(Vector3f.YP.rotationDegrees(Mth.sin(k * 0.1f) * 180.0f));
-        matrixStack.mulPose(Vector3f.XP.rotationDegrees(Mth.cos(k * 0.1f) * 180.0f));
-        matrixStack.mulPose(Vector3f.ZP.rotationDegrees(Mth.sin(k * 0.15f) * 360.0f));
+        matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(MathHelper.sin(k * 0.1f) * 180.0f));
+        matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(MathHelper.cos(k * 0.1f) * 180.0f));
+        matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(MathHelper.sin(k * 0.15f) * 360.0f));
         matrixStack.scale(-0.5f, -0.5f, 0.5f);
-        this.model.setupAnim(energyOrb, 0.0f, 0.0f, 0.0f, h, j);
-        VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(this.model.renderType(TEXTURE));
-        this.model.renderToBuffer(matrixStack, vertexConsumer, i, OverlayTexture.NO_OVERLAY, 1.0f, 1.0f, 1.0f, 1.0f);
+        this.model.setAngles(energyOrb, 0.0f, 0.0f, 0.0f, h, j);
+        VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(this.model.getLayer(TEXTURE));
+        this.model.render(matrixStack, vertexConsumer, i, OverlayTexture.DEFAULT_UV, 1.0f, 1.0f, 1.0f, 1.0f);
         matrixStack.scale(1.5f, 1.5f, 1.5f);
         VertexConsumer vertexConsumer2 = vertexConsumerProvider.getBuffer(LAYER);
-        this.model.renderToBuffer(matrixStack, vertexConsumer2, i, OverlayTexture.NO_OVERLAY, 1.0f, 1.0f, 1.0f, 0.15f);
-        matrixStack.popPose();
+        this.model.render(matrixStack, vertexConsumer2, i, OverlayTexture.DEFAULT_UV, 1.0f, 1.0f, 1.0f, 0.15f);
+        matrixStack.pop();
         super.render(energyOrb, f, g, matrixStack, vertexConsumerProvider, i);
     }
 
-    public ResourceLocation getTextureLocation(@NotNull EnergyOrb energyOrb) {
+    @Override
+    public Identifier getTexture(@NotNull EnergyOrb energyOrb) {
         return TEXTURE;
     }
 }
-

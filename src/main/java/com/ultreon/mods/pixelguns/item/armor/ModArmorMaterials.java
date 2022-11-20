@@ -1,11 +1,11 @@
 package com.ultreon.mods.pixelguns.item.armor;
 
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.ArmorMaterial;
+import net.minecraft.item.Items;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 
 public enum ModArmorMaterials implements ArmorMaterial {
 
@@ -14,10 +14,10 @@ public enum ModArmorMaterials implements ArmorMaterial {
         new DurabilityAmounts(0, 225, 0, 0),
         new ProtectionAmounts(0, 10, 0, 0),
         15,
-        SoundEvents.ARMOR_EQUIP_LEATHER,
+        SoundEvents.ITEM_ARMOR_EQUIP_LEATHER,
         0.0f,
         0.0f,
-        Ingredient.of(Items.BEDROCK)
+        Ingredient.ofItems(Items.BEDROCK)
     ),
 
     HAZARD(
@@ -25,10 +25,10 @@ public enum ModArmorMaterials implements ArmorMaterial {
         new DurabilityAmounts(225, 0, 0, 0),
         new ProtectionAmounts(0, 0, 0, 0),
         15,
-        SoundEvents.ARMOR_EQUIP_LEATHER,
+        SoundEvents.ITEM_ARMOR_EQUIP_LEATHER,
         0.0f,
         0.0f,
-        Ingredient.of(Items.BEDROCK)
+        Ingredient.ofItems(Items.BEDROCK)
     );
 
     private final String name;
@@ -55,7 +55,7 @@ public enum ModArmorMaterials implements ArmorMaterial {
     }
 
     @Override
-    public int getDurabilityForSlot(EquipmentSlot slot) {
+    public int getDurability(EquipmentSlot slot) {
         switch (slot.getName()) {
             case "feet": return this.durabilityAmounts.boots;
             case "legs": return this.durabilityAmounts.leggings;
@@ -66,7 +66,7 @@ public enum ModArmorMaterials implements ArmorMaterial {
     }
 
     @Override
-    public int getDefenseForSlot(EquipmentSlot slot) {
+    public int getProtectionAmount(EquipmentSlot slot) {
         switch (slot.getName()) {
             case "feet": return this.protectionAmounts.boots;
             case "legs": return this.protectionAmounts.leggings;
@@ -77,7 +77,7 @@ public enum ModArmorMaterials implements ArmorMaterial {
     }
 
     @Override
-    public int getEnchantmentValue() {
+    public int getEnchantability() {
         return this.enchantability;
     }
 
