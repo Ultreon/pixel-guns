@@ -14,7 +14,6 @@ import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -35,6 +34,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+
+import java.util.Random;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -114,7 +115,7 @@ public abstract class GunItem extends Item {
         if (world.isClientSide() && ((Player) entity).getItemInHand(InteractionHand.MAIN_HAND) == stack && PixelGunsClient.reloadToggle.isDown() && GunItem.remainingAmmo(stack) < this.magSize && GunItem.reserveAmmoCount((Player) entity, this.ammoType) > 0 && !nbtCompound.getBoolean("isReloading")) {
             FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
             buf.writeBoolean(true);
-            ClientPlayNetworking.send(new ResourceLocation("pixel_guns", "reload"), buf);
+            ClientPlayNetworking.send(PixelGuns.res("reload"), buf);
         }
         if (nbtCompound.getBoolean("isReloading") && (((Player) entity).getItemInHand(InteractionHand.MAIN_HAND) != stack || GunItem.reserveAmmoCount((Player) entity, this.ammoType) <= 0 && this.reloadCycles <= 1 || nbtCompound.getInt("reloadTick") >= this.reloadCooldown || GunItem.remainingAmmo(stack) >= this.magSize && this.reloadCycles <= 1)) {
             nbtCompound.putBoolean("isReloading", false);
@@ -200,7 +201,10 @@ public abstract class GunItem extends Item {
                 if (this == ModItems.CLASSIC_SNIPER_RIFLE) maxDistance = 500;
                 else maxDistance = 250;
 
-                HitResult result = getHitResult(world, user, user.getEyePosition(), user.getLookAngle(), maxDistance);
+                Random r = new Random();
+                Vec3 bulletVector = user.getLookAngle().add(new Vec3(r.nextGaussian(), r.nextGaussian(), r.nextGaussian()).scale(this.bulletSpread / 10));
+
+                HitResult result = getHitResult(world, user, user.getEyePosition(), bulletVector, maxDistance);
                 if (result instanceof EntityHitResult) {
                     EntityHitResult entityHitResult = (EntityHitResult) result;
                     float damage = this.gunDamage;
