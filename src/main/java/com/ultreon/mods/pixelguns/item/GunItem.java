@@ -10,9 +10,12 @@ import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
@@ -28,6 +31,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -192,13 +196,9 @@ public abstract class GunItem extends Item {
         user.getCooldowns().addCooldown(this, this.rateOfFire);
         if (!world.isClientSide()) {
             for (int i = 0; i < this.pelletCount; ++i) {
-                // TODO spread, balancing, testing
                 int maxDistance = 0;
-                if (this.ammoType == ModItems.STANDARD_HANDGUN_BULLET) maxDistance = 50;
-                if (this.ammoType == ModItems.HEAVY_HANDGUN_BULLET) maxDistance = 100;
-                if (this.ammoType == ModItems.STANDARD_RIFLE_BULLET) maxDistance = 250;
-                if (this.ammoType == ModItems.HEAVY_RIFLE_BULLET) maxDistance = 500;
-                if (this.ammoType == ModItems.SHOTGUN_SHELL) maxDistance = 50;
+                if (this == ModItems.CLASSIC_SNIPER_RIFLE) maxDistance = 500;
+                else maxDistance = 250;
 
                 HitResult result = getHitResult(world, user, user.getEyePosition(), user.getLookAngle(), maxDistance);
                 if (result instanceof EntityHitResult) {
@@ -207,6 +207,9 @@ public abstract class GunItem extends Item {
                     entityHitResult.getEntity().hurt(DamageSource.playerAttack(user), damage);
                 
                     PixelGuns.LOGGER.info(user.distanceTo(entityHitResult.getEntity()) + " " + damage + " " + entityHitResult.getEntity().getType().toShortString());
+                } else {
+                    BlockHitResult blockHitResult = (BlockHitResult) result;
+                    ((ServerLevel) world).sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, world.getBlockState(blockHitResult.getBlockPos())), blockHitResult.getLocation().x, blockHitResult.getLocation().y, blockHitResult.getLocation().z, 1, 0, 0, 0, 1);
                 }
             }
             FriendlyByteBuf buf = PacketByteBufs.create();
