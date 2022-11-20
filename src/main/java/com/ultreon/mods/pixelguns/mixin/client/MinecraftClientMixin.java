@@ -5,14 +5,12 @@ import com.ultreon.mods.pixelguns.item.GunItem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.Mouse;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
-import org.jetbrains.annotations.Nullable;
 
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -24,11 +22,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Environment(value = EnvType.CLIENT)
 @Mixin(value = MinecraftClient.class)
 public abstract class MinecraftClientMixin {
-    @Shadow
-    @Nullable
-    public ClientPlayerEntity player;
-    @Shadow
-    private int itemUseCooldown;
+    
+    @Shadow @Nullable public ClientPlayerEntity player;
+    @Shadow private int itemUseCooldown;
 
     @Inject(method = {"doItemUse"}, at = {@At(value = "RETURN")})
     public void doGunUse(CallbackInfo ci) {
