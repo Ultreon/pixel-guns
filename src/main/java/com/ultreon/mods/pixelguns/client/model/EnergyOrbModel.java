@@ -32,7 +32,7 @@ public class EnergyOrbModel extends EntityModel<EnergyOrb> {
 		ModelData meshdefinition = new ModelData();
 		ModelPartData partdefinition = meshdefinition.getRoot();
 
-		ModelPartData bb_main = partdefinition.addChild("bb_main", ModelPartBuilder.create().uv(0, 16).cuboid(-3.0F, -11.0F, -3.0F, 6.0F, 6.0F, 6.0F, new Dilation(0.0F))
+		partdefinition.addChild("bb_main", ModelPartBuilder.create().uv(0, 16).cuboid(-3.0F, -11.0F, -3.0F, 6.0F, 6.0F, 6.0F, new Dilation(0.0F))
 		.uv(0, 0).cuboid(-4.0F, -12.0F, -4.0F, 8.0F, 8.0F, 8.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
 
 		return TexturedModelData.of(meshdefinition, 32, 32);
