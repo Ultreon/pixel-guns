@@ -49,5 +49,6 @@ public class PixelGunsClient implements ClientModInitializer {
         GeoItemRenderer.registerItemRenderer(ModItems.KATANA, new KatanaItemRenderer());
         GeoItemRenderer.registerItemRenderer(ModItems.CROWBAR, new CrowbarItemRenderer());
         GeoItemRenderer.registerItemRenderer(ModItems.GRENADE, new GrenadeItemRenderer());
+        GeoItemRenderer.registerItemRenderer(ModItems.POLICE_SHIELD, new PoliceShieldItemRenderer());
     }
 }
