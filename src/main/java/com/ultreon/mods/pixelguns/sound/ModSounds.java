@@ -39,6 +39,9 @@ public class ModSounds {
     public static SoundEvent SNIPER_CLASSIC = ModSounds.registerSoundEvent("sniper_classic");
 
     public static SoundEvent KATANA_SWING = ModSounds.registerSoundEvent("katana_swoop");
+    public static SoundEvent KATANA_HIT = ModSounds.registerSoundEvent("katana_hit");
+    public static SoundEvent GRENADE_EXPLODE = ModSounds.registerSoundEvent("grenade_explode");
+    public static SoundEvent CROWBAR_HIT = ModSounds.registerSoundEvent("crowbar_hit");
 
     private static SoundEvent registerSoundEvent(String name) {
         Identifier id = new Identifier("pixel_guns", name);
