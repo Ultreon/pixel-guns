@@ -1,13 +1,18 @@
 package com.ultreon.mods.pixelguns.mixin.client;
 
+import com.ultreon.mods.pixelguns.PixelGuns;
 import com.ultreon.mods.pixelguns.item.GunItem;
+import com.ultreon.mods.pixelguns.item.ModItems;
+import com.ultreon.mods.pixelguns.sound.ModSounds;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.GameOptions;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Hand;
 
 import org.jetbrains.annotations.Nullable;
@@ -16,6 +21,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.At.Shift;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -45,6 +51,15 @@ public abstract class MinecraftClientMixin {
     public void handleGunKeybind(CallbackInfo info) {
         if (this.options.attackKey.isPressed() && this.itemUseCooldown == 0 && !this.player.isUsingItem() && this.player.getMainHandStack().getItem() instanceof GunItem) {
             this.doItemUse();
+        }
+    }
+
+    @Shadow @Nullable public ClientWorld world;
+
+    @Inject(method = "doAttack", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerInteractionManager;hasLimitedAttackSpeed()Z", shift = Shift.BEFORE))
+    private void onAttackMiss(CallbackInfoReturnable info) {
+        if (player.getMainHandStack().getItem() == ModItems.KATANA || player.getMainHandStack().getItem() == ModItems.CROWBAR) {
+            world.playSound(this.player.getBlockPos(), ModSounds.KATANA_SWING, SoundCategory.PLAYERS, 1, 1, false);
         }
     }
 
