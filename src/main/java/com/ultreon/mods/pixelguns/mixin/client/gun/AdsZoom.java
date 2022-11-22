@@ -1,4 +1,4 @@
-package com.ultreon.mods.pixelguns.mixin.client;
+package com.ultreon.mods.pixelguns.mixin.client.gun;
 
 import com.mojang.authlib.GameProfile;
 import com.ultreon.mods.pixelguns.item.GunItem;
@@ -17,13 +17,14 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(value = AbstractClientPlayerEntity.class)
-public abstract class AbstractClientPlayerEntityMixin extends PlayerEntity {
-    public AbstractClientPlayerEntityMixin(World level, BlockPos blockPos, float f, GameProfile gameProfile, @Nullable PlayerPublicKey profilePublicKey) {
+@Mixin(AbstractClientPlayerEntity.class)
+public abstract class AdsZoom extends PlayerEntity {
+    public AdsZoom(World level, BlockPos blockPos, float f, GameProfile gameProfile, @Nullable PlayerPublicKey profilePublicKey) {
         super(level, blockPos, f, gameProfile, profilePublicKey);
     }
 
-    @Inject(method = "getFovMultiplier", at = @At(value = "TAIL"), cancellable = true)
+    // Apply camera zoom on ADS
+    @Inject(method = "getFovMultiplier", at = @At("TAIL"), cancellable = true)
     public void zoomLevel(CallbackInfoReturnable<Float> ci) {
         ItemStack gun = this.getStackInHand(Hand.MAIN_HAND);
         if (gun.getItem() instanceof GunItem && MinecraftClient.getInstance().mouse.wasRightButtonClicked() && GunItem.isLoaded(gun)) {

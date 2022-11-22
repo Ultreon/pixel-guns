@@ -6,10 +6,12 @@
   "mixins": [
   ],
   "client": [
-    "AbstractClientPlayerEntityMixin",
-    "MinecraftClientMixin",
-    "PlayerEntityRenderMixin",
-    "MouseHandlerMixin"
+    "gun/AdsZoom",
+    "gun/GunKeybinds",
+    "gun/ScopedSensitivity",
+    "gun/AnimationPrevention",
+    
+    "PlayerEntityRenderMixin"
   ],
   "injectors": {
     "defaultRequire": 1

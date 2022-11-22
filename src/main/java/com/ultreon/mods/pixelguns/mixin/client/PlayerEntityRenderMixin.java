@@ -23,9 +23,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Quaternion;
 
-@Mixin(value=PlayerEntityRenderer.class)
+@Mixin(PlayerEntityRenderer.class)
 public class PlayerEntityRenderMixin {
-    @Inject(method="getArmPose", at=@At(value="TAIL"), cancellable = true)
+    @Inject(method = "getArmPose", at = @At("TAIL"), cancellable = true)
     private static void gunPose(AbstractClientPlayerEntity player, Hand hand, CallbackInfoReturnable<BipedEntityModel.ArmPose> ci) {
         if (player.getStackInHand(hand).getItem() instanceof GunItem && GunItem.isLoaded(player.getStackInHand(hand)) && player.getStackInHand(hand).getOrCreateNbt().getInt("reloadTick") <= 0) {
             ci.setReturnValue(BipedEntityModel.ArmPose.BOW_AND_ARROW);
@@ -37,7 +37,7 @@ public class PlayerEntityRenderMixin {
         }
         ci.setReturnValue(BipedEntityModel.ArmPose.ITEM);
     }
-    @Inject(method="render(Lnet/minecraft/client/player/AbstractClientPlayer;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V", at=@At(value="TAIL"))
+    @Inject(method = "render(Lnet/minecraft/client/player/AbstractClientPlayer;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V", at = @At("TAIL"))
     private void render(AbstractClientPlayerEntity entity, float f, float g, MatrixStack poseStack, VertexConsumerProvider multiBufferSource, int i, CallbackInfo ci) {
         PlayerEntity player = (PlayerEntity) entity;
         ItemStack itemInHand = player.getStackInHand(Hand.MAIN_HAND);
