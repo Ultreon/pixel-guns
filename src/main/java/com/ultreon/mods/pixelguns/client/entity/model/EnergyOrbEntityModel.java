@@ -1,4 +1,4 @@
-package com.ultreon.mods.pixelguns.client.model;// Made with Blockbench 4.4.3
+package com.ultreon.mods.pixelguns.client.entity.model;// Made with Blockbench 4.4.3
 // Exported for Minecraft version 1.17 - 1.18 with Mojang mappings
 // Paste this class into your mod and generate all required imports
 
@@ -19,12 +19,12 @@ import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
-public class EnergyOrbModel extends EntityModel<EnergyOrb> {
+public class EnergyOrbEntityModel extends EntityModel<EnergyOrb> {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
 	public static final EntityModelLayer LAYER_LOCATION = new EntityModelLayer(new Identifier(PixelGuns.MOD_ID, "textures/entity/projectiles/energy_orb.png"), "main");
 	private final ModelPart bb_main;
 
-	public EnergyOrbModel(ModelPart root) {
+	public EnergyOrbEntityModel(ModelPart root) {
 		this.bb_main = root.getChild("bb_main");
 	}
 

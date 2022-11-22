@@ -1,8 +1,8 @@
-package com.ultreon.mods.pixelguns.client.renderer;
+package com.ultreon.mods.pixelguns.client.entity.renderer;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.ultreon.mods.pixelguns.client.model.NuclearExplosionEntityModel;
+import com.ultreon.mods.pixelguns.client.entity.model.NuclearExplosionEntityModel;
 import com.ultreon.mods.pixelguns.entity.NuclearExplosionEntity;
 
 import net.minecraft.client.render.RenderLayer;

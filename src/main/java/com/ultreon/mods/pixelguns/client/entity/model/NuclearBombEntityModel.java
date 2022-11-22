@@ -1,4 +1,4 @@
-package com.ultreon.mods.pixelguns.client.model;
+package com.ultreon.mods.pixelguns.client.entity.model;
 
 import com.ultreon.mods.pixelguns.PixelGuns;
 import com.ultreon.mods.pixelguns.entity.NuclearBombEntity;

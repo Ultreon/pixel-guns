@@ -1,6 +1,6 @@
-package com.ultreon.mods.pixelguns.client.renderer;
+package com.ultreon.mods.pixelguns.client.item.renderer;
 
-import com.ultreon.mods.pixelguns.client.model.KatanaItemModel;
+import com.ultreon.mods.pixelguns.client.item.model.KatanaItemModel;
 import com.ultreon.mods.pixelguns.item.KatanaItem;
 
 import software.bernie.geckolib3.renderers.geo.GeoItemRenderer;

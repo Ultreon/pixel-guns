@@ -1,6 +1,6 @@
-package com.ultreon.mods.pixelguns.client.renderer;
+package com.ultreon.mods.pixelguns.client.item.renderer;
 
-import com.ultreon.mods.pixelguns.client.model.PoliceShieldItemModel;
+import com.ultreon.mods.pixelguns.client.item.model.PoliceShieldItemModel;
 import com.ultreon.mods.pixelguns.item.PoliceShieldItem;
 
 import software.bernie.geckolib3.renderers.geo.GeoItemRenderer;
