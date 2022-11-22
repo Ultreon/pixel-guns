@@ -29,6 +29,8 @@ public class PixelGunsClient implements ClientModInitializer {
 
         EntityRendererRegistry.register(ModEntities.ENERGY_ORB_ENTITY_TYPE, EnergyOrbRenderer::new);
         EntityRendererRegistry.register(ModEntities.GRENADE, GrenadeEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.NUCLEAR_BOMB, NuclearBombEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.NUCLEAR_EXPLOSION, NuclearExplosionEntityRenderer::new);
 
         GeoArmorRenderer.registerArmorRenderer(new ArmoredArmorRenderer(), ModItems.ARMORED_VEST);
         GeoArmorRenderer.registerArmorRenderer(new HazardArmorRenderer(), ModItems.GAS_MASK);

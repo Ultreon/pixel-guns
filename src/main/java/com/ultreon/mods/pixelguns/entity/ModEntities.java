@@ -24,6 +24,18 @@ public class ModEntities {
         .trackRangeBlocks(4).trackedUpdateRate(20)
     );
 
+    public static final EntityType<NuclearBombEntity> NUCLEAR_BOMB = ModEntities.register(
+        "nuclear_bomb",
+            FabricEntityTypeBuilder.create(SpawnGroup.MISC, NuclearBombEntity::new)
+                    .dimensions(EntityDimensions.fixed(1.0f, 0.5f))
+    );
+
+    public static final EntityType<NuclearExplosionEntity> NUCLEAR_EXPLOSION = ModEntities.register(
+            "nuclear_explosion",
+            FabricEntityTypeBuilder.create(SpawnGroup.MISC, NuclearExplosionEntity::new)
+                    .dimensions(EntityDimensions.fixed(15.0f, 100.0f))
+    );
+
     public static final EntityType<EnergyOrb> ENERGY_ORB_ENTITY_TYPE = ModEntities.register(
         "energy_orb", 
         FabricEntityTypeBuilder.<EnergyOrb>create(
