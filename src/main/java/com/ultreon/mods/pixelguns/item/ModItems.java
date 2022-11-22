@@ -59,25 +59,27 @@ public class ModItems {
     });
     public static final Item INFINITY_GUN = ModItems.registerItem("infinity_gun", new InfinityGunItem(new FabricItemSettings().group(PixelGuns.GUNS).maxCount(1)) {
     });
+    public static final Item ROCKET_LAUNCHER = ModItems.registerItem("rocket_launcher", new RocketLauncherItem(new FabricItemSettings().group(PixelGuns.GUNS).maxCount(1), 0, 0, 0, null, 0, 0, 0, 0, 0, null, null, null, null, 0, false, 0, 0, 0)
+    );
 
     public static final Item ARMORED_VEST = ModItems.registerItem(
         "armored_vest",
-        new ArmoredArmorItem(ModArmorMaterials.ARMORED, EquipmentSlot.CHEST, new Item.Settings().group(ItemGroup.COMBAT))
+        new ArmoredArmorItem(ModArmorMaterials.ARMORED, EquipmentSlot.CHEST, new FabricItemSettings().group(ItemGroup.COMBAT))
     );
 
     public static final Item GAS_MASK = ModItems.registerItem(
         "gas_mask",
-        new HazardArmorItem(ModArmorMaterials.HAZARD, EquipmentSlot.HEAD, new Item.Settings().group(ItemGroup.COMBAT))
+        new HazardArmorItem(ModArmorMaterials.HAZARD, EquipmentSlot.HEAD, new FabricItemSettings().group(ItemGroup.COMBAT))
     );
 
     public static final Item KATANA = ModItems.registerItem(
         "katana",
-        new KatanaItem(ToolMaterials.DIAMOND, 3, -2.4f, new Item.Settings().group(ItemGroup.COMBAT))
+        new KatanaItem(ToolMaterials.DIAMOND, 3, -2.4f, new FabricItemSettings().group(ItemGroup.COMBAT))
     );
 
     public static final Item CROWBAR = ModItems.registerItem(
         "crowbar",
-        new CrowbarItem(ToolMaterials.IRON, 3, -2.4f, new Item.Settings().group(ItemGroup.COMBAT))
+        new CrowbarItem(ToolMaterials.IRON, 3, -2.4f, new FabricItemSettings().group(ItemGroup.COMBAT))
     );
 
     private static Item registerItem(String name, Item item) {
@@ -86,12 +88,12 @@ public class ModItems {
 
     public static final Item GRENADE = ModItems.registerItem(
         "grenade",
-        new GrenadeItem(new Item.Settings().maxCount(16).group(ItemGroup.COMBAT))
+        new GrenadeItem(new FabricItemSettings().maxCount(16).group(ItemGroup.COMBAT))
     );
 
     public static final Item POLICE_SHIELD = ModItems.registerItem(
         "police_shield",
-        new PoliceShieldItem(new Item.Settings().maxDamage(336).group(ItemGroup.COMBAT))
+        new PoliceShieldItem(new FabricItemSettings().maxDamage(336).group(ItemGroup.COMBAT))
     );
 
     public static void registerModItems() {
