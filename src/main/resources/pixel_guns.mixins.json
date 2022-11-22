@@ -10,8 +10,7 @@
     "gun/GunKeybinds",
     "gun/ScopedSensitivity",
     "gun/AnimationPrevention",
-    
-    "PlayerEntityRenderMixin"
+    "gun/PlayerGunPose"
   ],
   "injectors": {
     "defaultRequire": 1
