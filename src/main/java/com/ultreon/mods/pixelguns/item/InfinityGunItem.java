@@ -24,9 +24,7 @@ public class InfinityGunItem extends GunItem implements IAnimatable {
     }
 
     @Override
-    public void registerControllers(AnimationData data) {
-
-    }
+    public void registerControllers(AnimationData data) {}
 
     @Override
     public AnimationFactory getFactory() {
