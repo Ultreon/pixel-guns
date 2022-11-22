@@ -1,7 +1,7 @@
 package com.ultreon.mods.pixelguns.client.armor.renderer;
 
+import com.ultreon.mods.pixelguns.armor.HazardArmorItem;
 import com.ultreon.mods.pixelguns.client.armor.model.HazardArmorModel;
-import com.ultreon.mods.pixelguns.item.armor.HazardArmorItem;
 
 import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 

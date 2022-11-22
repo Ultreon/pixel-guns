@@ -1,7 +1,8 @@
 package com.ultreon.mods.pixelguns.client.armor.model;
 
 import com.ultreon.mods.pixelguns.PixelGuns;
-import com.ultreon.mods.pixelguns.item.armor.HazardArmorItem;
+import com.ultreon.mods.pixelguns.armor.HazardArmorItem;
+
 import net.minecraft.util.Identifier;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 

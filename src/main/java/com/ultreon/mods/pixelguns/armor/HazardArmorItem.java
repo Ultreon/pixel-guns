@@ -1,4 +1,4 @@
-package com.ultreon.mods.pixelguns.item.armor;
+package com.ultreon.mods.pixelguns.armor;
 
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
@@ -7,11 +7,11 @@ import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class ArmoredArmorItem extends ArmorItem implements IAnimatable {
+public class HazardArmorItem extends ArmorItem implements IAnimatable {
 	
 	private AnimationFactory factory = new AnimationFactory(this);
 
-	public ArmoredArmorItem(ArmorMaterial materialIn, EquipmentSlot slot, Settings builder) {
+	public HazardArmorItem(ArmorMaterial materialIn, EquipmentSlot slot, Settings builder) {
 		super(materialIn, slot, builder);
 	}
 

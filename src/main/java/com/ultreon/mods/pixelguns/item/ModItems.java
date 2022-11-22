@@ -1,9 +1,9 @@
 package com.ultreon.mods.pixelguns.item;
 
 import com.ultreon.mods.pixelguns.PixelGuns;
-import com.ultreon.mods.pixelguns.item.armor.ArmoredArmorItem;
-import com.ultreon.mods.pixelguns.item.armor.HazardArmorItem;
-import com.ultreon.mods.pixelguns.item.armor.ModArmorMaterials;
+import com.ultreon.mods.pixelguns.armor.ArmoredArmorItem;
+import com.ultreon.mods.pixelguns.armor.HazardArmorItem;
+import com.ultreon.mods.pixelguns.armor.ModArmorMaterials;
 import com.ultreon.mods.pixelguns.sound.ModSounds;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.EquipmentSlot;
