@@ -10,7 +10,10 @@
     "gun/GunKeybinds",
     "gun/ScopedSensitivity",
     "gun/AnimationPrevention",
-    "gun/PlayerGunPose"
+    "gun/PlayerGunPose",
+
+    "ufo/UfoCameraModifier",
+    "ufo/UfoInputHandler"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -5,6 +5,7 @@ import com.ultreon.mods.pixelguns.client.entity.model.EnergyOrbEntityModel;
 import com.ultreon.mods.pixelguns.client.entity.renderer.*;
 import com.ultreon.mods.pixelguns.client.item.renderer.*;
 import com.ultreon.mods.pixelguns.entity.ModEntities;
+import com.ultreon.mods.pixelguns.entity.ufo.UfoInput;
 import com.ultreon.mods.pixelguns.item.ModItems;
 import com.ultreon.mods.pixelguns.util.ModelPredicateProvider;
 
@@ -56,5 +57,9 @@ public class PixelGunsClient implements ClientModInitializer {
         GeoItemRenderer.registerItemRenderer(ModItems.CROWBAR, new CrowbarItemRenderer());
         GeoItemRenderer.registerItemRenderer(ModItems.GRENADE, new GrenadeItemRenderer());
         GeoItemRenderer.registerItemRenderer(ModItems.POLICE_SHIELD, new PoliceShieldItemRenderer());
+
+        EntityRendererRegistry.register(ModEntities.UFO, (ctx) -> new UfoEntityRenderer(ctx));
+
+        UfoInput.registerKeybinds();
     }
 }
