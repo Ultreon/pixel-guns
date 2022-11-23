@@ -110,7 +110,7 @@ public class GrenadeItem extends RangedWeaponItem implements IAnimatable, ISynca
      * Animation Side
      */
 
-	private AnimationFactory factory = new AnimationFactory(this);
+	private AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
 	private void dispatchAnimationToClients(ServerWorld world, PlayerEntity player, ItemStack stack, int animation) {
 		final int id = GeckoLibIdTracker.from(world).getNextId(GeckoLibIdTracker.Type.ITEM);

@@ -6,10 +6,11 @@ import net.minecraft.item.ArmorMaterial;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
+import software.bernie.geckolib3.util.GeckoLibUtil;
 
 public class ArmoredArmorItem extends ArmorItem implements IAnimatable {
 	
-	private AnimationFactory factory = new AnimationFactory(this);
+	private AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
 	public ArmoredArmorItem(ArmorMaterial materialIn, EquipmentSlot slot, Settings builder) {
 		super(materialIn, slot, builder);

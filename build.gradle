@@ -11,13 +11,13 @@ Object getViewVersion() {
 }
 
 repositories {
-    // Add repositories to retrieve artifacts from in here.
-    // You should only use this when depending on other mods because
-    // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-    // See https://docs.gradle.org/current/userguide/declaring_repositories.html
-    // for more information about repositories.
+    // Geckolib
     maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
+
+    // WorldEdit
 	maven { url 'https://maven.enginehub.org/repo/' }
+
+
     maven {
         url "https://cursemaven.com"
         content {
@@ -42,7 +42,7 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     // Geckolib
-    modImplementation 'software.bernie.geckolib:geckolib-fabric-1.19:3.1.14'
+    modImplementation 'software.bernie.geckolib:geckolib-fabric-1.19:3.1.36'
 
     // Config API
     modImplementation "curse.maven:forge-config-api-547434:3960064"

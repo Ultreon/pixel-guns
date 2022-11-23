@@ -4,6 +4,7 @@ import com.ultreon.mods.pixelguns.NbtNames;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
+import software.bernie.geckolib3.util.GeckoLibUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,12 +24,14 @@ public class InfinityGunItem extends GunItem implements IAnimatable {
                 SoundEvents.BLOCK_BEACON_DEACTIVATE, 1, false, 5, -1, -1);
     }
 
+    private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+
     @Override
     public void registerControllers(AnimationData data) {}
 
     @Override
     public AnimationFactory getFactory() {
-        return new AnimationFactory(this);
+        return factory;
     }
 
     @Override

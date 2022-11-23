@@ -4,6 +4,7 @@ import net.minecraft.item.ShieldItem;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
+import software.bernie.geckolib3.util.GeckoLibUtil;
 
 public class PoliceShieldItem extends ShieldItem implements IAnimatable {
 
@@ -11,7 +12,7 @@ public class PoliceShieldItem extends ShieldItem implements IAnimatable {
         super(settings);
     }
 
-    private AnimationFactory factory = new AnimationFactory(this);
+    private AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
     @Override
     public void registerControllers(AnimationData data) {}

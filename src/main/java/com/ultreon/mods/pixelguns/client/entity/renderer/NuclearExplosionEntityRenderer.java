@@ -1,6 +1,6 @@
 package com.ultreon.mods.pixelguns.client.entity.renderer;
 
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nullable;
 
 import com.ultreon.mods.pixelguns.client.entity.model.NuclearExplosionEntityModel;
 import com.ultreon.mods.pixelguns.entity.NuclearExplosionEntity;

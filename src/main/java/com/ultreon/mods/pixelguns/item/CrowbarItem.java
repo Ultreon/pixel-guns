@@ -5,6 +5,7 @@ import net.minecraft.item.ToolMaterial;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
+import software.bernie.geckolib3.util.GeckoLibUtil;
 
 public class CrowbarItem extends SwordItem implements IAnimatable {
 
@@ -16,7 +17,7 @@ public class CrowbarItem extends SwordItem implements IAnimatable {
      * ANIMATION
      */
 
-    private AnimationFactory factory = new AnimationFactory(this);
+    private AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
     @Override
     public void registerControllers(AnimationData data) {}

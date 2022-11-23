@@ -26,6 +26,7 @@ import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
+import software.bernie.geckolib3.util.GeckoLibUtil;
 
 public abstract class AbstractUfoEntity extends Entity implements IAnimatable {
     // Movement
@@ -209,7 +210,7 @@ public abstract class AbstractUfoEntity extends Entity implements IAnimatable {
      * ANIMATION SIDE
      */
 
-    private AnimationFactory factory = new AnimationFactory(this);
+    private AnimationFactory factory = GeckoLibUtil.createFactory(this);;
 
     private PlayState predicate(AnimationEvent<AbstractUfoEntity> event) {
         event.getController().setAnimation(new AnimationBuilder().addAnimation("ufo.idle"));
