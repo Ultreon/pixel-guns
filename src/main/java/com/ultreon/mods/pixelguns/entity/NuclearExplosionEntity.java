@@ -37,7 +37,7 @@ public class NuclearExplosionEntity extends Entity implements IAnimatable {
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
         event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.nuclear_explosion.explode"));
         if (event.getController().getAnimationState() == AnimationState.Stopped) {
-            this.discard(); // TODO discard serverside
+            this.discard(); // TODO discard on serverside
             return PlayState.STOP;
         }
         return PlayState.CONTINUE;
