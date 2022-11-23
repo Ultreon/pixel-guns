@@ -37,7 +37,7 @@ public class PlayerGunPose {
         }
         ci.setReturnValue(BipedEntityModel.ArmPose.ITEM);
     }
-    @Inject(method = "render(Lnet/minecraft/client/player/AbstractClientPlayer;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V", at = @At("TAIL"))
+    @Inject(method = "render(Lnet/minecraft/client/network/AbstractClientPlayerEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V", at = @At("TAIL"))
     private void render(AbstractClientPlayerEntity entity, float f, float g, MatrixStack poseStack, VertexConsumerProvider multiBufferSource, int i, CallbackInfo ci) {
         PlayerEntity player = (PlayerEntity) entity;
         ItemStack itemInHand = player.getStackInHand(Hand.MAIN_HAND);

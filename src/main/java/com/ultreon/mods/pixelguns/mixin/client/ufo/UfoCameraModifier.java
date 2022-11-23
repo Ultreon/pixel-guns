@@ -20,7 +20,7 @@ public abstract class UfoCameraModifier {
     @Shadow public abstract double clipToSpace(double desiredCameraDistance);
     @Shadow public abstract void moveBy(double x, double y, double z);
 
-    @Inject(method = "update", at = @At(value = "INVOKE", target = "setPos", shift = At.Shift.AFTER), cancellable = true)
+    @Inject(method = "update", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/Camera;setPos(DDD)V", shift = At.Shift.AFTER), cancellable = true)
     public void update(BlockView area, Entity focusedEntity, boolean thirdPerson, boolean inverseView, float tickDelta, CallbackInfo info) {
         if (focusedEntity.getVehicle() instanceof UfoEntity) {
             MinecraftClient minecraftClient = MinecraftClient.getInstance();
