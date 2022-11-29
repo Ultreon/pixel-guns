@@ -9,6 +9,7 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ShieldItem;
 import net.minecraft.item.ToolMaterials;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -93,7 +94,7 @@ public class ModItems {
 
     public static final Item POLICE_SHIELD = ModItems.registerItem(
         "police_shield",
-        new PoliceShieldItem(new FabricItemSettings().maxDamage(336).group(ItemGroup.COMBAT))
+        new ShieldItem(new FabricItemSettings().maxDamage(500).group(ItemGroup.COMBAT))
     );
 
     public static void registerModItems() {
