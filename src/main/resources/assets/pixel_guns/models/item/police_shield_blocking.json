@@ -1,17 +1,9 @@
 {
 	"credit": "Made with Blockbench",
-	"parent":"fabricshieldlib:item/fabric_shield",
+	"parent": "fabricshieldlib:item/fabric_shield_blocking",
 	"textures": {
 		"0": "pixel_guns:item/police_shield"
 	},
-	"overrides": [
-        {
-            "predicate": {
-                "blocking": 1
-            },
-            "model": "pixel_guns:item/police_shield_blocking"
-        }
-    ],
 	"elements": [
 		{
 			"name": "group5",
@@ -923,23 +915,23 @@
 	],
 	"display": {
 		"thirdperson_righthand": {
-			"rotation": [0, -90, 0],
-			"translation": [2, -3, 0],
+			"rotation": [40, -30, 0],
+			"translation": [1.5, -2.25, -2.25],
 			"scale": [0.6, 0.6, 0.6]
 		},
 		"thirdperson_lefthand": {
-			"rotation": [0, -90, 0],
-			"translation": [2, -3, 0],
+			"rotation": [40, -30, 0],
+			"translation": [1.5, -2.25, -2.25],
 			"scale": [0.6, 0.6, 0.6]
 		},
 		"firstperson_righthand": {
-			"rotation": [0, -90, 0],
-			"translation": [2, -3, 0],
+			"rotation": [5, -30, 0],
+			"translation": [1.5, -2.25, -2.25],
 			"scale": [0.6, 0.6, 0.6]
 		},
 		"firstperson_lefthand": {
-			"rotation": [0, -90, 0],
-			"translation": [2, -3, 0],
+			"rotation": [5, -30, 0],
+			"translation": [1.5, -2.25, -2.25],
 			"scale": [0.6, 0.6, 0.6]
 		},
 		"ground": {

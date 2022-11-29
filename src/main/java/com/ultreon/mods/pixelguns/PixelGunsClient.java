@@ -17,6 +17,7 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.option.KeyBinding;
+import net.minecraft.client.render.entity.ItemEntityRenderer;
 import net.minecraft.client.util.InputUtil;
 
 import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
@@ -35,6 +36,7 @@ public class PixelGunsClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.GRENADE, GrenadeEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.NUCLEAR_BOMB, NuclearBombEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.NUCLEAR_EXPLOSION, NuclearExplosionEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.GAS, GasRenderer::new);
 
         GeoArmorRenderer.registerArmorRenderer(new ArmoredArmorRenderer(), ModItems.ARMORED_VEST);
         GeoArmorRenderer.registerArmorRenderer(new HazardArmorRenderer(), ModItems.GAS_MASK);
@@ -56,7 +58,6 @@ public class PixelGunsClient implements ClientModInitializer {
         GeoItemRenderer.registerItemRenderer(ModItems.KATANA, new KatanaItemRenderer());
         GeoItemRenderer.registerItemRenderer(ModItems.CROWBAR, new CrowbarItemRenderer());
         GeoItemRenderer.registerItemRenderer(ModItems.GRENADE, new GrenadeItemRenderer());
-        GeoItemRenderer.registerItemRenderer(ModItems.POLICE_SHIELD, new PoliceShieldItemRenderer());
 
         EntityRendererRegistry.register(ModEntities.UFO, (ctx) -> new UfoEntityRenderer(ctx));
 
