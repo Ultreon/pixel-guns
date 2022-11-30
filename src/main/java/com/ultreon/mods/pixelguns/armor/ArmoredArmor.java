@@ -8,11 +8,11 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
-public class ArmoredArmorItem extends ArmorItem implements IAnimatable {
+public class ArmoredArmor extends ArmorItem implements IAnimatable {
 	
 	private AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
-	public ArmoredArmorItem(ArmorMaterial materialIn, EquipmentSlot slot, Settings builder) {
+	public ArmoredArmor(ArmorMaterial materialIn, EquipmentSlot slot, Settings builder) {
 		super(materialIn, slot, builder);
 	}
 

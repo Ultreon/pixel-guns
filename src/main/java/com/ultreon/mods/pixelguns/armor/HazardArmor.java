@@ -8,11 +8,11 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
-public class HazardArmorItem extends ArmorItem implements IAnimatable {
+public class HazardArmor extends ArmorItem implements IAnimatable {
 	
 	private AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
-	public HazardArmorItem(ArmorMaterial materialIn, EquipmentSlot slot, Settings builder) {
+	public HazardArmor(ArmorMaterial materialIn, EquipmentSlot slot, Settings builder) {
 		super(materialIn, slot, builder);
 	}
 
