@@ -54,6 +54,12 @@ public class ModEntities {
             .dimensions(EntityDimensions.fixed(ufoScale * 3.0f, ufoScale * 0.4f))
     );
 
+    public static final EntityType<GasEntity> GAS = ModEntities.register(
+        "gas",
+        FabricEntityTypeBuilder.create(SpawnGroup.MISC, GasEntity::new)
+            .dimensions(EntityDimensions.fixed(1, 1))
+    );
+
     private static <T extends Entity> EntityType<T> register(String name, FabricEntityTypeBuilder<T> type) {
         return Registry.register(
             Registry.ENTITY_TYPE,
