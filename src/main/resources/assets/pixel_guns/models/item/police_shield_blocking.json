@@ -925,13 +925,13 @@
 			"scale": [0.6, 0.6, 0.6]
 		},
 		"firstperson_righthand": {
-			"rotation": [5, -30, 0],
-			"translation": [1.5, -2.25, -2.25],
+			"rotation": [0, 0, 5],
+			"translation": [-6, -1, 0],
 			"scale": [0.6, 0.6, 0.6]
 		},
 		"firstperson_lefthand": {
-			"rotation": [5, -30, 0],
-			"translation": [1.5, -2.25, -2.25],
+			"rotation": [0, 0, 5],
+			"translation": [-6, -1, 0],
 			"scale": [0.6, 0.6, 0.6]
 		},
 		"ground": {
