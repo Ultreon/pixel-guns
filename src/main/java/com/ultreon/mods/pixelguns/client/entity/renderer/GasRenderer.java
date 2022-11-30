@@ -7,8 +7,8 @@ import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory.Context;
-import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Matrix4f;
 import net.minecraft.util.math.random.Random;
@@ -84,6 +84,6 @@ public class GasRenderer extends EntityRenderer<GasEntity> {
 
     @Override
     public Identifier getTexture(GasEntity var1) {
-        return SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE;
+        return PlayerScreenHandler.BLOCK_ATLAS_TEXTURE;
     }
 }
