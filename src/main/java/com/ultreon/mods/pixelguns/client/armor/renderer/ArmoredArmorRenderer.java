@@ -1,11 +1,11 @@
 package com.ultreon.mods.pixelguns.client.armor.renderer;
 
-import com.ultreon.mods.pixelguns.armor.ArmoredArmorItem;
+import com.ultreon.mods.pixelguns.armor.ArmoredArmor;
 import com.ultreon.mods.pixelguns.client.armor.model.ArmoredArmorModel;
 
 import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 
-public class ArmoredArmorRenderer extends GeoArmorRenderer<ArmoredArmorItem> {
+public class ArmoredArmorRenderer extends GeoArmorRenderer<ArmoredArmor> {
 
     public ArmoredArmorRenderer() {
         super(new ArmoredArmorModel());

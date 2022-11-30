@@ -1,11 +1,11 @@
 package com.ultreon.mods.pixelguns.client.armor.renderer;
 
-import com.ultreon.mods.pixelguns.armor.HazardArmorItem;
+import com.ultreon.mods.pixelguns.armor.HazardArmor;
 import com.ultreon.mods.pixelguns.client.armor.model.HazardArmorModel;
 
 import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 
-public class HazardArmorRenderer extends GeoArmorRenderer<HazardArmorItem> {
+public class HazardArmorRenderer extends GeoArmorRenderer<HazardArmor> {
 
     public HazardArmorRenderer() {
         super(new HazardArmorModel());

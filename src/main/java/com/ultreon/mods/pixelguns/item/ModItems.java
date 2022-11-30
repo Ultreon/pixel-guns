@@ -1,8 +1,8 @@
 package com.ultreon.mods.pixelguns.item;
 
 import com.ultreon.mods.pixelguns.PixelGuns;
-import com.ultreon.mods.pixelguns.armor.ArmoredArmorItem;
-import com.ultreon.mods.pixelguns.armor.HazardArmorItem;
+import com.ultreon.mods.pixelguns.armor.ArmoredArmor;
+import com.ultreon.mods.pixelguns.armor.HazardArmor;
 import com.ultreon.mods.pixelguns.armor.ModArmorMaterials;
 import com.ultreon.mods.pixelguns.sound.ModSounds;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -65,12 +65,12 @@ public class ModItems {
 
     public static final Item ARMORED_VEST = ModItems.registerItem(
         "armored_vest",
-        new ArmoredArmorItem(ModArmorMaterials.ARMORED, EquipmentSlot.CHEST, new FabricItemSettings().group(ItemGroup.COMBAT))
+        new ArmoredArmor(ModArmorMaterials.ARMORED, EquipmentSlot.CHEST, new FabricItemSettings().group(ItemGroup.COMBAT))
     );
 
     public static final Item GAS_MASK = ModItems.registerItem(
         "gas_mask",
-        new HazardArmorItem(ModArmorMaterials.HAZARD, EquipmentSlot.HEAD, new FabricItemSettings().group(ItemGroup.COMBAT))
+        new GasMaskItem(new FabricItemSettings().group(ItemGroup.COMBAT))
     );
 
     public static final Item KATANA = ModItems.registerItem(
