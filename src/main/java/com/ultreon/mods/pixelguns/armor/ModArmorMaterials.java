@@ -22,7 +22,7 @@ public enum ModArmorMaterials implements ArmorMaterial {
 
     HAZARD(
         "hazard",
-        new DurabilityAmounts(225, 0, 0, 0),
+        new DurabilityAmounts(2400, 0, 0, 0),
         new ProtectionAmounts(0, 0, 0, 0),
         15,
         SoundEvents.ITEM_ARMOR_EQUIP_LEATHER,
