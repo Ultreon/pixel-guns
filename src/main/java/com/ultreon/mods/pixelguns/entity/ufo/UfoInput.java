@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 
+@SuppressWarnings("resource")
 public class UfoInput {
 
     private static final String UFO_CATEGORY = "category.ufos.ufocontrols";
