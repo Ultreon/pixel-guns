@@ -17,7 +17,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3f;
 import org.jetbrains.annotations.NotNull;
 
-@SuppressWarnings({"deprecation", "unused"})
 @Environment(value = EnvType.CLIENT)
 public class EnergyOrbEntityRenderer extends EntityRenderer<EnergyOrb> {
     public static final Identifier TEXTURE = new Identifier("pixel_guns", "textures/entity/projectiles/energy_orb.png");
@@ -31,7 +30,7 @@ public class EnergyOrbEntityRenderer extends EntityRenderer<EnergyOrb> {
 
     public void render(@NotNull EnergyOrb energyOrb, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
         matrixStack.push();
-        float h = MathHelper.lerpAngle(energyOrb.prevYaw, energyOrb.getYaw(), g);
+        float h = MathHelper.lerpAngleDegrees(energyOrb.prevYaw, energyOrb.getYaw(), g);
         float j = MathHelper.lerp(g, energyOrb.prevPitch, energyOrb.getPitch());
         float k = (float)energyOrb.age + g;
         matrixStack.translate(0.0, 0.15f, 0.0);
