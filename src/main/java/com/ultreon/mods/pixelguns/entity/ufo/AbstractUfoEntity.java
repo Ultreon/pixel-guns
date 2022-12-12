@@ -213,7 +213,7 @@ public abstract class AbstractUfoEntity extends Entity implements IAnimatable {
     private AnimationFactory factory = GeckoLibUtil.createFactory(this);;
 
     private PlayState predicate(AnimationEvent<AbstractUfoEntity> event) {
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("ufo.idle"));
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("ufo.spin"));
         return PlayState.CONTINUE;
     }
 
