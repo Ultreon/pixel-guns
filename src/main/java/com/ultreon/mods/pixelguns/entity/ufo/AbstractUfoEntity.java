@@ -117,7 +117,7 @@ public abstract class AbstractUfoEntity extends Entity implements IAnimatable {
     private void applyInput() {
         if (!this.hasPassengers()) return;
 
-        this.setYaw(this.getPrimaryPassenger().getHeadYaw());
+        this.setYaw(-this.getPrimaryPassenger().getHeadYaw());
 
         float fockwardVelocity = 0.0f; // FOrward and baCKward = fockward
         if (UfoInput.pressingForward()) fockwardVelocity += 0.05;
@@ -133,13 +133,13 @@ public abstract class AbstractUfoEntity extends Entity implements IAnimatable {
 
         this.setVelocity(
             this.getVelocity().add(
-                MathHelper.sin(-this.getYaw() * MathHelper.RADIANS_PER_DEGREE) * fockwardVelocity,
+                MathHelper.sin(this.getYaw() * MathHelper.RADIANS_PER_DEGREE) * fockwardVelocity,
                 verticalVelocity,
-                MathHelper.cos(this.getYaw() * MathHelper.RADIANS_PER_DEGREE) * fockwardVelocity
+                MathHelper.cos(-this.getYaw() * MathHelper.RADIANS_PER_DEGREE) * fockwardVelocity
             ).add(
-                MathHelper.sin((-this.getYaw() - 90) * MathHelper.RADIANS_PER_DEGREE) * sidewaysVelocity,
+                MathHelper.sin((this.getYaw() - 90) * MathHelper.RADIANS_PER_DEGREE) * sidewaysVelocity,
                 0,
-                MathHelper.cos((this.getYaw() + 90) * MathHelper.RADIANS_PER_DEGREE) * sidewaysVelocity
+                MathHelper.cos((-this.getYaw() + 90) * MathHelper.RADIANS_PER_DEGREE) * sidewaysVelocity
             )
         );
     }
