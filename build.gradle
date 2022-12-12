@@ -64,7 +64,7 @@ dependencies {
 	include("com.github.Chocohead:Fabric-ASM:v${project.fabric_asm_version}")
 
     // Geckolib
-    modImplementation 'software.bernie.geckolib:geckolib-fabric-1.19:3.1.36'
+    modImplementation 'software.bernie.geckolib:geckolib-fabric-1.19:3.1.37'
 
     // Config API
     modImplementation "curse.maven:forge-config-api-547434:3960064"
