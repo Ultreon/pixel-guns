@@ -1,49 +1,49 @@
 package com.ultreon.mods.pixelguns.entity.projectile;
 
-import com.ultreon.mods.pixelguns.PixelGuns;
+import com.ultreon.mods.pixelguns.entity.ModEntities;
 import com.ultreon.mods.pixelguns.entity.damagesource.EnergyOrbDamageSource;
-import net.minecraft.core.BlockPos;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.boss.wither.WitherBoss;
-import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Explosion;
-import net.minecraft.world.level.ExplosionDamageCalculator;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.phys.EntityHitResult;
-import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.boss.WitherEntity;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.hit.EntityHitResult;
+import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import net.minecraft.world.explosion.Explosion;
+import net.minecraft.world.explosion.ExplosionBehavior;
 
 public class EnergyOrb extends AbstractBulletEntity {
-    private Vec3 accel;
+    private Vec3d accel;
     private float damage;
     private int lifeTick;
 
-    public EnergyOrb(EntityType<? extends ThrowableItemProjectile> entityType, Level world) {
+    public EnergyOrb(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);
     }
 
-    public EnergyOrb(LivingEntity livingEntity, Level world, float dmg) {
-        super(PixelGuns.ENERGY_ORB_ENTITY_TYPE, livingEntity, world);
+    public EnergyOrb(LivingEntity livingEntity, World world, float dmg) {
+        super(ModEntities.ENERGY_ORB_ENTITY_TYPE, livingEntity, world);
         this.damage = dmg;
         this.lifeTick = 0;
         this.setNoGravity(true);
     }
 
-    protected ItemStack getItemRaw() {
+    protected ItemStack getItem() {
         return new ItemStack(Items.BLACKSTONE);
     }
 
@@ -55,45 +55,45 @@ public class EnergyOrb extends AbstractBulletEntity {
         super.tick();
         ++this.lifeTick;
         if (this.accel != null) {
-            this.setDeltaMovement(this.accel);
+            this.setVelocity(this.accel);
         }
         if (this.lifeTick >= 32) {
             this.discard();
         }
     }
 
-    protected void onHitEntity(@NotNull EntityHitResult entityHitResult) {
-        super.onHitEntity(entityHitResult);
-        if (this.level.isClientSide || entityHitResult.getEntity() instanceof WitherBoss && ((WitherBoss) entityHitResult.getEntity()).isPowered()) {
+    protected void onEntityHit(@NotNull EntityHitResult entityHitResult) {
+        super.onEntityHit(entityHitResult);
+        if (this.world.isClient || entityHitResult.getEntity() instanceof WitherEntity && ((WitherEntity) entityHitResult.getEntity()).shouldRenderOverlay()) {
             return;
         }
-        this.level.playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.PLAYER_ATTACK_STRONG, SoundSource.MASTER, 1.0f, 1.0f);
+        this.world.playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.ENTITY_PLAYER_ATTACK_STRONG, SoundCategory.MASTER, 1.0f, 1.0f);
         Entity entity = entityHitResult.getEntity();
-        entity.hurt(DamageSource.thrown(this, this.getOwner()), this.damage);
-        entity.invulnerableTime = 0;
+        entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), this.damage);
+        entity.timeUntilRegen = 0;
     }
 
-    protected void onHit(@NotNull HitResult hitResult) {
-        super.onHit(hitResult);
-        if (!this.level.isClientSide()) {
+    protected void onCollision(@NotNull HitResult hitResult) {
+        super.onCollision(hitResult);
+        if (!this.world.isClient()) {
             this.discard();
         }
 
-        this.level.explode(this, new EnergyOrbDamageSource(), new ExplosionDamageCalculator() {
+        this.world.createExplosion(this, new EnergyOrbDamageSource(), new ExplosionBehavior() {
             @Override
-            public boolean shouldBlockExplode(Explosion explosion, BlockGetter blockGetter, BlockPos blockPos, BlockState blockState, float f) {
+            public boolean canDestroyBlock(Explosion explosion, BlockView blockGetter, BlockPos blockPos, BlockState blockState, float f) {
                 return true;
             }
 
             @Override
-            public Optional<Float> getBlockExplosionResistance(Explosion explosion, BlockGetter blockGetter, BlockPos blockPos, BlockState blockState, FluidState fluidState) {
+            public Optional<Float> getBlastResistance(Explosion explosion, BlockView blockGetter, BlockPos blockPos, BlockState blockState, FluidState fluidState) {
                 return Optional.of(0f);
             }
-        }, getX(), getY(), getZ(), 6f, true, Explosion.BlockInteraction.DESTROY);
+        }, getX(), getY(), getZ(), 6f, true, Explosion.DestructionType.DESTROY);
     }
 
     @Override
-    public void setAccel(Vec3 velocity) {
+    public void setAccel(Vec3d velocity) {
         this.accel = velocity;
     }
 }

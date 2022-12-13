@@ -6,9 +6,14 @@
   "mixins": [
   ],
   "client": [
-    "AbstractClientPlayerEntityMixin",
-    "MinecraftClientMixin",
-    "PlayerEntityRenderMixin"
+    "gun/AdsZoom",
+    "gun/GunKeybinds",
+    "gun/ScopedSensitivity",
+    "gun/AnimationPrevention",
+    "gun/PlayerGunPose",
+
+    "ufo/UfoCameraModifier",
+    "ufo/UfoInputHandler"
   ],
   "injectors": {
     "defaultRequire": 1
