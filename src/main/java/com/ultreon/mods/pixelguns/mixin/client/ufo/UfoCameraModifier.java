@@ -17,16 +17,15 @@ import net.minecraft.world.BlockView;
 @Mixin(Camera.class)
 public abstract class UfoCameraModifier {
 
-    @Shadow public abstract double clipToSpace(double desiredCameraDistance);
-    @Shadow public abstract void moveBy(double x, double y, double z);
+    @Shadow protected abstract double clipToSpace(double desiredCameraDistance);
+    @Shadow protected abstract void moveBy(double x, double y, double z);
 
     @Inject(method = "update", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/Camera;setPos(DDD)V", shift = At.Shift.AFTER), cancellable = true)
     public void update(BlockView area, Entity focusedEntity, boolean thirdPerson, boolean inverseView, float tickDelta, CallbackInfo info) {
-        if (focusedEntity.getVehicle() instanceof UfoEntity) {
+        if (focusedEntity.getVehicle() instanceof UfoEntity ufo) {
             MinecraftClient minecraftClient = MinecraftClient.getInstance();
             minecraftClient.options.setPerspective(Perspective.THIRD_PERSON_BACK);
-            
-            UfoEntity ufo = (UfoEntity) focusedEntity.getVehicle();
+
             float cameraDistance = ufo.getThirdPersonCameraDistance();
             
             moveBy(-clipToSpace(cameraDistance), 0.0, 0.0);

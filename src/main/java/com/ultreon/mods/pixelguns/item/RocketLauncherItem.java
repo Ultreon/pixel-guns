@@ -10,7 +10,7 @@ import software.bernie.geckolib3.util.GeckoLibUtil;
 
 public class RocketLauncherItem extends AbstractGunItem implements IAnimatable {
 
-    private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
     public RocketLauncherItem(Settings settings, float gunDamage, int rateOfFire, int magSize, Item ammoType,
             int reloadCooldown, float bulletSpread, float gunRecoil, int pelletCount, int loadingType,

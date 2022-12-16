@@ -192,11 +192,11 @@ public abstract class AbstractGunItem extends Item {
     }
 
     public void shoot(World world, PlayerEntity user, ItemStack stack) {
-        float kick = user.getPitch() - this.getRecoil(user);
+        float kick = user.getPitch() - this.getRecoil();
         user.getItemCooldownManager().set(this, this.rateOfFire);
         if (!world.isClient()) {
             for (int i = 0; i < this.pelletCount; ++i) {
-                int maxDistance = 0;
+                int maxDistance;
                 if (this == ModItems.CLASSIC_SNIPER_RIFLE) maxDistance = 500;
                 else maxDistance = 250;
 
@@ -204,8 +204,7 @@ public abstract class AbstractGunItem extends Item {
                 Vec3d bulletVector = user.getRotationVector().add(new Vec3d(r.nextGaussian(), r.nextGaussian(), r.nextGaussian()).multiply(this.bulletSpread / 10));
 
                 HitResult result = getHitResult(world, user, user.getEyePos(), bulletVector, maxDistance);
-                if (result instanceof EntityHitResult) {
-                    EntityHitResult entityHitResult = (EntityHitResult) result;
+                if (result instanceof EntityHitResult entityHitResult) {
                     float damage = this.gunDamage;
                     entityHitResult.getEntity().damage(DamageSource.player(user), damage);
                 
@@ -231,7 +230,7 @@ public abstract class AbstractGunItem extends Item {
         world.playSound(null, user.getX(), user.getY(), user.getZ(), this.shootSound, SoundCategory.MASTER, 1.0f, 1.0f);
     }
 
-    private float getRecoil(PlayerEntity user) {
+    private float getRecoil() {
         return client.options.useKey.isPressed() ? this.gunRecoil / 2.0f : this.gunRecoil;
     }
 

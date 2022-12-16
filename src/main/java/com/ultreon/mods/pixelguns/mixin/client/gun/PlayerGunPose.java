@@ -18,7 +18,6 @@ import net.minecraft.client.render.block.entity.BeaconBlockEntityRenderer;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Quaternion;
@@ -38,8 +37,7 @@ public class PlayerGunPose {
         ci.setReturnValue(BipedEntityModel.ArmPose.ITEM);
     }
     @Inject(method = "render(Lnet/minecraft/client/network/AbstractClientPlayerEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V", at = @At("TAIL"))
-    private void render(AbstractClientPlayerEntity entity, float f, float g, MatrixStack poseStack, VertexConsumerProvider multiBufferSource, int i, CallbackInfo ci) {
-        PlayerEntity player = (PlayerEntity) entity;
+    private void render(AbstractClientPlayerEntity player, float f, float g, MatrixStack poseStack, VertexConsumerProvider multiBufferSource, int i, CallbackInfo ci) {
         ItemStack itemInHand = player.getStackInHand(Hand.MAIN_HAND);
         if (itemInHand.getItem() instanceof InfinityGunItem) {
             boolean isShooting = itemInHand.getOrCreateSubNbt(NbtNames.INFINITY_GUN).getBoolean(NbtNames.IS_SHOOTING);

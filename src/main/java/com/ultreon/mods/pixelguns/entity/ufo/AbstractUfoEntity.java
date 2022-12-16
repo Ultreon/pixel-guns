@@ -2,8 +2,6 @@ package com.ultreon.mods.pixelguns.entity.ufo;
 
 import java.util.List;
 
-import com.ultreon.mods.pixelguns.entity.ModEntities;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -30,7 +28,7 @@ import software.bernie.geckolib3.util.GeckoLibUtil;
 
 public abstract class AbstractUfoEntity extends Entity implements IAnimatable {
     // Movement
-    private float velocityDecay;
+    private final float velocityDecay;
     private int interpolationSteps;
 
     // Position
@@ -48,14 +46,6 @@ public abstract class AbstractUfoEntity extends Entity implements IAnimatable {
         this.velocityDecay = 0.9f;
     }
 
-    public AbstractUfoEntity(World world, double x, double y, double z) {
-        this(ModEntities.UFO, world);
-        this.setPosition(x, y, z);
-        this.prevX = x;
-        this.prevY = y;
-        this.prevZ = z;
-    }
-
     public abstract float getThirdPersonCameraDistance();
     public abstract float getScale();
     public abstract Entity abduct();
@@ -68,14 +58,14 @@ public abstract class AbstractUfoEntity extends Entity implements IAnimatable {
             this.updateInterpolatedPose();
             this.decayVelocity();
             if (this.world.isClient) {
-                this.applyInput();
+                this.applyInput(this.getPrimaryPassenger());
             }
             this.move(MovementType.SELF, this.getVelocity());
         } else {
             this.setVelocity(Vec3d.ZERO);
 
             // TODO radius
-            List<PlayerEntity> collisions = this.world.getEntitiesByClass(PlayerEntity.class, this.getBoundingBox().withMinY(this.getBoundingBox().maxY - 0.1), entity -> {return true;});
+            List<PlayerEntity> collisions = this.world.getEntitiesByClass(PlayerEntity.class, this.getBoundingBox().withMinY(this.getBoundingBox().maxY - 0.1), entity -> true);
             for (PlayerEntity player : collisions) {
                 player.setPosition(player.getPos().getX(), this.getBoundingBox().getMax(Axis.Y), player.getPos().getZ());
                 player.setVelocity(player.getVelocity().getX(), 0, player.getVelocity().getZ());
@@ -114,10 +104,9 @@ public abstract class AbstractUfoEntity extends Entity implements IAnimatable {
     }
 
     // Verified
-    private void applyInput() {
-        if (!this.hasPassengers()) return;
-
-        this.setYaw(-this.getPrimaryPassenger().getHeadYaw());
+    private void applyInput(Entity driver) {
+        if (driver == null) return;
+        this.setYaw(-driver.getHeadYaw());
 
         float fockwardVelocity = 0.0f; // FOrward and baCKward = fockward
         if (UfoInput.pressingForward()) fockwardVelocity += 0.05;
@@ -210,7 +199,7 @@ public abstract class AbstractUfoEntity extends Entity implements IAnimatable {
      * ANIMATION SIDE
      */
 
-    private AnimationFactory factory = GeckoLibUtil.createFactory(this);;
+    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
     private PlayState predicate(AnimationEvent<AbstractUfoEntity> event) {
         event.getController().setAnimation(new AnimationBuilder().addAnimation("ufo.spin"));
@@ -219,7 +208,7 @@ public abstract class AbstractUfoEntity extends Entity implements IAnimatable {
 
     @Override
     public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController<AbstractUfoEntity>(this, "controller", 0, this::predicate));
+        data.addAnimationController(new AnimationController<>(this, "controller", 0, this::predicate));
     }
 
     @Override

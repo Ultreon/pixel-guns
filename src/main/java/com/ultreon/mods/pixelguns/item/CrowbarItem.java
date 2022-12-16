@@ -17,7 +17,7 @@ public class CrowbarItem extends SwordItem implements IAnimatable {
      * ANIMATION
      */
 
-    private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
     @Override
     public void registerControllers(AnimationData data) {}

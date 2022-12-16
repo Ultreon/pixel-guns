@@ -16,6 +16,8 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 
 public class InfinityGunItem extends AbstractGunItem implements IAnimatable {
+
+    //TODO use for something
     public static final List<InfinityGunItem> BLUEPRINT_ITEM_LIST = new ArrayList<>();
 
     public InfinityGunItem(Settings settings) {
@@ -25,7 +27,7 @@ public class InfinityGunItem extends AbstractGunItem implements IAnimatable {
                 SoundEvents.BLOCK_BEACON_DEACTIVATE, 1, false, 5, -1, -1);
     }
 
-    private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
     @Override
     public void registerControllers(AnimationData data) {}

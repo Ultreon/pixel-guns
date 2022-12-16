@@ -20,6 +20,7 @@ public class UfoEntity extends AbstractUfoEntity {
         return 1.0f;
     }
 
+    //TODO implement
     @Override
     public Entity abduct() {
         this.getBlockPos();
