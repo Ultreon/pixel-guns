@@ -12,12 +12,12 @@ public class UfoEntity extends AbstractUfoEntity {
 
     @Override
     public float getThirdPersonCameraDistance() {
-        return 4 * this.getScale();
+        return 16 * this.getScale();
     }
 
     @Override
     public float getScale() {
-        return 4.0f;
+        return 1.0f;
     }
 
     @Override
