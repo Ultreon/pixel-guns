@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "bp ",
+    "fi ",
+    " g "
+  ],
+  "key": {
+    "b": {
+      "item": "pixel_guns:long_barrel"
+    },
+    "p": {
+      "item": "pixel_guns:blueprint_shotgun_combat"
+    },
+    "f": {
+      "item": "pixel_guns:modern_handguard"
+    },
+    "i": {
+      "item": "pixel_guns:hardened_iron_ingot"
+    },
+    "g": {
+      "item": "pixel_guns:pistol_grip"
+    }
+  },
+  "result": {
+    "item": "pixel_guns:shotgun_combat"
+  }
+}

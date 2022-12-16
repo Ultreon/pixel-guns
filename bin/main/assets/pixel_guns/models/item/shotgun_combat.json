@@ -1,0 +1,53 @@
+{
+  "parent": "pixel_guns:item/shotgun_combat_standby",
+  "overrides":
+  [
+    {"predicate":  {"pixel_guns:sprinting": 1},"model": "pixel_guns:item/gun_sprint/shotgun_combat"},
+    {"predicate":  {"pixel_guns:aiming": 1},"model": "pixel_guns:item/gun_aim/shotgun_combat"},
+
+    {"predicate":  {"pixel_guns:aiming": 0,"minecraft:cooldown": 0.21428572 },"model": "pixel_guns:item/gun_fire/hip/shotgun_combat/6"},
+    {"predicate":  {"pixel_guns:aiming": 0,"minecraft:cooldown": 0.35714287 },"model": "pixel_guns:item/gun_fire/hip/shotgun_combat/7"},
+    {"predicate":  {"pixel_guns:aiming": 0,"minecraft:cooldown": 0.42857143 },"model": "pixel_guns:item/gun_fire/hip/shotgun_combat/8"},
+    {"predicate":  {"pixel_guns:aiming": 0,"minecraft:cooldown": 0.5714286 },"model": "pixel_guns:item/gun_fire/hip/shotgun_combat/7"},
+    {"predicate":  {"pixel_guns:aiming": 0,"minecraft:cooldown": 0.64285713 },"model": "pixel_guns:item/gun_fire/hip/shotgun_combat/6"},
+    {"predicate":  {"pixel_guns:aiming": 0,"minecraft:cooldown": 0.71428573 },"model": "pixel_guns:item/gun_fire/hip/shotgun_combat/5"},
+    {"predicate":  {"pixel_guns:aiming": 0,"minecraft:cooldown": 0.78571427 },"model": "pixel_guns:item/gun_fire/hip/shotgun_combat/4"},
+    {"predicate":  {"pixel_guns:aiming": 0,"minecraft:cooldown": 0.85714287 },"model": "pixel_guns:item/gun_fire/hip/shotgun_combat/3"},
+    {"predicate":  {"pixel_guns:aiming": 0,"minecraft:cooldown": 0.9285714 },"model": "pixel_guns:item/gun_fire/hip/shotgun_combat/2"},
+    {"predicate":  {"pixel_guns:aiming": 0,"minecraft:cooldown": 1},"model": "pixel_guns:item/gun_fire/hip/shotgun_combat/1"},
+    {"predicate":  {"pixel_guns:aiming": 1,"minecraft:cooldown": 0.21428572 },"model": "pixel_guns:item/gun_fire/aim/shotgun_combat/6"},
+    {"predicate":  {"pixel_guns:aiming": 1,"minecraft:cooldown": 0.35714287 },"model": "pixel_guns:item/gun_fire/aim/shotgun_combat/7"},
+    {"predicate":  {"pixel_guns:aiming": 1,"minecraft:cooldown": 0.42857143 },"model": "pixel_guns:item/gun_fire/aim/shotgun_combat/8"},
+    {"predicate":  {"pixel_guns:aiming": 1,"minecraft:cooldown": 0.5714286 },"model": "pixel_guns:item/gun_fire/aim/shotgun_combat/7"},
+    {"predicate":  {"pixel_guns:aiming": 1,"minecraft:cooldown": 0.64285713 },"model": "pixel_guns:item/gun_fire/aim/shotgun_combat/6"},
+    {"predicate":  {"pixel_guns:aiming": 1,"minecraft:cooldown": 0.71428573 },"model": "pixel_guns:item/gun_fire/aim/shotgun_combat/5"},
+    {"predicate":  {"pixel_guns:aiming": 1,"minecraft:cooldown": 0.78571427 },"model": "pixel_guns:item/gun_fire/aim/shotgun_combat/4"},
+    {"predicate":  {"pixel_guns:aiming": 1,"minecraft:cooldown": 0.85714287 },"model": "pixel_guns:item/gun_fire/aim/shotgun_combat/3"},
+    {"predicate":  {"pixel_guns:aiming": 1,"minecraft:cooldown": 0.9285714 },"model": "pixel_guns:item/gun_fire/aim/shotgun_combat/2"},
+    {"predicate":  {"pixel_guns:aiming": 1,"minecraft:cooldown": 1},"model": "pixel_guns:item/gun_fire/aim/shotgun_combat/1"},
+
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.005},"model": "pixel_guns:item/gun_rld/shotgun_combat/1"},
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.01},"model": "pixel_guns:item/gun_rld/shotgun_combat/2"},
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.015},"model": "pixel_guns:item/gun_rld/shotgun_combat/3"},
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.02},"model": "pixel_guns:item/gun_rld/shotgun_combat/4"},
+
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.03},"model": "pixel_guns:item/gun_rld/shotgun_combat/5"},
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.035},"model": "pixel_guns:item/gun_rld/shotgun_combat/6"},
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.04},"model": "pixel_guns:item/gun_rld/shotgun_combat/7"},
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.045},"model": "pixel_guns:item/gun_rld/shotgun_combat/8"},
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.05},"model": "pixel_guns:item/gun_rld/shotgun_combat/9"},
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.055},"model": "pixel_guns:item/gun_rld/shotgun_combat/10"},
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.06},"model": "pixel_guns:item/gun_rld/shotgun_combat/11"},
+
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.07},"model": "pixel_guns:item/gun_rld/shotgun_combat/4"},
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.075},"model": "pixel_guns:item/gun_rld/shotgun_combat/3"},
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.08},"model": "pixel_guns:item/gun_rld/shotgun_combat/2"},
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.085},"model": "pixel_guns:item/gun_rld/shotgun_combat/1"},
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.09},"model": "pixel_guns:item/shotgun_combat_standby"},
+
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.1},"model": "pixel_guns:item/gun_rld/shotgun_combat/12"},
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.105},"model": "pixel_guns:item/gun_rld/shotgun_combat/13"},
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.115},"model": "pixel_guns:item/gun_rld/shotgun_combat/12"},
+    {"predicate":  {"pixel_guns:loading": 1,"pixel_guns:load_tick": 0.12},"model": "pixel_guns:item/shotgun_combat_standby"}
+  ]
+}
