@@ -24,7 +24,7 @@ public class UfoEntityRenderer extends GeoProjectilesRenderer<UfoEntity> {
 	public RenderLayer getRenderType(UfoEntity ufo, float partialTicks, MatrixStack stack,
 			@Nullable VertexConsumerProvider renderTypeBuffer, @Nullable VertexConsumer vertexBuilder, int packedLightIn,
 			Identifier textureLocation) {
-		stack.scale(ufo.getScale(), 0.4f * ufo.getScale(), ufo.getScale());
+		stack.scale(ufo.getScale(), ufo.getScale(), ufo.getScale());
 		return super.getRenderType(ufo, partialTicks, stack, renderTypeBuffer, vertexBuilder, packedLightIn, textureLocation);
 	}
 }
