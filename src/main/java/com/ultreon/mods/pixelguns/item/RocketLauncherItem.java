@@ -1,5 +1,6 @@
 package com.ultreon.mods.pixelguns.item;
 
+import com.ultreon.mods.pixelguns.item.gun.AbstractGunItem;
 import net.minecraft.item.Item;
 import net.minecraft.sound.SoundEvent;
 import software.bernie.geckolib3.core.IAnimatable;

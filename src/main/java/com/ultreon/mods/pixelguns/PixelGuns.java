@@ -1,6 +1,6 @@
 package com.ultreon.mods.pixelguns;
 
-import com.ultreon.mods.pixelguns.item.AbstractGunItem;
+import com.ultreon.mods.pixelguns.item.gun.AbstractGunItem;
 import com.ultreon.mods.pixelguns.item.ModItems;
 import com.ultreon.mods.pixelguns.sound.ModSounds;
 

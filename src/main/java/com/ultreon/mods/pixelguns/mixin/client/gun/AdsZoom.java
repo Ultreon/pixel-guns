@@ -1,7 +1,7 @@
 package com.ultreon.mods.pixelguns.mixin.client.gun;
 
 import com.mojang.authlib.GameProfile;
-import com.ultreon.mods.pixelguns.item.AbstractGunItem;
+import com.ultreon.mods.pixelguns.item.gun.AbstractGunItem;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
