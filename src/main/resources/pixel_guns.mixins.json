@@ -6,15 +6,15 @@
   "mixins": [
   ],
   "client": [
-    "gun/AdsZoom",
-    "gun/GunKeybinds",
-    "gun/ScopedSensitivity",
-    "gun/AnimationPrevention",
-    "gun/PlayerGunPose",
+    "gun.AdsZoom",
+    "gun.GunKeybinds",
+    "gun.ScopedSensitivity",
+    "gun.AnimationPrevention",
+    "gun.PlayerGunPose",
 
-    "ufo/UfoCameraModifier",
-    "ufo/UfoInputHandler",
-    "ufo/PlayerRenderer"
+    "ufo.UfoCameraModifier",
+    "ufo.UfoInputHandler",
+    "ufo.PlayerRenderer"
   ],
   "injectors": {
     "defaultRequire": 1
