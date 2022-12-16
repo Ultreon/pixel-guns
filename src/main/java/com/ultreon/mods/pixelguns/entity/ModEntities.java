@@ -47,11 +47,11 @@ public class ModEntities {
         .trackRangeBlocks(4).trackedUpdateRate(10)
     );
 
-    private static float ufoScale = 4.0f;
+    private static final float ufoScale = 4.0f;
     public static final EntityType<UfoEntity> UFO = ModEntities.register(
         "ufo",
         FabricEntityTypeBuilder.create(SpawnGroup.MISC, UfoEntity::new)
-            .dimensions(EntityDimensions.fixed(ufoScale * 2, ufoScale * 0.2f))
+            .dimensions(EntityDimensions.fixed(ufoScale * 3, ufoScale * 0.2f))
     );
 
     public static final EntityType<GasEntity> GAS = ModEntities.register(
