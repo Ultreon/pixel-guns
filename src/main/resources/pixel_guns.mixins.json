@@ -13,7 +13,8 @@
     "gun/PlayerGunPose",
 
     "ufo/UfoCameraModifier",
-    "ufo/UfoInputHandler"
+    "ufo/UfoInputHandler",
+    "ufo/PlayerRenderer"
   ],
   "injectors": {
     "defaultRequire": 1
