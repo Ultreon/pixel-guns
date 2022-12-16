@@ -14,7 +14,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 
-public class InfinityGunItem extends GunItem implements IAnimatable {
+public class InfinityGunItem extends AbstractGunItem implements IAnimatable {
     public static final List<InfinityGunItem> BLUEPRINT_ITEM_LIST = new ArrayList<>();
 
     public InfinityGunItem(Settings settings) {

@@ -1,7 +1,7 @@
 package com.ultreon.mods.pixelguns.mixin.client.gun;
 
 import com.mojang.authlib.GameProfile;
-import com.ultreon.mods.pixelguns.item.GunItem;
+import com.ultreon.mods.pixelguns.item.AbstractGunItem;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -27,7 +27,7 @@ public abstract class AdsZoom extends PlayerEntity {
     @Inject(method = "getFovMultiplier", at = @At("TAIL"), cancellable = true)
     public void zoomLevel(CallbackInfoReturnable<Float> ci) {
         ItemStack gun = this.getStackInHand(Hand.MAIN_HAND);
-        if (gun.getItem() instanceof GunItem && MinecraftClient.getInstance().mouse.wasRightButtonClicked() && GunItem.isLoaded(gun)) {
+        if (gun.getItem() instanceof AbstractGunItem && MinecraftClient.getInstance().mouse.wasRightButtonClicked() && AbstractGunItem.isLoaded(gun)) {
             NbtCompound nbtCompound = gun.getOrCreateNbt();
             if (nbtCompound.getBoolean("isScoped")) {
                 ci.setReturnValue(0.2f);

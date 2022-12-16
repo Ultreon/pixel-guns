@@ -11,7 +11,7 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
-public class AssaultRifleItem extends GunItem {
+public class AssaultRifleItem extends AbstractGunItem {
     private final SoundEvent shootSoundEasterEgg;
 
     public AssaultRifleItem(Settings settings, float gunDamage, int rateOfFire, int magSize, Item ammoType, int reloadCooldown, float bulletSpread, float gunRecoil, int pelletCount, int loadingType, SoundEvent reload1, SoundEvent reload2, SoundEvent reload3, SoundEvent shootSound, SoundEvent shootSoundEasterEgg, int reloadCycles, boolean isScoped, int reloadStage1, int reloadStage2, int reloadStage3) {

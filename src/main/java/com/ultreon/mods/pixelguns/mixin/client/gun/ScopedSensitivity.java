@@ -1,6 +1,6 @@
 package com.ultreon.mods.pixelguns.mixin.client.gun;
 
-import com.ultreon.mods.pixelguns.item.GunItem;
+import com.ultreon.mods.pixelguns.item.AbstractGunItem;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.Mouse;
 import net.minecraft.item.ItemStack;
@@ -21,7 +21,7 @@ public class ScopedSensitivity {
 
         MinecraftClient client = MinecraftClient.getInstance();
         ItemStack gun = client.player.getStackInHand(Hand.MAIN_HAND);
-        if (gun.getItem() instanceof GunItem && client.mouse.wasRightButtonClicked() && GunItem.isLoaded(gun)) {
+        if (gun.getItem() instanceof AbstractGunItem && client.mouse.wasRightButtonClicked() && AbstractGunItem.isLoaded(gun)) {
             NbtCompound nbtCompound = gun.getOrCreateNbt();
             if (nbtCompound.getBoolean("isScoped")) {
                 args.set(0, a0 * 0.2);

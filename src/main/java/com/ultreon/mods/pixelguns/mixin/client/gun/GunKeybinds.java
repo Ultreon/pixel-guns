@@ -1,6 +1,6 @@
 package com.ultreon.mods.pixelguns.mixin.client.gun;
 
-import com.ultreon.mods.pixelguns.item.GunItem;
+import com.ultreon.mods.pixelguns.item.AbstractGunItem;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -28,7 +28,7 @@ public abstract class GunKeybinds {
 
     @Inject(method = "handleInputEvents", at = @At("TAIL"))
     public void handleGunKeybind(CallbackInfo info) {
-        if (this.player.getMainHandStack().getItem() instanceof GunItem && this.options.attackKey.isPressed()) {
+        if (this.player.getMainHandStack().getItem() instanceof AbstractGunItem && this.options.attackKey.isPressed()) {
             this.doItemUse();
         }
     }
@@ -41,7 +41,7 @@ public abstract class GunKeybinds {
             return;
         }
         ItemStack itemStack = this.player.getStackInHand(Hand.MAIN_HAND);
-        if (!itemStack.isEmpty() && itemStack.getItem() instanceof GunItem) {
+        if (!itemStack.isEmpty() && itemStack.getItem() instanceof AbstractGunItem) {
             this.itemUseCooldown = 0;
         }
     }

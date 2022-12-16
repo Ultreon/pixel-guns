@@ -7,7 +7,7 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
-public class RocketLauncherItem extends GunItem implements IAnimatable {
+public class RocketLauncherItem extends AbstractGunItem implements IAnimatable {
 
     private AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
