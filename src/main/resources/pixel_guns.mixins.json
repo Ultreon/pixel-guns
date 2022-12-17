@@ -11,6 +11,7 @@
     "gun.ScopedSensitivity",
     "gun.AnimationPrevention",
     "gun.PlayerGunPose",
+    "gun.AmmoHud",
 
     "ufo.UfoCameraModifier",
     "ufo.UfoInputHandler",

@@ -45,7 +45,7 @@ public abstract class AbstractGunItem extends Item {
     protected final float gunDamage;
     private final int rateOfFire;
     private final int magSize;
-    private final Item ammoType;
+    public final Item ammoType;
     private final int reloadCooldown;
     private final float bulletSpread;
     private final float gunRecoil;
@@ -89,7 +89,7 @@ public abstract class AbstractGunItem extends Item {
         return AbstractGunItem.remainingAmmo(stack) > 0;
     }
 
-    private static int remainingAmmo(ItemStack stack) {
+    public static int remainingAmmo(ItemStack stack) {
         NbtCompound nbtCompound = stack.getOrCreateNbt();
         return nbtCompound.getInt("Clip");
     }
