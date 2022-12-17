@@ -3,14 +3,12 @@ package com.ultreon.mods.pixelguns.item;
 import com.ultreon.mods.pixelguns.PixelGuns;
 import com.ultreon.mods.pixelguns.armor.ArmoredArmor;
 import com.ultreon.mods.pixelguns.armor.ModArmorMaterials;
+import com.ultreon.mods.pixelguns.block.ModBlocks;
 import com.ultreon.mods.pixelguns.item.gun.AbstractGunItem;
 import com.ultreon.mods.pixelguns.sound.ModSounds;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ShieldItem;
-import net.minecraft.item.ToolMaterials;
+import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -97,7 +95,7 @@ public class ModItems {
         new ShieldItem(new FabricItemSettings().maxDamage(500).group(ItemGroup.COMBAT))
     );
 
-    public static void registerModItems() {
-        PixelGuns.LOGGER.info("Registering ModItems for pixel_guns");
+    public static void registerItems() {
+        Registry.register(Registry.ITEM, new Identifier(PixelGuns.MOD_ID, "ufo_interior"), new BlockItem(ModBlocks.UFO_INTERIOR, new FabricItemSettings()));
     }
 }
