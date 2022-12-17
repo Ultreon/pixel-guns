@@ -43,7 +43,7 @@ public class InfinityGunItem extends GunItem implements IAnimatable {
     @Override
     public void shoot(World world, PlayerEntity user, ItemStack stack) {
         super.shoot(world, user, stack);
-        NbtCompound infinityGun = stack.getOrCreateSubNbt(NbtNames.INFINITY_GUN);
+        NbtCompound infinityGun = stack.getOrCreateSubNbt(NbtNames.INFINITY_GUN );
         infinityGun.putBoolean(NbtNames.IS_SHOOTING, true);
         Vec3d vec3d = user.getPos().add(0.0D, 1.600000023841858D, 0.0D);
         Vec3d vec3d2 = user.raycast(5, 5, true).getPos();

@@ -77,7 +77,7 @@ dependencies {
     modImplementation "net.minecraftforge:forgeconfigapiport-fabric:4.2.9"
     modImplementation 'com.electronwill.night-config:core:3.6.5'
     modImplementation 'com.electronwill.night-config:toml:3.6.5'
-
+   // modRuntimeOnly "curse.maven:configured-667378:4010582"
     // WorldEdit
 	modImplementation 'com.sk89q.worldedit:worldedit-fabric-mc1.19.2:7.2.12'
 }
