@@ -7,15 +7,12 @@ import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 
 public class ConfigScreen extends GenericMenuScreen {
-    private ButtonWidget doRecoil;
-    private ButtonWidget useCustomConfigGui;
+    private final ButtonWidget doRecoil;
+    private final ButtonWidget useCustomConfigGui;
 
     public ConfigScreen(Properties properties) {
         super(properties);
-    }
 
-    @Override
-    protected void init() {
         doRecoil = addButtonRow(Text.translatable("config.pixel_guns.do_recoil"), () -> {
             Config.DO_RECOIL.set(!Config.DO_RECOIL.get());
             Config.save();
@@ -26,9 +23,11 @@ public class ConfigScreen extends GenericMenuScreen {
             Config.save();
             reloadNames();
         });
+    }
 
+    @Override
+    protected void init() {
         super.init();
-
         reloadNames();
     }
 
