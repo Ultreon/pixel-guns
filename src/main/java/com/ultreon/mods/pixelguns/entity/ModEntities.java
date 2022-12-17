@@ -1,7 +1,6 @@
 package com.ultreon.mods.pixelguns.entity;
 
 import com.ultreon.mods.pixelguns.PixelGuns;
-import com.ultreon.mods.pixelguns.entity.projectile.EnergyOrb;
 import com.ultreon.mods.pixelguns.entity.projectile.thrown.GrenadeEntity;
 import com.ultreon.mods.pixelguns.entity.ufo.UfoEntity;
 
@@ -35,16 +34,6 @@ public class ModEntities {
             "nuclear_explosion",
             FabricEntityTypeBuilder.create(SpawnGroup.MISC, NuclearExplosionEntity::new)
                     .dimensions(EntityDimensions.fixed(15.0f, 100.0f))
-    );
-
-    public static final EntityType<EnergyOrb> ENERGY_ORB_ENTITY_TYPE = ModEntities.register(
-        "energy_orb", 
-        FabricEntityTypeBuilder.<EnergyOrb>create(
-            SpawnGroup.MISC,
-            EnergyOrb::new
-        )
-        .dimensions(EntityDimensions.fixed(0.125f, 0.125f))
-        .trackRangeBlocks(4).trackedUpdateRate(10)
     );
 
     private static final float ufoScale = 4.0f;
