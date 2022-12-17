@@ -21,9 +21,6 @@
     ],
     "client": [
       "com.ultreon.mods.pixelguns.PixelGunsClient"
-    ],
-    "modmenu": [
-      "com.ultreon.mods.pixelguns.PixelGunsModMenu"
     ]
   },
   "mixins": [

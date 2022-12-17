@@ -1,8 +1,6 @@
 package com.ultreon.mods.pixelguns;
 
-import com.ultreon.mods.pixelguns.api.ConfigScreenPreferencesHook;
 import net.minecraftforge.api.ModLoadingContext;
-import net.minecraftforge.api.fml.event.config.ModConfigEvents;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.config.ModConfig;
 
@@ -22,14 +20,6 @@ public class Config {
 
     public static void init() {
         config = ModLoadingContext.registerConfig(PixelGuns.MOD_ID, ModConfig.Type.CLIENT, CLIENT_BUILDER.build());
-
-        ModConfigEvents.loading(PixelGuns.MOD_ID).register(Config::reload);
-        ModConfigEvents.reloading(PixelGuns.MOD_ID).register(Config::reload);
-    }
-
-    private static void reload(ModConfig modConfig) {
-        boolean value = modConfig.getConfigData().get("use_custom_config_gui");
-        ConfigScreenPreferencesHook.setCustomConfigScreen(value);
     }
 
     public static void save() {

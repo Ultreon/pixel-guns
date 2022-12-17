@@ -4,16 +4,16 @@
   "package": "com.ultreon.mods.pixelguns.mixin.client",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "ModMenuMixin"
   ],
   "client": [
-    "gun/AdsZoom",
-    "gun/GunKeybinds",
-    "gun/ScopedSensitivity",
-    "gun/AnimationPrevention",
-    "gun/PlayerGunPose",
-
-    "ufo/UfoCameraModifier",
-    "ufo/UfoInputHandler"
+    "gun.AdsZoom",
+    "gun.AnimationPrevention",
+    "gun.GunKeybinds",
+    "gun.PlayerGunPose",
+    "gun.ScopedSensitivity",
+    "ufo.UfoCameraModifier",
+    "ufo.UfoInputHandler"
   ],
   "injectors": {
     "defaultRequire": 1
