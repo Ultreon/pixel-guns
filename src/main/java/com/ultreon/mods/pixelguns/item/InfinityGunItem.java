@@ -5,6 +5,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.mob.WardenEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -43,16 +44,8 @@ public class InfinityGunItem extends GunItem implements IAnimatable {
     @Override
     public void shoot(World world, PlayerEntity user, ItemStack stack) {
         super.shoot(world, user, stack);
-        NbtCompound infinityGun = stack.getOrCreateSubNbt(NbtNames.INFINITY_GUN );
+        NbtCompound infinityGun = stack.getOrCreateSubNbt(NbtNames.INFINITY_GUN);
         infinityGun.putBoolean(NbtNames.IS_SHOOTING, true);
-        Vec3d vec3d = user.getPos().add(0.0D, 1.600000023841858D, 0.0D);
-        Vec3d vec3d2 = user.raycast(5, 5, true).getPos();
-        Vec3d vec3d3 = vec3d2.normalize();
-        if (world instanceof ServerWorld serverWorld)
-        for(int i = 1; i < MathHelper.floor(vec3d2.length()) + 7; ++i) {
-            Vec3d vec3d4 = vec3d.add(vec3d3.multiply((double)i));
-            serverWorld.spawnParticles(ParticleTypes.SONIC_BOOM, vec3d4.x, vec3d4.y, vec3d4.z, 1, 0.0D, 0.0D, 0.0D, 0.0D);
-        }
     }
 
     @Override
@@ -64,5 +57,17 @@ public class InfinityGunItem extends GunItem implements IAnimatable {
         }
 
         return super.isUsedOnRelease(stack);
+    }
+
+    public void hit(HitResult result, World world, PlayerEntity user, ItemStack stack) {
+        Vec3d userPos = user.getEyePos();
+        Vec3d hitPosition = result.getPos().subtract(userPos);
+        Vec3d normalizedHitPosition = hitPosition.normalize();
+        if (world instanceof ServerWorld serverWorld) {
+            for (int i = 1; i < MathHelper.floor(hitPosition.length()) + 7; ++i) {
+                Vec3d lerpedLocation = userPos.add(normalizedHitPosition.multiply(i));
+                serverWorld.spawnParticles(ParticleTypes.SONIC_BOOM, lerpedLocation.x, lerpedLocation.y, lerpedLocation.z, 1, 0, 0, 0, 0);
+            }
+        }
     }
 }

@@ -74,13 +74,13 @@ public abstract class AbstractUfoEntity extends Entity implements IAnimatable {
         } else {
             this.setVelocity(Vec3d.ZERO);
 
-            // TODO radius
-            List<PlayerEntity> collisions = this.world.getEntitiesByClass(PlayerEntity.class, this.getBoundingBox().withMinY(this.getBoundingBox().maxY - 0.1), entity -> {return true;});
-            for (PlayerEntity player : collisions) {
-                player.setPosition(player.getPos().getX(), this.getBoundingBox().getMax(Axis.Y), player.getPos().getZ());
-                player.setVelocity(player.getVelocity().getX(), 0, player.getVelocity().getZ());
-                player.setOnGround(true);
-            }
+//            // TODO radius
+//            List<PlayerEntity> collisions = this.world.getEntitiesByClass(PlayerEntity.class, this.getBoundingBox().withMinY(this.getBoundingBox().maxY - 0.1), entity -> {return true;});
+//            for (PlayerEntity player : collisions) {
+//                player.setPosition(player.getPos().getX(), this.getBoundingBox().getMax(Axis.Y), player.getPos().getZ());
+//                player.setVelocity(player.getVelocity().getX(), 0, player.getVelocity().getZ());
+//                player.setOnGround(true);
+//            }
         }
         
     }
@@ -171,6 +171,7 @@ public abstract class AbstractUfoEntity extends Entity implements IAnimatable {
         }
         return ActionResult.SUCCESS;
     }
+
 
     @Override
     public boolean isCollidable() {

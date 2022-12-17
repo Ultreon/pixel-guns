@@ -1,19 +1,21 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.ultreon.mods.pixelguns.mixin.client",
+  "package": "com.ultreon.mods.pixelguns.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "ModMenuMixin"
+    "EntityViewMixin"
   ],
   "client": [
-    "gun.AdsZoom",
-    "gun.AnimationPrevention",
-    "gun.GunKeybinds",
-    "gun.PlayerGunPose",
-    "gun.ScopedSensitivity",
-    "ufo.UfoCameraModifier",
-    "ufo.UfoInputHandler"
+    "client.gun.AdsZoom",
+    "client.gun.GunKeybinds",
+    "client.gun.ScopedSensitivity",
+    "client.gun.AnimationPrevention",
+    "client.gun.PlayerGunPose",
+
+    "client.ufo.UfoCameraModifier",
+    "client.ufo.UfoInputHandler"
   ],
   "injectors": {
     "defaultRequire": 1

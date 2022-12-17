@@ -11,39 +11,38 @@ public enum ModArmorMaterials implements ArmorMaterial {
 
     ARMORED(
         "armored",
-        new DurabilityAmounts(0, 225, 0, 0),
-        new ProtectionAmounts(0, 10, 0, 0),
+        new EquipmentAmounts(0, 225, 0, 0),
+        new EquipmentAmounts(0, 10, 0, 0),
         15,
         SoundEvents.ITEM_ARMOR_EQUIP_LEATHER,
         0.0f,
         0.0f,
-        Ingredient.ofItems(Items.BEDROCK)
+        Ingredient.empty()
     ),
 
     HAZARD(
         "hazard",
-        new DurabilityAmounts(2400, 0, 0, 0),
-        new ProtectionAmounts(0, 0, 0, 0),
+        new EquipmentAmounts(2400, 0, 0, 0),
+        new EquipmentAmounts(0, 0, 0, 0),
         15,
         SoundEvents.ITEM_ARMOR_EQUIP_LEATHER,
         0.0f,
         0.0f,
-        Ingredient.ofItems(Items.BEDROCK)
+        Ingredient.empty()
     );
 
     private final String name;
-    private final DurabilityAmounts durabilityAmounts;
-    private final ProtectionAmounts protectionAmounts;
+    private final EquipmentAmounts durabilityAmounts;
+    private final EquipmentAmounts protectionAmounts;
     private final int enchantability;
     private final SoundEvent equipSound;
     private final float toughness;
     private final float knockbackResistance;
     private final Ingredient ingredient;
 
-    record DurabilityAmounts(int helmet, int chestplate, int leggings, int boots) {};
-    record ProtectionAmounts(int helmet, int chestplate, int leggings, int boots) {};
+    record EquipmentAmounts(int helmet, int chestplate, int leggings, int boots) {};
 
-    private ModArmorMaterials(String name, DurabilityAmounts durabilityAmounts, ProtectionAmounts protectionAmounts, int enchantability, SoundEvent equipSound, float toughness, float knockbackResistance, Ingredient ingredient) {
+    private ModArmorMaterials(String name, EquipmentAmounts durabilityAmounts, EquipmentAmounts protectionAmounts, int enchantability, SoundEvent equipSound, float toughness, float knockbackResistance, Ingredient ingredient) {
         this.name = name;
         this.durabilityAmounts = durabilityAmounts;
         this.protectionAmounts = protectionAmounts;

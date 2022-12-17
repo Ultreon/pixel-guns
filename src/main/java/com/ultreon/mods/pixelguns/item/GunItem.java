@@ -192,8 +192,8 @@ public abstract class GunItem extends Item {
 
     public void shoot(World world, PlayerEntity user, ItemStack stack) {
         float kick = user.getPitch() - this.getRecoil(user);
-        user.getItemCooldownManager().set(this, this.rateOfFire);
         if (!world.isClient()) {
+            user.getItemCooldownManager().set(this, this.rateOfFire); // server lagging go brrrrrr
             for (int i = 0; i < this.pelletCount; ++i) {
                 int maxDistance = 0;
                 if (this == ModItems.CLASSIC_SNIPER_RIFLE) maxDistance = 500;
@@ -203,6 +203,9 @@ public abstract class GunItem extends Item {
                 Vec3d bulletVector = user.getRotationVector().add(new Vec3d(r.nextGaussian(), r.nextGaussian(), r.nextGaussian()).multiply(this.bulletSpread / 10));
 
                 HitResult result = getHitResult(world, user, user.getEyePos(), bulletVector, maxDistance);
+                if (this instanceof InfinityGunItem infinityGunItem) {
+                    infinityGunItem.hit(result, world, user, stack);
+                }
                 if (result instanceof EntityHitResult) {
                     EntityHitResult entityHitResult = (EntityHitResult) result;
                     float damage = this.gunDamage;
