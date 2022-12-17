@@ -1,7 +1,5 @@
 package com.ultreon.mods.pixelguns.entity.ufo;
 
-import java.util.List;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -14,7 +12,6 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Direction.Axis;
 import net.minecraft.world.World;
 
 import software.bernie.geckolib3.core.IAnimatable;
@@ -44,6 +41,7 @@ public abstract class AbstractUfoEntity extends Entity implements IAnimatable {
         super(entityType, world);
         this.intersectionChecked = true;
         this.velocityDecay = 0.9f;
+        this.ignoreCameraFrustum = true;
     }
 
     public abstract float getThirdPersonCameraDistance();
@@ -63,14 +61,6 @@ public abstract class AbstractUfoEntity extends Entity implements IAnimatable {
             this.move(MovementType.SELF, this.getVelocity());
         } else {
             this.setVelocity(Vec3d.ZERO);
-
-            // TODO radius
-            List<PlayerEntity> collisions = this.world.getEntitiesByClass(PlayerEntity.class, this.getBoundingBox().withMinY(this.getBoundingBox().maxY - 0.1), entity -> true);
-            for (PlayerEntity player : collisions) {
-                player.setPosition(player.getPos().getX(), this.getBoundingBox().getMax(Axis.Y), player.getPos().getZ());
-                player.setVelocity(player.getVelocity().getX(), 0, player.getVelocity().getZ());
-                player.setOnGround(true);
-            }
         }
         
     }
