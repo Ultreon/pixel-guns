@@ -21,6 +21,9 @@
     ],
     "client": [
       "com.ultreon.mods.pixelguns.PixelGunsClient"
+    ],
+    "modmenu": [
+      "com.ultreon.mods.pixelguns.PixelGunsModMenu"
     ]
   },
   "mixins": [
@@ -29,7 +32,7 @@
   "depends": {
     "fabricloader": ">=0.13.3",
     "fabric": "*",
-    "minecraft": "1.19.x",
+    "minecraft": ">=1.19 <1.19.3",
     "java": ">=17",
     "geckolib3": ">=3.1.0 <3.2.0"
   },

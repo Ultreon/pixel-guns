@@ -25,6 +25,9 @@ repositories {
     // WorldEdit
 	maven { url 'https://maven.enginehub.org/repo/' }
 
+    // WorldEdit
+	maven { url 'https://maven.architectury.dev/' }
+
 
     maven {
         url "https://cursemaven.com"
@@ -38,6 +41,10 @@ repositories {
     maven {
         name = "Fuzs Mod Resources"
         url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+    }
+
+    flatDir {
+        dir "$projectDir/libs"
     }
 }
 
@@ -53,6 +60,10 @@ dependencies {
 
     // Fabric API
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    // Ultreon Mod Lib
+    modImplementation "dev.architectury:architectury-fabric:${project.architectury_version}"
+    modImplementation "com.ultreon.mods:ultreon-lib-fabric:${project.ultreon_lib_version}"
 
     //Fabric Shield Lib
     modImplementation "com.github.CrimsonDawn45:Fabric-Shield-Lib:v${project.fabric_shield_lib_version}"

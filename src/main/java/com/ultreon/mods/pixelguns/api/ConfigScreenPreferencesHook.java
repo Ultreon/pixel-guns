@@ -1,22 +1,22 @@
 package com.ultreon.mods.pixelguns.api;
 
-import static com.ultreon.mods.pixelguns.api.ConfigScreenPreferencesHook.Companion.disabledCustomConfigScreen;
+import static com.ultreon.mods.pixelguns.api.ConfigScreenPreferencesHook.Companion.customConfigScreen;
 
 /**
  * Run with {@code FabricLoader.getInstance().getEntrypoints("pixelguns:configScreenPreferencesHook", ConfigScreenPreferencesHook.class).forEach(ConfigScreenPreferencesHook::onConfigPreferencesInit);}
  */
 @FunctionalInterface
 public interface ConfigScreenPreferencesHook {
-    static class Companion {
-        static boolean disabledCustomConfigScreen = false;
+    class Companion {
+        static boolean customConfigScreen = true;
     }
-    public void onConfigPreferencesInit();
+    void onConfigPreferencesInit();
 
-    public static boolean customConfigScreenDisabled() {
-        return disabledCustomConfigScreen;
+    static boolean customConfigScreenDisabled() {
+        return customConfigScreen;
     }
 
-    public static void disableCustomConfigScren() {
-        disabledCustomConfigScreen = true;
+    static void setCustomConfigScreen(boolean use) {
+        customConfigScreen = !use;
     }
 }
