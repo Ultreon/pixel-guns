@@ -1,0 +1,25 @@
+{
+  "pattern": [
+    "/##",
+    "#X>",
+    "/##"
+  ],
+  "key": {
+    "/": {
+      "item": "netherite_ingot"
+    },
+    "#": {
+      "item": "netherite_block"
+    },
+    "X": {
+      "item": "nether_star"
+    },
+    ">": {
+      "item": "beacon"
+    }
+  },
+  "result": {
+    "count": 1,
+    "item": "pixel_guns:infinity_gun"
+  }
+}
