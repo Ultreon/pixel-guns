@@ -7,10 +7,7 @@ import com.ultreon.mods.pixelguns.armor.ModArmorMaterials;
 import com.ultreon.mods.pixelguns.sound.ModSounds;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ShieldItem;
-import net.minecraft.item.ToolMaterials;
+import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -41,7 +38,12 @@ public class ModItems {
     public static final Item STANDARD_RIFLE_BULLET = ModItems.registerItem("standard_rifle_cartridge", new Item(new FabricItemSettings().group(PixelGuns.GUNS).maxCount(64)));
     public static final Item HEAVY_RIFLE_BULLET = ModItems.registerItem("heavy_rifle_cartridge", new Item(new FabricItemSettings().group(PixelGuns.GUNS).maxCount(64)));
     public static final Item SHOTGUN_SHELL = ModItems.registerItem("shotgun_shell", new Item(new FabricItemSettings().group(PixelGuns.GUNS).maxCount(64)));
-    public static final Item ENERGY_GUN_BATTERY = ModItems.registerItem("energy_gun_battery", new Item(new FabricItemSettings().group(PixelGuns.GUNS).maxCount(12)));
+    public static final Item ENERGY_GUN_BATTERY = ModItems.registerItem("energy_gun_battery", new Item(new FabricItemSettings().group(PixelGuns.GUNS).maxCount(12)){
+        @Override
+        public boolean hasGlint(ItemStack itemStack) {
+            return true;
+        }
+    });
     public static final Item PISTOL = ModItems.registerItem("pistol_light", new GunItem(new FabricItemSettings().group(PixelGuns.GUNS).maxCount(1), 5.5f, 4, 17, STANDARD_HANDGUN_BULLET, 26, 0.25f, 2.5f, 1, 1, ModSounds.RELOAD_GENERIC_PISTOL_P1, ModSounds.RELOAD_GENERIC_PISTOL_P2, ModSounds.RELOAD_GENERIC_PISTOL_P3, ModSounds.PISTOL_LIGHT, 1, false, 6, 16, 20) {
     });
     public static final Item HEAVY_PISTOL = ModItems.registerItem("pistol_heavy", new GunItem(new FabricItemSettings().group(PixelGuns.GUNS).maxCount(1), 11.0f, 5, 7, HEAVY_HANDGUN_BULLET, 26, 0.25f, 7.5f, 1, 1, ModSounds.RELOAD_GENERIC_PISTOL_P1, ModSounds.RELOAD_GENERIC_PISTOL_P2, ModSounds.RELOAD_GENERIC_PISTOL_P3, ModSounds.PISTOL_HEAVY, 1, false, 6, 16, 20) {
