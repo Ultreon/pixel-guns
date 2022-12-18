@@ -30,6 +30,7 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
@@ -103,6 +104,17 @@ public abstract class GunItem extends Item {
         nbtCompound.putInt("Clip", 0);
         nbtCompound.putBoolean("isScoped", this.isScoped);
         nbtCompound.putBoolean("isReloading", false);
+    }
+
+    @Override
+    public boolean isItemBarVisible(ItemStack itemStack) {
+        return true;
+    }
+
+    private static final int ITEM_BAR_COLOR = MathHelper.packRgb(0.4f, 0.4f, 1.0f);
+    @Override
+    public int getItemBarColor(ItemStack itemStack) {
+        return ITEM_BAR_COLOR;
     }
 
     public void inventoryTick(ItemStack stack, @NotNull World world, @NotNull Entity entity, int slot, boolean selected) {
