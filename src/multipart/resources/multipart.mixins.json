@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.jab125.multipart.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "ServerWorldMixin",
+    "ServerWorldMixin$ServerEntityHandlerMixin",
+    "WorldMixin"
+  ],
+  "client": [
+    "client.EntityRenderDispatcherMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

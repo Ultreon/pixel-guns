@@ -139,3 +139,14 @@ publishing {
         // retrieving dependencies.
     }
 }
+
+sourceSets {
+    main {
+        java {
+            srcDirs += ["src/multipart/java"]
+        }
+        resources {
+            srcDirs += ["src/multipart/resources"]
+        }
+    }
+}

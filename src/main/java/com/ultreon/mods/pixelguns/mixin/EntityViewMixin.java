@@ -32,7 +32,7 @@ public interface EntityViewMixin {
 //            return;
 //        }
         if (entity instanceof AbstractUfoEntity) {
-            System.out.println(box.toString());
+            //System.out.println(box.toString());
         }
         Predicate<Entity> predicate = entity == null ? EntityPredicates.CAN_COLLIDE : EntityPredicates.EXCEPT_SPECTATOR.and(entity::collidesWith);
         List<Entity> list = this.getOtherEntities(entity, box/*.expand(1.0E-7)*/, predicate);

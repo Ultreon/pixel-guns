@@ -51,7 +51,7 @@ public class ModEntities {
     public static final EntityType<UfoEntity> UFO = ModEntities.register(
         "ufo",
         FabricEntityTypeBuilder.create(SpawnGroup.MISC, UfoEntity::new)
-            .dimensions(EntityDimensions.changing(ufoScale * 3.0f, ufoScale * 0.4f))
+            .dimensions(EntityDimensions.changing(ufoScale * 5.0f, ufoScale * 0.4f)) // hdsufgritewhkfskdj
     );
 
     public static final EntityType<GasEntity> GAS = ModEntities.register(
