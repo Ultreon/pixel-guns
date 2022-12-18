@@ -64,7 +64,7 @@ public class InfinityGunItem extends GunItem implements IAnimatable {
         Vec3d hitPosition = result.getPos().subtract(userPos);
         Vec3d normalizedHitPosition = hitPosition.normalize();
         if (world instanceof ServerWorld serverWorld) {
-            for (int i = 1; i < MathHelper.floor(hitPosition.length()) + 7; ++i) {
+            for (int i = 1; i < MathHelper.floor(hitPosition.length()); ++i) {
                 Vec3d lerpedLocation = userPos.add(normalizedHitPosition.multiply(i));
                 serverWorld.spawnParticles(ParticleTypes.SONIC_BOOM, lerpedLocation.x, lerpedLocation.y, lerpedLocation.z, 1, 0, 0, 0, 0);
             }
