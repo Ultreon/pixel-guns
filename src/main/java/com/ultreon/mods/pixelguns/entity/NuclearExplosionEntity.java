@@ -18,7 +18,7 @@ import software.bernie.geckolib3.util.GeckoLibUtil;
 
 public class NuclearExplosionEntity extends Entity implements IAnimatable {
 
-    private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
     protected NuclearExplosionEntity(EntityType<? extends Entity> entityType, World world) {
         super(entityType, world);
@@ -45,7 +45,7 @@ public class NuclearExplosionEntity extends Entity implements IAnimatable {
 
     @Override
     public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController<NuclearExplosionEntity>(this, "controller", 0, this::predicate));
+        data.addAnimationController(new AnimationController<>(this, "controller", 0, this::predicate));
     }
 
     @Override

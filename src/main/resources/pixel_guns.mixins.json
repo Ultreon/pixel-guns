@@ -14,7 +14,8 @@
     "client.gun.PlayerGunPose",
 
     "client.ufo.UfoCameraModifier",
-    "client.ufo.UfoInputHandler"
+    "client.ufo.UfoInputHandler",
+    "client.ufo.PlayerRenderer"
   ],
   "injectors": {
     "defaultRequire": 1

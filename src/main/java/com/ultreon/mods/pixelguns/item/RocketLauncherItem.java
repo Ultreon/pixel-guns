@@ -1,5 +1,6 @@
 package com.ultreon.mods.pixelguns.item;
 
+import com.ultreon.mods.pixelguns.item.gun.AbstractGunItem;
 import net.minecraft.item.Item;
 import net.minecraft.sound.SoundEvent;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -7,9 +8,9 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
-public class RocketLauncherItem extends GunItem implements IAnimatable {
+public class RocketLauncherItem extends AbstractGunItem implements IAnimatable {
 
-    private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
     public RocketLauncherItem(Settings settings, float gunDamage, int rateOfFire, int magSize, Item ammoType,
             int reloadCooldown, float bulletSpread, float gunRecoil, int pelletCount, int loadingType,

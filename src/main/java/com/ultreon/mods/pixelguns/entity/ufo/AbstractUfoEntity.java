@@ -13,6 +13,10 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonPart;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MovementType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.Packet;
@@ -22,7 +26,6 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Direction.Axis;
 import net.minecraft.world.World;
 
 import software.bernie.geckolib3.core.IAnimatable;
@@ -37,7 +40,7 @@ import software.bernie.geckolib3.util.GeckoLibUtil;
 public abstract class AbstractUfoEntity extends Entity implements IAnimatable, MultiPartHolder<AbstractUfoEntity, UfoPart> {
     private final UfoPart[] parts;
     // Movement
-    private float velocityDecay;
+    private final float velocityDecay;
     private int interpolationSteps;
 
     // Position
@@ -59,6 +62,7 @@ public abstract class AbstractUfoEntity extends Entity implements IAnimatable, M
         super(entityType, world);
         this.intersectionChecked = true;
         this.velocityDecay = 0.9f;
+        this.ignoreCameraFrustum = true;
         ArrayList<UfoPart> parts = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -95,7 +99,7 @@ public abstract class AbstractUfoEntity extends Entity implements IAnimatable, M
             this.updateInterpolatedPose();
             this.decayVelocity();
             if (this.world.isClient) {
-                this.applyInput();
+                this.applyInput(this.getPrimaryPassenger());
             }
             this.move(MovementType.SELF, this.getVelocity());
         } else {
@@ -145,10 +149,9 @@ public abstract class AbstractUfoEntity extends Entity implements IAnimatable, M
     }
 
     // Verified
-    private void applyInput() {
-        if (!this.hasPassengers()) return;
-
-        this.setYaw(-this.getPrimaryPassenger().getHeadYaw());
+    private void applyInput(Entity driver) {
+        if (driver == null) return;
+        this.setYaw(-driver.getHeadYaw());
 
         float fockwardVelocity = 0.0f; // FOrward and baCKward = fockward
         if (UfoInput.pressingForward()) fockwardVelocity += 0.05;
@@ -243,7 +246,7 @@ public abstract class AbstractUfoEntity extends Entity implements IAnimatable, M
      * ANIMATION SIDE
      */
 
-    private AnimationFactory factory = GeckoLibUtil.createFactory(this);;
+    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
     private PlayState predicate(AnimationEvent<AbstractUfoEntity> event) {
         event.getController().setAnimation(new AnimationBuilder().addAnimation("ufo.spin"));
@@ -252,7 +255,7 @@ public abstract class AbstractUfoEntity extends Entity implements IAnimatable, M
 
     @Override
     public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController<AbstractUfoEntity>(this, "controller", 0, this::predicate));
+        data.addAnimationController(new AnimationController<>(this, "controller", 0, this::predicate));
     }
 
     @Override

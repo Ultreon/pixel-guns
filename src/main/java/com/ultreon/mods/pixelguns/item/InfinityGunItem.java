@@ -18,6 +18,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
 import net.minecraft.world.explosion.ExplosionBehavior;
+import com.ultreon.mods.pixelguns.item.gun.AbstractGunItem;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
@@ -27,7 +28,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class InfinityGunItem extends GunItem implements IAnimatable {
+public class InfinityGunItem extends AbstractGunItem implements IAnimatable {
+
+    //TODO use for something
     public static final List<InfinityGunItem> BLUEPRINT_ITEM_LIST = new ArrayList<>();
 
     public InfinityGunItem(Settings settings) {

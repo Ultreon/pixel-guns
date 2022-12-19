@@ -40,9 +40,11 @@ public enum ModArmorMaterials implements ArmorMaterial {
     private final float knockbackResistance;
     private final Ingredient ingredient;
 
-    record EquipmentAmounts(int helmet, int chestplate, int leggings, int boots) {};
+    record DurabilityAmounts(int helmet, int chestplate, int leggings, int boots) {}
 
-    private ModArmorMaterials(String name, EquipmentAmounts durabilityAmounts, EquipmentAmounts protectionAmounts, int enchantability, SoundEvent equipSound, float toughness, float knockbackResistance, Ingredient ingredient) {
+    record ProtectionAmounts(int helmet, int chestplate, int leggings, int boots) {}
+
+    ModArmorMaterials(String name, DurabilityAmounts durabilityAmounts, ProtectionAmounts protectionAmounts, int enchantability, SoundEvent equipSound, float toughness, float knockbackResistance, Ingredient ingredient) {
         this.name = name;
         this.durabilityAmounts = durabilityAmounts;
         this.protectionAmounts = protectionAmounts;
