@@ -34,6 +34,7 @@ import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
+
 import java.util.Random;
 
 import org.jetbrains.annotations.NotNull;
@@ -62,7 +63,7 @@ public abstract class AbstractGunItem extends Item {
     private final int reloadStage3;
 
     public AbstractGunItem(Settings settings, float gunDamage, int rateOfFire, int magSize, Item ammoType, int reloadCooldown, float bulletSpread, float gunRecoil, int pelletCount, int loadingType, SoundEvent reload1, SoundEvent reload2, SoundEvent reload3, SoundEvent shootSound, int reloadCycles, boolean isScoped, int reloadStage1, int reloadStage2, int reloadStage3) {
-        super(settings.maxDamage(magSize * 10 + 1));
+        super(settings);
         this.gunDamage = gunDamage;
         this.rateOfFire = rateOfFire;
         this.magSize = magSize;
@@ -157,7 +158,6 @@ public abstract class AbstractGunItem extends Item {
                     nbtCompound.putInt("reloadTick", this.reloadStage2);
                 }
                 nbtCompound.putInt("currentCycle", nbtCompound.getInt("Clip"));
-                stack.setDamage(this.getMaxDamage() - (nbtCompound.getInt("Clip") * 10 + 1));
             }
         }
     }
@@ -259,7 +259,6 @@ public abstract class AbstractGunItem extends Item {
                 InventoryUtil.removeItemFromInventory(player, this.ammoType, AbstractGunItem.reserveAmmoCount(player, this.ammoType));
             }
         }
-        stack.setDamage(this.getMaxDamage() - (nbtCompound.getInt("Clip") * 10 + 1));
     }
 
     public boolean allowNbtUpdateAnimation(PlayerEntity player, Hand hand, ItemStack oldStack, ItemStack newStack) {
