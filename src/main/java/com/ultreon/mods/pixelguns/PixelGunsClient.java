@@ -2,8 +2,6 @@ package com.ultreon.mods.pixelguns;
 
 import com.ultreon.mods.pixelguns.client.armor.renderer.ArmoredArmorRenderer;
 import com.ultreon.mods.pixelguns.client.armor.renderer.HazardArmorRenderer;
-import com.ultreon.mods.pixelguns.client.entity.model.EnergyOrbEntityModel;
-import com.ultreon.mods.pixelguns.client.armor.renderer.*;
 import com.ultreon.mods.pixelguns.client.entity.renderer.*;
 import com.ultreon.mods.pixelguns.client.item.renderer.*;
 import com.ultreon.mods.pixelguns.entity.ModEntities;
