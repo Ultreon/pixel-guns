@@ -143,10 +143,10 @@ publishing {
 sourceSets {
     main {
         java {
-            srcDirs += ["src/multipart/java", "src/healthbar/java"]
+            srcDirs += ["src/multipart/java"]
         }
         resources {
-            srcDirs += ["src/multipart/resources", "src/healthbar/resources"]
+            srcDirs += ["src/multipart/resources"]
         }
     }
 }

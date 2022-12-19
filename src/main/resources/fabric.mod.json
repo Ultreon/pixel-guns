@@ -23,8 +23,7 @@
       "com.ultreon.mods.pixelguns.PixelGuns"
     ],
     "client": [
-      "com.ultreon.mods.pixelguns.PixelGunsClient",
-      "com.jab125.healthbar.HealthBar"
+      "com.ultreon.mods.pixelguns.PixelGunsClient"
     ]
   },
   "mixins": [
