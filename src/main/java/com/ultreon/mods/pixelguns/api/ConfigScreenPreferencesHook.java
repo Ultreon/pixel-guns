@@ -8,7 +8,7 @@ import static com.ultreon.mods.pixelguns.api.ConfigScreenPreferencesHook.Compani
 @FunctionalInterface
 public interface ConfigScreenPreferencesHook {
     class Companion {
-        static boolean cfgScreenDisabled = true;
+        static boolean cfgScreenDisabled = false;
     }
     void onConfigPreferencesInit();
 
