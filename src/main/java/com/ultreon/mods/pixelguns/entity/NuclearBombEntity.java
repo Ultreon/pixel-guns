@@ -29,7 +29,7 @@ import software.bernie.geckolib3.util.GeckoLibUtil;
 
 public class NuclearBombEntity extends Entity implements IAnimatable {
 
-    private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
     protected NuclearBombEntity(EntityType<? extends Entity> entityType, World world) {
         super(entityType, world);
@@ -52,6 +52,7 @@ public class NuclearBombEntity extends Entity implements IAnimatable {
 
     private void spawnExplosion() {
         NuclearExplosionEntity explosionEntity = ModEntities.NUCLEAR_EXPLOSION.create(this.world);
+        if (explosionEntity == null) return;
         explosionEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), 0.0f);
         this.world.spawnEntity(explosionEntity);
     }
@@ -82,7 +83,7 @@ public class NuclearBombEntity extends Entity implements IAnimatable {
 
     @Override
     public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController<NuclearBombEntity>(this, "controller", 0, this::predicate));
+        data.addAnimationController(new AnimationController<>(this, "controller", 0, this::predicate));
     }
 
     @Override

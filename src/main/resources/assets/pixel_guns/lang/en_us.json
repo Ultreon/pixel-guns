@@ -31,6 +31,7 @@
 	"item.pixel_guns.standard_rifle_cartridge" : "Standard Rifle Cartridge",
 	"item.pixel_guns.heavy_handgun_cartridge" : "Heavy Handgun Cartridge",
 	"item.pixel_guns.heavy_rifle_cartridge" : "Heavy Rifle Cartridge",
+	"item.pixel_guns.energy_gun_battery" : "Energy Gun Battery",
 	"item.pixel_guns.shotgun_shell" : "Shotgun Shell",
 
 	"item.pixel_guns.pistol_light" : "Pistol",
@@ -47,4 +48,6 @@
 	"config.pixel_guns": "Pixel Guns Config",
 	"config.pixel_guns.do_recoil": "Do Recoil: %s",
 	"config.pixel_guns.use_custom_config_gui": "Use Custom Config GUI: %s"
+  
+	"item.pixel_guns.sniper_classic" : "Hunting Rifle"
 }

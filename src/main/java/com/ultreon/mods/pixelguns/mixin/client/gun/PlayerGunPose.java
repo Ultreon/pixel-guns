@@ -1,7 +1,7 @@
 package com.ultreon.mods.pixelguns.mixin.client.gun;
 
 import com.ultreon.mods.pixelguns.NbtNames;
-import com.ultreon.mods.pixelguns.item.GunItem;
+import com.ultreon.mods.pixelguns.item.gun.AbstractGunItem;
 import com.ultreon.mods.pixelguns.item.InfinityGunItem;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -18,7 +18,6 @@ import net.minecraft.client.render.block.entity.BeaconBlockEntityRenderer;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Quaternion;
@@ -27,19 +26,18 @@ import net.minecraft.util.math.Quaternion;
 public class PlayerGunPose {
     @Inject(method = "getArmPose", at = @At("TAIL"), cancellable = true)
     private static void gunPose(AbstractClientPlayerEntity player, Hand hand, CallbackInfoReturnable<BipedEntityModel.ArmPose> ci) {
-        if (player.getStackInHand(hand).getItem() instanceof GunItem && GunItem.isLoaded(player.getStackInHand(hand)) && player.getStackInHand(hand).getOrCreateNbt().getInt("reloadTick") <= 0) {
+        if (player.getStackInHand(hand).getItem() instanceof AbstractGunItem && AbstractGunItem.isLoaded(player.getStackInHand(hand)) && player.getStackInHand(hand).getOrCreateNbt().getInt("reloadTick") <= 0) {
             ci.setReturnValue(BipedEntityModel.ArmPose.BOW_AND_ARROW);
             return;
         }
-        if (player.getStackInHand(hand).getItem() instanceof GunItem && player.getStackInHand(hand).getOrCreateNbt().getInt("reloadTick") > 0) {
+        if (player.getStackInHand(hand).getItem() instanceof AbstractGunItem && player.getStackInHand(hand).getOrCreateNbt().getInt("reloadTick") > 0) {
             ci.setReturnValue(BipedEntityModel.ArmPose.CROSSBOW_CHARGE);
             return;
         }
         ci.setReturnValue(BipedEntityModel.ArmPose.ITEM);
     }
     @Inject(method = "render(Lnet/minecraft/client/network/AbstractClientPlayerEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V", at = @At("TAIL"))
-    private void render(AbstractClientPlayerEntity entity, float f, float g, MatrixStack poseStack, VertexConsumerProvider multiBufferSource, int i, CallbackInfo ci) {
-        PlayerEntity player = (PlayerEntity) entity;
+    private void render(AbstractClientPlayerEntity player, float f, float g, MatrixStack poseStack, VertexConsumerProvider multiBufferSource, int i, CallbackInfo ci) {
         ItemStack itemInHand = player.getStackInHand(Hand.MAIN_HAND);
         if (itemInHand.getItem() instanceof InfinityGunItem) {
             boolean isShooting = itemInHand.getOrCreateSubNbt(NbtNames.INFINITY_GUN).getBoolean(NbtNames.IS_SHOOTING);

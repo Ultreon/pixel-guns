@@ -17,7 +17,7 @@ public class KatanaItem extends SwordItem implements IAnimatable {
      * Animation side
      */
 
-    private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
     @Override
     public void registerControllers(AnimationData data) {}

@@ -26,7 +26,7 @@ import software.bernie.geckolib3.util.GeckoLibUtil;
 
 public class GrenadeEntity extends ThrownItemEntity implements IAnimatable {
 
-    private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
     public GrenadeEntity(EntityType<? extends GrenadeEntity> entityType, World world) {
         super(entityType, world);
@@ -34,10 +34,6 @@ public class GrenadeEntity extends ThrownItemEntity implements IAnimatable {
 
     public GrenadeEntity(World world, LivingEntity owner) {
         super(ModEntities.GRENADE, owner, world);
-    }
-
-    public GrenadeEntity(World world, double x, double y, double z) {
-        super(ModEntities.GRENADE, x, y, z, world);
     }
 
     @Override
@@ -72,7 +68,7 @@ public class GrenadeEntity extends ThrownItemEntity implements IAnimatable {
 
     @Override
     public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController<GrenadeEntity>(this, "controller", 0, this::predicate));
+        data.addAnimationController(new AnimationController<>(this, "controller", 0, this::predicate));
     }
     @Override
     public AnimationFactory getFactory() {
