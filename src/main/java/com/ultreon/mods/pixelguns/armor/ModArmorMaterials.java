@@ -2,7 +2,6 @@ package com.ultreon.mods.pixelguns.armor;
 
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -11,8 +10,8 @@ public enum ModArmorMaterials implements ArmorMaterial {
 
     ARMORED(
         "armored",
-        new EquipmentAmounts(0, 225, 0, 0),
-        new EquipmentAmounts(0, 10, 0, 0),
+        new DurabilityAmounts(0, 225, 0, 0),
+        new ProtectionAmounts(0, 10, 0, 0),
         15,
         SoundEvents.ITEM_ARMOR_EQUIP_LEATHER,
         0.0f,
@@ -22,8 +21,8 @@ public enum ModArmorMaterials implements ArmorMaterial {
 
     HAZARD(
         "hazard",
-        new EquipmentAmounts(2400, 0, 0, 0),
-        new EquipmentAmounts(0, 0, 0, 0),
+        new DurabilityAmounts(2400, 0, 0, 0),
+        new ProtectionAmounts(0, 0, 0, 0),
         15,
         SoundEvents.ITEM_ARMOR_EQUIP_LEATHER,
         0.0f,
@@ -32,8 +31,8 @@ public enum ModArmorMaterials implements ArmorMaterial {
     );
 
     private final String name;
-    private final EquipmentAmounts durabilityAmounts;
-    private final EquipmentAmounts protectionAmounts;
+    private final DurabilityAmounts durabilityAmounts;
+    private final ProtectionAmounts protectionAmounts;
     private final int enchantability;
     private final SoundEvent equipSound;
     private final float toughness;

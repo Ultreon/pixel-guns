@@ -31,6 +31,7 @@
 	"item.pixel_guns.standard_rifle_cartridge" : "Standard Rifle Cartridge",
 	"item.pixel_guns.heavy_handgun_cartridge" : "Heavy Handgun Cartridge",
 	"item.pixel_guns.heavy_rifle_cartridge" : "Heavy Rifle Cartridge",
+	"item.pixel_guns.energy_gun_battery" : "Energy Gun Battery",
 	"item.pixel_guns.shotgun_shell" : "Shotgun Shell",
 
 	"item.pixel_guns.pistol_light" : "Pistol",
@@ -40,7 +41,5 @@
 	"item.pixel_guns.assaultrifle_light" : "Assault Rifle",
 	"item.pixel_guns.assaultrifle_heavy" : "Heavy Assault Rifle",
 	"item.pixel_guns.shotgun_combat" : "Combat Shotgun",
-	"item.pixel_guns.sniper_classic" : "Hunting Rifle",
-
-	"attack.pixel_guns.energy_orb": "%1$s got obliterated from an Energy Orb"
+	"item.pixel_guns.sniper_classic" : "Hunting Rifle"
 }
