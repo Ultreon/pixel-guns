@@ -3,5 +3,3 @@ accessible method net/minecraft/client/render/block/entity/BeaconBlockEntityRend
 accessible method net/minecraft/client/render/block/entity/BeaconBlockEntityRenderer renderBeam (Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/util/Identifier;FFJII[FFF)V
 accessible class net/minecraft/server/world/ServerWorld$ServerEntityHandler
 accessible field net/minecraft/client/gui/hud/InGameHud scaledHeight I
-accessible class net/minecraft/client/gui/hud/InGameHud$HeartType
-accessible method net/minecraft/client/gui/hud/InGameHud$HeartType fromPlayerState (Lnet/minecraft/entity/player/PlayerEntity;)Lnet/minecraft/client/gui/hud/InGameHud$HeartType;
