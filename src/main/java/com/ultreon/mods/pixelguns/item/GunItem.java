@@ -178,7 +178,7 @@ public abstract class GunItem extends Item {
         if (!client.options.attackKey.isPressed()) {
             return TypedActionResult.fail(itemStack);
         }
-        if (hand == Hand.MAIN_HAND && !user.isSprinting() && GunItem.isLoaded(itemStack)) {
+        if (hand == Hand.MAIN_HAND && !user.isSprinting() && GunItem.isLoaded(itemStack) && !world.isClient()) {
             this.shoot(world, user, itemStack);
             if (this.reloadCycles > 1) {
                 itemStack.getOrCreateNbt().putInt("currentCycle", itemStack.getOrCreateNbt().getInt("Clip"));

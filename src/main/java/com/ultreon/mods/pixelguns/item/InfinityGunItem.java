@@ -73,11 +73,12 @@ public class InfinityGunItem extends GunItem implements IAnimatable {
             world.createExplosion(null, new EnergyOrbDamageSource(), new ExplosionBehavior() {
                 @Override
                 public boolean canDestroyBlock(Explosion explosion, BlockView blockGetter, BlockPos blockPos, BlockState blockState, float f) {
-                    return true;
+                    return blockState.getBlock().getHardness() != -1.0F;
                 }
 
                 @Override
                 public Optional<Float> getBlastResistance(Explosion explosion, BlockView blockGetter, BlockPos blockPos, BlockState blockState, FluidState fluidState) {
+                    if (blockState.getBlock().getHardness() == -1.0F) return Optional.of(18000000F);
                     return Optional.of(0f);
                 }
             }, curPos.x, curPos.y, curPos.z, 7f, true, Explosion.DestructionType.DESTROY);
