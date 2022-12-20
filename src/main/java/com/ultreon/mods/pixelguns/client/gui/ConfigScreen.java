@@ -13,13 +13,15 @@ public class ConfigScreen extends GenericMenuScreen {
     public ConfigScreen(Properties properties) {
         super(properties);
 
-        doRecoil = addButtonRow(Text.translatable("config.pixel_guns.do_recoil"), () -> {
+        doRecoil = addButtonRow(Text.translatable("config.pixel_guns.do_recoil." + Config.DO_RECOIL.get()), b -> {
             Config.DO_RECOIL.set(!Config.DO_RECOIL.get());
+            b.setMessage(Text.translatable("config.pixel_guns.do_recoil." + Config.DO_RECOIL.get()));
             Config.save();
             reloadNames();
         });
-        useCustomConfigGui = addButtonRow(Text.translatable("config.pixel_guns.use_custom_config_gui"), () -> {
+        useCustomConfigGui = addButtonRow(Text.translatable("config.pixel_guns.use_custom_config_gui" + Config.USE_CUSTOM_CONFIG_GUI.get()), b -> {
             Config.USE_CUSTOM_CONFIG_GUI.set(!Config.USE_CUSTOM_CONFIG_GUI.get());
+            b.setMessage(Text.translatable("config.pixel_guns.use_custom_config_gui" + Config.USE_CUSTOM_CONFIG_GUI.get()));
             Config.save();
             reloadNames();
         });
