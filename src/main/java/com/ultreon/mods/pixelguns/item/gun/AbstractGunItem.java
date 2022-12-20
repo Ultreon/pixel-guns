@@ -1,5 +1,6 @@
 package com.ultreon.mods.pixelguns.item.gun;
 
+import com.ultreon.mods.pixelguns.item.InfinityGunItem;
 import com.ultreon.mods.pixelguns.item.ModItems;
 import io.netty.buffer.Unpooled;
 import com.ultreon.mods.pixelguns.PixelGuns;
@@ -215,6 +216,10 @@ public abstract class AbstractGunItem extends Item {
                 Vec3d bulletVector = user.getRotationVector().add(new Vec3d(r.nextGaussian(), r.nextGaussian(), r.nextGaussian()).multiply(this.bulletSpread / 10));
 
                 HitResult result = getHitResult(world, user, user.getEyePos(), bulletVector, maxDistance);
+                if (this instanceof InfinityGunItem infinityGunItem) {
+                    infinityGunItem.hit(result, world, user, stack);
+                }
+
                 if (result instanceof EntityHitResult entityHitResult) {
                     float damage = this.gunDamage;
                     entityHitResult.getEntity().damage(DamageSource.player(user), damage);

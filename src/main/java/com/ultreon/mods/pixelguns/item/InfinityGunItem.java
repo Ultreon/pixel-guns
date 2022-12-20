@@ -1,6 +1,23 @@
 package com.ultreon.mods.pixelguns.item;
 
 import com.ultreon.mods.pixelguns.NbtNames;
+import com.ultreon.mods.pixelguns.entity.damagesource.EnergyOrbDamageSource;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import net.minecraft.world.explosion.Explosion;
+import net.minecraft.world.explosion.ExplosionBehavior;
 import com.ultreon.mods.pixelguns.item.gun.AbstractGunItem;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.manager.AnimationData;
@@ -9,11 +26,7 @@ import software.bernie.geckolib3.util.GeckoLibUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.world.World;
+import java.util.Optional;
 
 public class InfinityGunItem extends AbstractGunItem implements IAnimatable {
 
@@ -53,5 +66,36 @@ public class InfinityGunItem extends AbstractGunItem implements IAnimatable {
         }
 
         return super.isUsedOnRelease(stack);
+    }
+
+    public void hit(HitResult result, World world, PlayerEntity user, ItemStack stack) {
+        Vec3d look = user.getEyePos().relativize(result.getPos()).normalize();
+        Vec3d iter = look.multiply(8);
+        Vec3d curPos = result.getPos();
+        for (int i = 0; i < 3; i++) {
+            world.createExplosion(null, new EnergyOrbDamageSource(), new ExplosionBehavior() {
+                @Override
+                public boolean canDestroyBlock(Explosion explosion, BlockView blockGetter, BlockPos blockPos, BlockState blockState, float f) {
+                    return true;
+                }
+
+                @Override
+                public Optional<Float> getBlastResistance(Explosion explosion, BlockView blockGetter, BlockPos blockPos, BlockState blockState, FluidState fluidState) {
+                    return Optional.of(0f);
+                }
+            }, curPos.x, curPos.y, curPos.z, 7f, true, Explosion.DestructionType.DESTROY);
+
+            curPos = curPos.add(iter);
+        }
+
+        Vec3d userPos = user.getEyePos();
+        Vec3d hitPosition = result.getPos().subtract(userPos);
+        Vec3d normalizedHitPosition = hitPosition.normalize();
+        if (world instanceof ServerWorld serverWorld) {
+            for (int i = 1; i < MathHelper.floor(hitPosition.length()); ++i) {
+                Vec3d lerpedLocation = userPos.add(normalizedHitPosition.multiply(i));
+                serverWorld.spawnParticles(ParticleTypes.SONIC_BOOM, lerpedLocation.x, lerpedLocation.y, lerpedLocation.z, 1, 0, 0, 0, 0);
+            }
+        }
     }
 }

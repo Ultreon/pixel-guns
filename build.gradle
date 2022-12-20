@@ -25,6 +25,9 @@ repositories {
     // WorldEdit
 	maven { url 'https://maven.enginehub.org/repo/' }
 
+    // Architectury
+	maven { url 'https://maven.architectury.dev/' }
+
 
     maven {
         url "https://cursemaven.com"
@@ -34,6 +37,15 @@ repositories {
     }
 
     maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
+
+    maven {
+        name = "Fuzs Mod Resources"
+        url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+    }
+
+    flatDir {
+        dir "$projectDir/libs"
+    }
 }
 
 loom {
@@ -48,6 +60,10 @@ dependencies {
 
     // Fabric API
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    // Ultreon Mod Lib
+    modImplementation "dev.architectury:architectury-fabric:${project.architectury_version}"
+    modImplementation "com.ultreon.mods:ultreon-lib-fabric:${project.ultreon_lib_version}"
 
     //Fabric Shield Lib
     modImplementation "com.github.CrimsonDawn45:Fabric-Shield-Lib:v${project.fabric_shield_lib_version}"
@@ -69,9 +85,10 @@ dependencies {
     modImplementation 'software.bernie.geckolib:geckolib-fabric-1.19:3.1.37'
 
     // Config API
-    modImplementation "curse.maven:forge-config-api-547434:3960064"
+    modImplementation "net.minecraftforge:forgeconfigapiport-fabric:4.2.9"
     modImplementation 'com.electronwill.night-config:core:3.6.5'
     modImplementation 'com.electronwill.night-config:toml:3.6.5'
+   // modRuntimeOnly "curse.maven:configured-667378:4010582"
 
     // WorldEdit
 	modImplementation 'com.sk89q.worldedit:worldedit-fabric-mc1.19.2:7.2.12'
@@ -132,5 +149,16 @@ publishing {
         // Notice: This block does NOT have the same function as the block in the top level.
         // The repositories here will be used for publishing your artifact, not for
         // retrieving dependencies.
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs += ["src/multipart/java"]
+        }
+        resources {
+            srcDirs += ["src/multipart/resources"]
+        }
     }
 }

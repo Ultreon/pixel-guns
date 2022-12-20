@@ -2,7 +2,6 @@ package com.ultreon.mods.pixelguns.armor;
 
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -17,7 +16,7 @@ public enum ModArmorMaterials implements ArmorMaterial {
         SoundEvents.ITEM_ARMOR_EQUIP_LEATHER,
         0.0f,
         0.0f,
-        Ingredient.ofItems(Items.BEDROCK)
+        Ingredient.empty()
     ),
 
     HAZARD(
@@ -28,7 +27,7 @@ public enum ModArmorMaterials implements ArmorMaterial {
         SoundEvents.ITEM_ARMOR_EQUIP_LEATHER,
         0.0f,
         0.0f,
-        Ingredient.ofItems(Items.BEDROCK)
+        Ingredient.empty()
     );
 
     private final String name;
@@ -57,24 +56,24 @@ public enum ModArmorMaterials implements ArmorMaterial {
 
     @Override
     public int getDurability(EquipmentSlot slot) {
-        switch (slot.getName()) {
-            case "feet" -> {return this.durabilityAmounts.boots;}
-            case "legs" -> {return this.durabilityAmounts.leggings;}
-            case "chest" -> {return this.durabilityAmounts.chestplate;}
-            case "head" -> {return this.durabilityAmounts.helmet;}
-            default -> {return 0;}
-        }
+        return switch (slot) {
+            case FEET -> this.durabilityAmounts.boots;
+            case LEGS -> this.durabilityAmounts.leggings;
+            case CHEST -> this.durabilityAmounts.chestplate;
+            case HEAD -> this.durabilityAmounts.helmet;
+            default -> 0;
+        };
     }
 
     @Override
     public int getProtectionAmount(EquipmentSlot slot) {
-        switch (slot.getName()) {
-            case "feet" -> {return this.protectionAmounts.boots;}
-            case "legs" -> {return this.protectionAmounts.leggings;}
-            case "chest" -> {return this.protectionAmounts.chestplate;}
-            case "head" -> {return this.protectionAmounts.helmet;}
-            default -> {return 0;}
-        }
+        return switch (slot) {
+            case FEET -> this.protectionAmounts.boots;
+            case LEGS -> this.protectionAmounts.leggings;
+            case CHEST -> this.protectionAmounts.chestplate;
+            case HEAD -> this.protectionAmounts.helmet;
+            default -> 0;
+        };
     }
 
     @Override

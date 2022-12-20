@@ -5,10 +5,13 @@
   "name": "Pixel Guns",
   "description": "Is your generic gun mod not good enough? We may have one for you!",
   "authors": [
-    "Qboi123", "DrAlpha", "Dr. Random", "Skylandia"
+    "Qboi123",
+    "DrAlpha",
+    "Dr. Random",
+    "Skylandia",
+    "Jab125"
   ],
   "contact": {
-    "homepage": "https://ultreon.github.io/web/",
     "sources": "https://github.com/Ultreon/pixel-guns"
   },
   "license": "MIT",
@@ -24,16 +27,17 @@
     ]
   },
   "mixins": [
-    "pixel_guns.mixins.json"
+    "pixel_guns.mixins.json",
+    "multipart.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.13.3",
     "fabric": "*",
-    "minecraft": "1.19.x",
+    "minecraft": ">=1.19 <1.19.3",
     "java": ">=17",
-    "geckolib3": ">=3.1.0 <3.2.0"
+    "geckolib3": ">=3.1.0 <3.2.0",
+    "ultreonlib": ">=1.1.0 <1.2.0"
   },
   "suggests": {
-    "another-mod": "*"
   }
 }

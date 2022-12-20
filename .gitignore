@@ -16,6 +16,7 @@ bin/*
 out/
 # mpeltonen/sbt-idea plugin
 .idea_modules/
+.idea/
 
 # JIRA plugin
 atlassian-ide-plugin.xml
@@ -126,3 +127,5 @@ run/
 
 # Local files
 local/
+
+!libs/*.jar
