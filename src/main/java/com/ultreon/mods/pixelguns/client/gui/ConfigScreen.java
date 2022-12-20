@@ -6,8 +6,13 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 
+import java.util.Locale;
+
+import static com.ultreon.mods.pixelguns.Config.GunAmmoDisplay.*;
+
 public class ConfigScreen extends GenericMenuScreen {
     private final ButtonWidget doRecoil;
+    private final ButtonWidget gunAmmoDisplay;
     private final ButtonWidget useCustomConfigGui;
 
     public ConfigScreen(Properties properties) {
@@ -15,6 +20,16 @@ public class ConfigScreen extends GenericMenuScreen {
 
         doRecoil = addButtonRow(Text.translatable("config.pixel_guns.do_recoil"), () -> {
             Config.DO_RECOIL.set(!Config.DO_RECOIL.get());
+            Config.save();
+            reloadNames();
+        });
+        gunAmmoDisplay = addButtonRow(Text.translatable("config.pixel_guns.gun_ammo_display." + Config.GUN_AMMO_DISPLAY.get().toString().toLowerCase(Locale.ROOT)), btn -> {
+            Config.GUN_AMMO_DISPLAY.set(switch (Config.GUN_AMMO_DISPLAY.get()) {
+                case NONE -> BLUE_BAR;
+                case BLUE_BAR -> AMMO_COUNT;
+                case AMMO_COUNT -> NONE;
+            });
+            btn.setMessage(Text.translatable("config.pixel_guns.gun_ammo_display." + Config.GUN_AMMO_DISPLAY.get().toString().toLowerCase(Locale.ROOT)));
             Config.save();
             reloadNames();
         });

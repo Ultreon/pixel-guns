@@ -1,5 +1,6 @@
 package com.ultreon.mods.pixelguns.item.gun;
 
+import com.ultreon.mods.pixelguns.Config;
 import com.ultreon.mods.pixelguns.item.InfinityGunItem;
 import com.ultreon.mods.pixelguns.item.ModItems;
 import io.netty.buffer.Unpooled;
@@ -126,12 +127,12 @@ public abstract class AbstractGunItem extends Item {
 
     @Override
     public boolean isItemBarVisible(ItemStack itemStack) {
-        return false;
+        return Config.GUN_AMMO_DISPLAY.get() == Config.GunAmmoDisplay.BLUE_BAR;
     }
 
     @Override
     public int getItemBarStep(ItemStack itemStack) {
-        return Math.round(13.0f - (float)itemStack.getOrCreateNbt().getInt("Clip") * 13.0f / (float)this.magSize);
+        return Math.round((float)itemStack.getOrCreateNbt().getInt("Clip") * 13.0f / (float)this.magSize);
     }
 
     @Override
