@@ -29,6 +29,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.BlockHitResult;
@@ -114,7 +115,7 @@ public abstract class AbstractGunItem extends Item {
     @Override
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
         // TODO change colour
-        tooltip.add(Text.of(String.format("%s/%s", AbstractGunItem.remainingAmmo(stack), this.magSize)));
+        tooltip.add(Text.literal(String.format("%s/%s", AbstractGunItem.remainingAmmo(stack), this.magSize)).formatted(Formatting.GRAY));
     }
 
     @Override
