@@ -15,7 +15,6 @@
 	"item.pixel_guns.wooden_stock" : "Wooden Stock",
 	"item.pixel_guns.modern_stock" : "Modern Stock",
 	"item.pixel_guns.wooden_handguard" : "Wooden Handguard",
-	"item.pixel_guns.modern_handguard" : "Modern Handguard",
 
 	"item.pixel_guns.blueprint_bundle" : "Blueprint Bundle",
 	"item.pixel_guns.blueprint_pistol_light" : "Pistol Blueprint",
@@ -42,12 +41,19 @@
 	"item.pixel_guns.assaultrifle_heavy" : "Heavy Assault Rifle",
 	"item.pixel_guns.shotgun_combat" : "Combat Shotgun",
 	"item.pixel_guns.sniper_classic" : "Hunting Rifle",
+	"item.pixel_guns.rocket_launcher" : "Rocket Launcher",
+	"item.pixel_guns.infinity_gun" : "Infinity Gun",
+
+	"item.pixel_guns.armored_vest" : "Armored Vest",
+	"item.pixel_guns.police_shield" : "Police Shield",
+	"item.pixel_guns.grenade" : "Grenade",
+	"item.pixel_guns.crowbar" : "Crowbar",
+	"item.pixel_guns.katana" : "Katana",
+	"item.pixel_guns.gas_mask" : "Gas Mask",
 
 	"attack.pixel_guns.energy_orb": "%1$s got obliterated from an Energy Orb",
 
 	"config.pixel_guns": "Pixel Guns Config",
 	"config.pixel_guns.do_recoil": "Do Recoil: %s",
 	"config.pixel_guns.use_custom_config_gui": "Use Custom Config GUI: %s"
-  
-	"item.pixel_guns.sniper_classic" : "Hunting Rifle"
 }
