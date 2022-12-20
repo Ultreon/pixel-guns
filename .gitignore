@@ -127,3 +127,5 @@ run/
 
 # Local files
 local/
+
+!libs/*.jar

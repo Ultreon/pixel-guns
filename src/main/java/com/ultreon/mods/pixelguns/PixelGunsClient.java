@@ -1,13 +1,13 @@
 package com.ultreon.mods.pixelguns;
 
-import com.ultreon.mods.pixelguns.client.armor.renderer.*;
+import com.ultreon.mods.pixelguns.client.armor.renderer.ArmoredArmorRenderer;
+import com.ultreon.mods.pixelguns.client.armor.renderer.HazardArmorRenderer;
 import com.ultreon.mods.pixelguns.client.entity.renderer.*;
 import com.ultreon.mods.pixelguns.client.item.renderer.*;
 import com.ultreon.mods.pixelguns.entity.ModEntities;
 import com.ultreon.mods.pixelguns.entity.ufo.UfoInput;
 import com.ultreon.mods.pixelguns.item.ModItems;
 import com.ultreon.mods.pixelguns.util.ModelPredicateProvider;
-
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -16,7 +16,6 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
-
 import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 import software.bernie.geckolib3.renderers.geo.GeoItemRenderer;
 

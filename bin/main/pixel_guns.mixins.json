@@ -7,6 +7,7 @@
     "EntityViewMixin"
   ],
   "client": [
+    "client.ModMenuMixin",
     "client.gun.AdsZoom",
     "client.gun.GunKeybinds",
     "client.gun.ScopedSensitivity",
