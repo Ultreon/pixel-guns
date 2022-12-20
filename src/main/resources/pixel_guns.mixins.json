@@ -7,16 +7,16 @@
     "EntityViewMixin"
   ],
   "client": [
+    "client.ItemRendererMixin",
     "client.ModMenuMixin",
     "client.gun.AdsZoom",
-    "client.gun.GunKeybinds",
-    "client.gun.ScopedSensitivity",
     "client.gun.AnimationPrevention",
+    "client.gun.GunKeybinds",
     "client.gun.PlayerGunPose",
-
+    "client.gun.ScopedSensitivity",
+    "client.ufo.PlayerRenderer",
     "client.ufo.UfoCameraModifier",
-    "client.ufo.UfoInputHandler",
-    "client.ufo.PlayerRenderer"
+    "client.ufo.UfoInputHandler"
   ],
   "injectors": {
     "defaultRequire": 1
