@@ -48,6 +48,4 @@
 	"config.pixel_guns": "Pixel Guns Config",
 	"config.pixel_guns.do_recoil": "Do Recoil: %s",
 	"config.pixel_guns.use_custom_config_gui": "Use Custom Config GUI: %s"
-  
-	"item.pixel_guns.sniper_classic" : "Hunting Rifle"
 }
