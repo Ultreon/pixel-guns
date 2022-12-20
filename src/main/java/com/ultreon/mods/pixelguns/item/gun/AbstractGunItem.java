@@ -114,7 +114,6 @@ public abstract class AbstractGunItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
-        // TODO change colour
         tooltip.add(Text.literal(String.format("%s/%s", AbstractGunItem.remainingAmmo(stack), this.magSize)).formatted(Formatting.GRAY));
     }
 
