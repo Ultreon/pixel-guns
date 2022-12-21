@@ -1,0 +1,25 @@
+{
+  "Ammo Loading Type": "automatic",
+  "Gun Damage": 5.5,
+  "Rate of Fire": 2,
+  "Magazine Size": 30,
+  "Ammunition Type": "pixel_guns:standard_rifle_bullet",
+  "Reload Cooldown": 44,
+  "Bullet Spread": 0.15,
+  "Gun Recoil": 1.625,
+  "Pellet Count": 1,
+  "Loading Type": 1,
+  "Reload Sounds": [
+    "pixel_guns:generic_ar_p1",
+    "pixel_guns:generic_ar_p2",
+    "pixel_guns:generic_ar_p3"
+  ],
+  "Shoot Sound": "pixel_guns:assaultrifle_light",
+  "Reload Cycles": 1,
+  "Is Scoped": false,
+  "Reload Stages": [
+    6,
+    18,
+    37
+  ]
+}

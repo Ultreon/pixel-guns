@@ -1,0 +1,25 @@
+{
+  "Ammo Loading Type": "semi-automatic",
+  "Gun Damage": 22.0,
+  "Rate of Fire": 20,
+  "Magazine Size": 5,
+  "Ammunition Type": "pixel_guns:heavy_rifle_bullet",
+  "Reload Cooldown": 26,
+  "Bullet Spread": 0.01,
+  "Gun Recoil": 8.25,
+  "Pellet Count": 1,
+  "Loading Type": 2,
+  "Reload Sounds": [
+    "pixel_guns:generic_sniper_p1",
+    "pixel_guns:classic_sniper_p2",
+    "pixel_guns:generic_sniper_p3"
+  ],
+  "Shoot Sound": "pixel_guns:sniper_classic",
+  "Reload Cycles": 5,
+  "Is Scoped": true,
+  "Reload Stages": [
+    1,
+    8,
+    17
+  ]
+}

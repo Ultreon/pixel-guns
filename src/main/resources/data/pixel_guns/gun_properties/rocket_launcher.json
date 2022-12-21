@@ -1,0 +1,25 @@
+{
+  "Ammo Loading Type": "semi-automatic",
+  "Gun Damage": 0.0,
+  "Rate of Fire": 0,
+  "Magazine Size": 0,
+  "Ammunition Type": null,
+  "Reload Cooldown": 0,
+  "Bullet Spread": 0.0,
+  "Gun Recoil": 0.0,
+  "Pellet Count": 1,
+  "Loading Type": 1,
+  "Reload Sounds": [
+    null,
+    null,
+    null
+  ],
+  "Shoot Sound": null,
+  "Reload Cycles": 1,
+  "Is Scoped": false,
+  "Reload Stages": [
+    0,
+    0,
+    0
+  ]
+}

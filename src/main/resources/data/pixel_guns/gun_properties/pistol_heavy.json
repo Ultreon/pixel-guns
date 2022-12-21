@@ -1,0 +1,25 @@
+{
+  "Ammo Loading Type": "semi-automatic",
+  "Gun Damage": 11.0,
+  "Rate of Fire": 5,
+  "Magazine Size": 7,
+  "Ammunition Type": "pixel_guns:heavy_handgun_bullet",
+  "Reload Cooldown": 26,
+  "Bullet Spread": 0.25,
+  "Gun Recoil": 7.5,
+  "Pellet Count": 1,
+  "Loading Type": 1,
+  "Reload Sounds": [
+    "pixel_guns:generic_pistol_p1",
+    "pixel_guns:generic_pistol_p2",
+    "pixel_guns:generic_pistol_p3"
+  ],
+  "Shoot Sound": "pixel_guns:pistol_heavy",
+  "Reload Cycles": 1,
+  "Is Scoped": false,
+  "Reload Stages": [
+    6,
+    16,
+    20
+  ]
+}

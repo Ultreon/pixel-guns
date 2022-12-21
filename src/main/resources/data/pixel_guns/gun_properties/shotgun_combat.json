@@ -1,0 +1,25 @@
+{
+  "Ammo Loading Type": "semi-automatic",
+  "Gun Damage": 5.5,
+  "Rate of Fire": 14,
+  "Magazine Size": 6,
+  "Ammunition Type": "pixel_guns:shotgun_shell",
+  "Reload Cooldown": 26,
+  "Bullet Spread": 0.25,
+  "Gun Recoil": 8.25,
+  "Pellet Count": 5,
+  "Loading Type": 2,
+  "Reload Sounds": [
+    "pixel_guns:combat_shotgun_p1",
+    "pixel_guns:combat_shotgun_p2",
+    "pixel_guns:combat_shotgun_p3"
+  ],
+  "Shoot Sound": "pixel_guns:shotgun_combat",
+  "Reload Cycles": 6,
+  "Is Scoped": false,
+  "Reload Stages": [
+    1,
+    4,
+    13
+  ]
+}
