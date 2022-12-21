@@ -1,8 +1,9 @@
 {
 	"category.pixel_guns.binds" : "Simple Animated Guns",
 	"key.pixel_guns.reloadtoggle" : "Reload Gun",
-	"itemGroup.pixel_guns.misc" : "S.A.G. Misc",
-	"itemGroup.pixel_guns.guns" : "S.A.G. Guns",
+
+	"itemGroup.pixel_guns.misc" : "PG - Miscellaneous",
+	"itemGroup.pixel_guns.guns" : "PG - Weapons",
 
 	"item.pixel_guns.hardened_iron_ingot" : "Hardened Iron Ingot",
 	"item.pixel_guns.hardened_iron_nugget" : "Hardened Iron Nugget",
@@ -15,6 +16,7 @@
 	"item.pixel_guns.wooden_stock" : "Wooden Stock",
 	"item.pixel_guns.modern_stock" : "Modern Stock",
 	"item.pixel_guns.wooden_handguard" : "Wooden Handguard",
+	"item.pixel_guns.modern_handguard" : "Modern Handguard",
 
 	"item.pixel_guns.blueprint_bundle" : "Blueprint Bundle",
 	"item.pixel_guns.blueprint_pistol_light" : "Pistol Blueprint",
