@@ -48,6 +48,7 @@ public abstract class AbstractGunItem extends Item {
 
     private final MinecraftClient client;
 
+    private final AmmoLoadingType ammoLoadingType;
     protected final float gunDamage;
     private final int rateOfFire;
     private final int magSize;
@@ -67,8 +68,9 @@ public abstract class AbstractGunItem extends Item {
     private final int reloadStage2;
     private final int reloadStage3;
 
-    public AbstractGunItem(Settings settings, float gunDamage, int rateOfFire, int magSize, Item ammoType, int reloadCooldown, float bulletSpread, float gunRecoil, int pelletCount, int loadingType, SoundEvent reload1, SoundEvent reload2, SoundEvent reload3, SoundEvent shootSound, int reloadCycles, boolean isScoped, int reloadStage1, int reloadStage2, int reloadStage3) {
+    public AbstractGunItem(Settings settings, AmmoLoadingType ammoLoadingType, float gunDamage, int rateOfFire, int magSize, Item ammoType, int reloadCooldown, float bulletSpread, float gunRecoil, int pelletCount, int loadingType, SoundEvent reload1, SoundEvent reload2, SoundEvent reload3, SoundEvent shootSound, int reloadCycles, boolean isScoped, int reloadStage1, int reloadStage2, int reloadStage3) {
         super(settings);
+        this.ammoLoadingType = ammoLoadingType;
         this.gunDamage = gunDamage;
         this.rateOfFire = rateOfFire;
         this.magSize = magSize;
@@ -279,6 +281,12 @@ public abstract class AbstractGunItem extends Item {
 
     public boolean allowNbtUpdateAnimation(PlayerEntity player, Hand hand, ItemStack oldStack, ItemStack newStack) {
         return false;
+    }
+
+    public enum AmmoLoadingType {
+        SEMI_AUTOMATIC,
+        BURST,
+        AUTOMATIC;
     }
 }
 
