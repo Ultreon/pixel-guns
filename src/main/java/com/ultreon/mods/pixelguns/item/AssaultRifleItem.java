@@ -15,10 +15,11 @@ import org.jetbrains.annotations.NotNull;
 public class AssaultRifleItem extends AbstractGunItem {
     private final SoundEvent shootSoundEasterEgg;
 
-    public AssaultRifleItem(Settings settings, float gunDamage, int rateOfFire, int magSize, Item ammoType, int reloadCooldown, float bulletSpread, float gunRecoil, int pelletCount, int loadingType, SoundEvent reload1, SoundEvent reload2, SoundEvent reload3, SoundEvent shootSound, SoundEvent shootSoundEasterEgg, int reloadCycles, boolean isScoped, int reloadStage1, int reloadStage2, int reloadStage3) {
-        super(settings, gunDamage, rateOfFire, magSize, ammoType, reloadCooldown, bulletSpread, gunRecoil, pelletCount, loadingType, reload1, reload2, reload3, shootSound, reloadCycles, isScoped, reloadStage1, reloadStage2, reloadStage3);
+    public AssaultRifleItem(Settings settings, AmmoLoadingType ammoLoadingType, float gunDamage, int rateOfFire, int magSize, Item ammoType, int reloadCooldown, float bulletSpread, float gunRecoil, int pelletCount, int loadingType, SoundEvent reload1, SoundEvent reload2, SoundEvent reload3, SoundEvent shootSound, int reloadCycles, boolean isScoped, int reloadStage1, int reloadStage2, int reloadStage3, SoundEvent shootSoundEasterEgg) {
+        super(settings, ammoLoadingType, gunDamage, rateOfFire, magSize, ammoType, reloadCooldown, bulletSpread, gunRecoil, pelletCount, loadingType, reload1, reload2, reload3, shootSound, reloadCycles, isScoped, reloadStage1, reloadStage2, reloadStage3);
         this.shootSoundEasterEgg = shootSoundEasterEgg;
     }
+
 
     @Override
     public void playShootSound(World world, PlayerEntity user, ItemStack stack) {

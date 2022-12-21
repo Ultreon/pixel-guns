@@ -5,11 +5,12 @@ import com.ultreon.mods.pixelguns.entity.damagesource.EnergyOrbDamageSource;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -33,14 +34,12 @@ public class InfinityGunItem extends AbstractGunItem implements IAnimatable {
     //TODO use for something
     public static final List<InfinityGunItem> BLUEPRINT_ITEM_LIST = new ArrayList<>();
 
-    public InfinityGunItem(Settings settings) {
-        super(settings, 80f, 30, 5, ModItems.ENERGY_GUN_BATTERY,
-                40, 0, 20, 1, 1,
-                SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN, SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN, SoundEvents.BLOCK_IRON_DOOR_OPEN,
-                SoundEvents.BLOCK_BEACON_DEACTIVATE, 1, false, 5, -1, -1);
-    }
 
     private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
+
+    public InfinityGunItem(Settings settings, AbstractGunItem.AmmoLoadingType ammoLoadingType, float gunDamage, int rateOfFire, int magSize, Item ammoType, int reloadCooldown, float bulletSpread, float gunRecoil, int pelletCount, int loadingType, SoundEvent reload1, SoundEvent reload2, SoundEvent reload3, SoundEvent shootSound, int reloadCycles, boolean isScoped, int reloadStage1, int reloadStage2, int reloadStage3) {
+        super(settings, ammoLoadingType, gunDamage, rateOfFire, magSize, ammoType, reloadCooldown, bulletSpread, gunRecoil, pelletCount, loadingType, reload1, reload2, reload3, shootSound, reloadCycles, isScoped, reloadStage1, reloadStage2, reloadStage3);
+    }
 
     @Override
     public void registerControllers(AnimationData data) {}
