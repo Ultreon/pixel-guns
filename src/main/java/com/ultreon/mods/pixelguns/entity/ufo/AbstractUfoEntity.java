@@ -1,27 +1,16 @@
 package com.ultreon.mods.pixelguns.entity.ufo;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-import com.jab125.multipart.client.entity.MultiPartEntity;
 import com.jab125.multipart.client.entity.MultiPartHolder;
 import com.ultreon.mods.pixelguns.entity.ModEntities;
 
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.*;
-import net.minecraft.entity.boss.dragon.EnderDragonEntity;
-import net.minecraft.entity.boss.dragon.EnderDragonPart;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MovementType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
-import net.minecraft.server.command.TeleportCommand;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.MathHelper;
@@ -54,7 +43,7 @@ public abstract class AbstractUfoEntity extends Entity implements IAnimatable, M
 
     @Override
     public UfoPart[] getBodyParts() {
-        System.out.println(Arrays.toString(parts));
+        // System.out.println(Arrays.toString(parts));
         return parts;
     }
 
@@ -209,7 +198,7 @@ public abstract class AbstractUfoEntity extends Entity implements IAnimatable, M
 
     @Override
     public boolean isCollidable() {
-        System.out.println("UFO MAIN: CALLED IT + " + StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE).getCallerClass());
+        // System.out.println("UFO MAIN: CALLED IT + " + StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE).getCallerClass());
         return false;
     }
 
@@ -266,7 +255,7 @@ public abstract class AbstractUfoEntity extends Entity implements IAnimatable, M
     @Override
     public EntityDimensions getDimensions(EntityPose entityPose) {
         var d = super.getDimensions(entityPose);
-        System.out.println(d.toString());
+        // System.out.println(d.toString());
         return d;
     }
 
@@ -301,8 +290,8 @@ public abstract class AbstractUfoEntity extends Entity implements IAnimatable, M
     }
 
     private void movePart(UfoPart ufoPart, double x, double y, double z) {
-        System.out.println("POS BEFORE: " + ufoPart.getPos());
+        // System.out.println("POS BEFORE: " + ufoPart.getPos());
         ufoPart.setPosition(this.getX() + x, this.getY() + y, this.getZ() + z);
-        System.out.println("POS NOW: " + ufoPart.getPos());
+        // System.out.println("POS NOW: " + ufoPart.getPos());
     }
 }
