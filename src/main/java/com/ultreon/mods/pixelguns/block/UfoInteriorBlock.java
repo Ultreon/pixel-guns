@@ -8,8 +8,8 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 
-public class UfoInterior extends Block {
-    public UfoInterior(Settings settings) {
+public class UfoInteriorBlock extends Block {
+    public UfoInteriorBlock(Settings settings) {
         super(settings);
     }
 
