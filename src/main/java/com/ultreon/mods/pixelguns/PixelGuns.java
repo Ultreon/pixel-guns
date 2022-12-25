@@ -1,7 +1,7 @@
 package com.ultreon.mods.pixelguns;
 
 import com.ultreon.mods.pixelguns.block.ModBlocks;
-import com.ultreon.mods.pixelguns.item.gun.AbstractGunItem;
+import com.ultreon.mods.pixelguns.item.gun.GunItem;
 import com.ultreon.mods.pixelguns.item.ModItems;
 import com.ultreon.mods.pixelguns.sound.ModSounds;
 
@@ -29,7 +29,7 @@ public class PixelGuns implements ModInitializer {
         ModBlocks.registerBlocks();
         ModSounds.registerSounds();
         ServerPlayNetworking.registerGlobalReceiver(new Identifier(MOD_ID, "reload"), (server, player, serverPlayNetworkHandler, buf, packetSender) -> {
-            if (player.getStackInHand(Hand.MAIN_HAND).getItem() instanceof AbstractGunItem) {
+            if (player.getStackInHand(Hand.MAIN_HAND).getItem() instanceof GunItem) {
                 player.getStackInHand(Hand.MAIN_HAND).getOrCreateNbt().putBoolean("isReloading", buf.readBoolean());
             }
         });

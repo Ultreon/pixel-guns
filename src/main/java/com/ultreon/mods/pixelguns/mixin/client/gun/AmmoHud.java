@@ -1,6 +1,6 @@
 package com.ultreon.mods.pixelguns.mixin.client.gun;
 
-import com.ultreon.mods.pixelguns.item.gun.AbstractGunItem;
+import com.ultreon.mods.pixelguns.item.gun.GunItem;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.InGameHud;
@@ -29,9 +29,9 @@ public abstract class AmmoHud {
             if (player == null) return;
 
             ItemStack heldItem = player.getMainHandStack();
-            if (heldItem.getItem() instanceof AbstractGunItem) {
+            if (heldItem.getItem() instanceof GunItem) {
                 TextRenderer textRenderer = this.getTextRenderer();
-                String text = String.format("%s/%s", AbstractGunItem.remainingAmmo(heldItem), AbstractGunItem.reserveAmmoCount(player, ((AbstractGunItem) heldItem.getItem()).ammoType));
+                String text = String.format("%s/%s", GunItem.remainingAmmo(heldItem), GunItem.reserveAmmoCount(player, ((GunItem) heldItem.getItem()).ammoType));
                 int textWidth = textRenderer.getWidth(text);
                 textRenderer.drawWithShadow(matrixStack, text, this.scaledWidth - textWidth - 5, 5, 0xFFFFFF);
             }
