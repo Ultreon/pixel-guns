@@ -1,19 +1,38 @@
 package com.ultreon.mods.pixelguns.item;
 
-import com.ultreon.mods.pixelguns.item.gun.AbstractGunItem;
-import net.minecraft.item.Item;
-import net.minecraft.sound.SoundEvent;
+import com.ultreon.mods.pixelguns.item.gun.GunItem;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
-public class RocketLauncherItem extends AbstractGunItem implements IAnimatable {
+public class RocketLauncherItem extends GunItem implements IAnimatable {
 
     private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
-    public RocketLauncherItem(Settings settings, AmmoLoadingType ammoLoadingType, float gunDamage, int rateOfFire, int magSize, Item ammoType, int reloadCooldown, float bulletSpread, float gunRecoil, int pelletCount, int loadingType, SoundEvent reload1, SoundEvent reload2, SoundEvent reload3, SoundEvent shootSound, int reloadCycles, boolean isScoped, int reloadStage1, int reloadStage2, int reloadStage3) {
-        super(settings, ammoLoadingType, gunDamage, rateOfFire, magSize, ammoType, reloadCooldown, bulletSpread, gunRecoil, pelletCount, loadingType, reload1, reload2, reload3, shootSound, reloadCycles, isScoped, reloadStage1, reloadStage2, reloadStage3);
+    public RocketLauncherItem(Settings settings) {
+        super(
+                settings,
+                GunItem.AmmoLoadingType.SEMI_AUTOMATIC,
+                0,
+                0,
+                0,
+                null,
+                0,
+                0,
+                0,
+                0,
+                0,
+                null,
+                null,
+                null,
+                null,
+                0,
+                false,
+                0,
+                0,
+                0
+        );
     }
 
 

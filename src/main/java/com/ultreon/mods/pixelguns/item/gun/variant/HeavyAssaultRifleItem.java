@@ -1,9 +1,10 @@
-package com.ultreon.mods.pixelguns.item;
+package com.ultreon.mods.pixelguns.item.gun.variant;
 
 import com.ultreon.mods.pixelguns.PixelGuns;
-import com.ultreon.mods.pixelguns.item.gun.AbstractGunItem;
+import com.ultreon.mods.pixelguns.item.ModItems;
+import com.ultreon.mods.pixelguns.item.gun.GunItem;
+import com.ultreon.mods.pixelguns.sound.ModSounds;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
@@ -12,12 +13,33 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
-public class AssaultRifleItem extends AbstractGunItem {
+public class HeavyAssaultRifleItem extends GunItem {
     private final SoundEvent shootSoundEasterEgg;
 
-    public AssaultRifleItem(Settings settings, AmmoLoadingType ammoLoadingType, float gunDamage, int rateOfFire, int magSize, Item ammoType, int reloadCooldown, float bulletSpread, float gunRecoil, int pelletCount, int loadingType, SoundEvent reload1, SoundEvent reload2, SoundEvent reload3, SoundEvent shootSound, int reloadCycles, boolean isScoped, int reloadStage1, int reloadStage2, int reloadStage3, SoundEvent shootSoundEasterEgg) {
-        super(settings, ammoLoadingType, gunDamage, rateOfFire, magSize, ammoType, reloadCooldown, bulletSpread, gunRecoil, pelletCount, loadingType, reload1, reload2, reload3, shootSound, reloadCycles, isScoped, reloadStage1, reloadStage2, reloadStage3);
-        this.shootSoundEasterEgg = shootSoundEasterEgg;
+    public HeavyAssaultRifleItem(Settings settings) {
+        super(
+                settings,
+                GunItem.AmmoLoadingType.AUTOMATIC,
+                8.0f,
+                3,
+                50,
+                ModItems.STANDARD_RIFLE_BULLET,
+                48,
+                0.125f,
+                2.5f,
+                1,
+                1,
+                ModSounds.RELOAD_HEAVY_AR_P1,
+                ModSounds.RELOAD_HEAVY_AR_P2,
+                ModSounds.RELOAD_HEAVY_AR_P3,
+                ModSounds.ASSAULTRIFLE_HEAVY,
+                1,
+                false,
+                6,
+                22,
+                40
+        );
+        this.shootSoundEasterEgg =  ModSounds.ASSAULTRIFLE_HEAVY_EG;
     }
 
 

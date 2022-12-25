@@ -9,8 +9,8 @@ import software.bernie.geckolib3.util.GeckoLibUtil;
 
 public class KatanaItem extends SwordItem implements IAnimatable {
 
-    public KatanaItem(ToolMaterial tier, int i, float f, Settings properties) {
-        super(tier, i, f, properties);
+    public KatanaItem(ToolMaterial tier, int baseDamage, float attackSpeed, Settings properties) {
+        super(tier, baseDamage, attackSpeed, properties);
     }
     
     /*
