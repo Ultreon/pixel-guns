@@ -1,7 +1,7 @@
 package com.ultreon.mods.pixelguns.client.item.model;
 
 import com.ultreon.mods.pixelguns.PixelGuns;
-import com.ultreon.mods.pixelguns.item.RocketLauncherItem;
+import com.ultreon.mods.pixelguns.item.gun.variant.RocketLauncherItem;
 
 import net.minecraft.util.Identifier;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
