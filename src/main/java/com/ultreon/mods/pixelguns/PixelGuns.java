@@ -25,9 +25,6 @@ public class PixelGuns implements ModInitializer {
     }
 
     public void onInitialize() {
-        ModItems.registerItems();
-        ModBlocks.registerBlocks();
-        ModSounds.registerSounds();
         ServerPlayNetworking.registerGlobalReceiver(new Identifier(MOD_ID, "reload"), (server, player, serverPlayNetworkHandler, buf, packetSender) -> {
             if (player.getStackInHand(Hand.MAIN_HAND).getItem() instanceof GunItem) {
                 player.getStackInHand(Hand.MAIN_HAND).getOrCreateNbt().putBoolean("isReloading", buf.readBoolean());
