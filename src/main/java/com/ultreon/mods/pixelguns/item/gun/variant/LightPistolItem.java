@@ -11,7 +11,7 @@ public class LightPistolItem extends GunItem {
                 AmmoLoadingType.SEMI_AUTOMATIC,
                 5.5f,
                 4,
-                17,
+                12,
                 ModItems.STANDARD_HANDGUN_BULLET,
                 26,
                 0.25f,
