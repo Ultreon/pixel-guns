@@ -4,7 +4,6 @@ import com.ultreon.mods.pixelguns.PixelGuns;
 import com.ultreon.mods.pixelguns.armor.ArmoredArmor;
 import com.ultreon.mods.pixelguns.armor.ModArmorMaterials;
 import com.ultreon.mods.pixelguns.block.ModBlocks;
-import com.ultreon.mods.pixelguns.block.UfoInterior;
 import com.ultreon.mods.pixelguns.item.gun.variant.*;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -97,16 +96,33 @@ public class ModItems {
     );
 
     // Blocks
+    public static final Item UFO_INTERIOR = ModItems.register(ModBlocks.UFO_INTERIOR);
+    public static final Item WEAPON_TABLE = ModItems.register(ModBlocks.WEAPON_TABLE, ModCreativeTab.MISC);
 
-    private static Item register(String name, Item item) {
-        return Registry.register(Registry.ITEM, PixelGuns.res(name), item);
-    }
-
-    private static Item register(Identifier id, Item item) {
-        return Registry.register(Registry.ITEM, id, item);
+    private static Item register(Block block) {
+        return ModItems.register(new BlockItem(block, new Item.Settings()));
     }
 
     private static Item register(Block block, ItemGroup itemGroup) {
-        return ModItems.register(Registry.BLOCK.getId(ModBlocks.UFO_INTERIOR), ModBlocks.UFO_INTERIOR.asItem());
+        return ModItems.register(new BlockItem(block, new Item.Settings().group(itemGroup)));
+    }
+
+    private static Item register(BlockItem blockItem) {
+        return ModItems.register(blockItem.getBlock(), blockItem);
+    }
+
+    protected static Item register(Block block, Item item) {
+        return ModItems.register(Registry.BLOCK.getId(block), item);
+    }
+
+    private static Item register(String name, Item item) {
+        return ModItems.register(PixelGuns.res(name), item);
+    }
+
+    private static Item register(Identifier identifier, Item item) {
+        if (item instanceof BlockItem) {
+            ((BlockItem)item).appendBlocks(Item.BLOCK_ITEMS, item);
+        }
+        return Registry.register(Registry.ITEM, identifier, item);
     }
 }
