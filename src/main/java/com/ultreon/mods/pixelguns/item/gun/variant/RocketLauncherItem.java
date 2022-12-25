@@ -1,4 +1,4 @@
-package com.ultreon.mods.pixelguns.item;
+package com.ultreon.mods.pixelguns.item.gun.variant;
 
 import com.ultreon.mods.pixelguns.item.gun.GunItem;
 import software.bernie.geckolib3.core.IAnimatable;
