@@ -1,7 +1,7 @@
 package com.ultreon.mods.pixelguns.entity.projectile.thrown;
 
-import com.ultreon.mods.pixelguns.entity.ModEntities;
-import com.ultreon.mods.pixelguns.item.ModItems;
+import com.ultreon.mods.pixelguns.registry.ModEntities;
+import com.ultreon.mods.pixelguns.registry.ModItems;
 import com.ultreon.mods.pixelguns.sound.ModSounds;
 
 import net.minecraft.entity.EntityType;

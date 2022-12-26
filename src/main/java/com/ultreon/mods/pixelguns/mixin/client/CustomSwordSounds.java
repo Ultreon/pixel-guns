@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.At.Shift;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import com.ultreon.mods.pixelguns.item.ModItems;
+import com.ultreon.mods.pixelguns.registry.ModItems;
 import com.ultreon.mods.pixelguns.sound.ModSounds;
 
 import net.minecraft.client.MinecraftClient;

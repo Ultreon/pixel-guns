@@ -1,7 +1,7 @@
 package com.ultreon.mods.pixelguns.util;
 
 import com.ultreon.mods.pixelguns.item.gun.GunItem;
-import com.ultreon.mods.pixelguns.item.ModItems;
+import com.ultreon.mods.pixelguns.registry.ModItems;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.item.Item;

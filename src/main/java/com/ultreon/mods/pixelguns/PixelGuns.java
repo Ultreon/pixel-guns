@@ -1,9 +1,6 @@
 package com.ultreon.mods.pixelguns;
 
-import com.ultreon.mods.pixelguns.block.ModBlocks;
 import com.ultreon.mods.pixelguns.item.gun.GunItem;
-import com.ultreon.mods.pixelguns.item.ModItems;
-import com.ultreon.mods.pixelguns.sound.ModSounds;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;

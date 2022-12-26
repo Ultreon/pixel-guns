@@ -4,6 +4,7 @@ import java.util.function.Predicate;
 
 import com.ultreon.mods.pixelguns.entity.projectile.thrown.GrenadeEntity;
 
+import com.ultreon.mods.pixelguns.registry.ModItems;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;

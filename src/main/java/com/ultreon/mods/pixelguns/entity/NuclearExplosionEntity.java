@@ -20,7 +20,7 @@ public class NuclearExplosionEntity extends Entity implements IAnimatable {
 
     private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
-    protected NuclearExplosionEntity(EntityType<? extends Entity> entityType, World world) {
+    public NuclearExplosionEntity(EntityType<? extends Entity> entityType, World world) {
         super(entityType, world);
         this.ignoreCameraFrustum = true;
     }

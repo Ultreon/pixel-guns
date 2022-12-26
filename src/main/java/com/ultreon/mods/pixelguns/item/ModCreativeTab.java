@@ -1,5 +1,6 @@
 package com.ultreon.mods.pixelguns.item;
 
+import com.ultreon.mods.pixelguns.registry.ModItems;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
