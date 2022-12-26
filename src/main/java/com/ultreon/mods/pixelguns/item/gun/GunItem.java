@@ -50,7 +50,7 @@ public abstract class GunItem extends Item {
 
     private final AmmoLoadingType ammoLoadingType;
     protected final float gunDamage;
-    private final int rateOfFire;
+    private final int fireRate;
     private final int magSize;
     public final Item ammoType;
     private final int reloadCooldown;
@@ -68,11 +68,11 @@ public abstract class GunItem extends Item {
     private final int reloadStage2;
     private final int reloadStage3;
 
-    public GunItem(Settings settings, AmmoLoadingType ammoLoadingType, float gunDamage, int rateOfFire, int magSize, Item ammoType, int reloadCooldown, float bulletSpread, float gunRecoil, int pelletCount, int loadingType, SoundEvent reload1, SoundEvent reload2, SoundEvent reload3, SoundEvent shootSound, int reloadCycles, boolean isScoped, int reloadStage1, int reloadStage2, int reloadStage3) {
+    public GunItem(Settings settings, AmmoLoadingType ammoLoadingType, float gunDamage, int fireRate, int magSize, Item ammoType, int reloadCooldown, float bulletSpread, float gunRecoil, int pelletCount, int loadingType, SoundEvent reload1, SoundEvent reload2, SoundEvent reload3, SoundEvent shootSound, int reloadCycles, boolean isScoped, int reloadStage1, int reloadStage2, int reloadStage3) {
         super(settings);
         this.ammoLoadingType = ammoLoadingType;
         this.gunDamage = gunDamage;
-        this.rateOfFire = rateOfFire;
+        this.fireRate = fireRate;
         this.magSize = magSize;
         this.ammoType = ammoType;
         this.reloadCooldown = reloadCooldown;
@@ -207,7 +207,7 @@ public abstract class GunItem extends Item {
 
     public void shoot(World world, PlayerEntity user, ItemStack stack) {
         float kick = user.getPitch() - this.getRecoil();
-        user.getItemCooldownManager().set(this, this.rateOfFire);
+        user.getItemCooldownManager().set(this, this.fireRate);
         if (!world.isClient()) {
             for (int i = 0; i < this.pelletCount; ++i) {
                 int maxDistance;
