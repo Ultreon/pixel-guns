@@ -1,6 +1,6 @@
 package com.ultreon.mods.pixelguns.item.gun;
 
-import com.ultreon.mods.pixelguns.item.InfinityGunItem;
+import com.ultreon.mods.pixelguns.item.gun.variant.InfinityGunItem;
 import com.ultreon.mods.pixelguns.item.ModItems;
 import io.netty.buffer.Unpooled;
 import com.ultreon.mods.pixelguns.PixelGuns;
@@ -29,6 +29,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.BlockHitResult;
@@ -43,10 +44,11 @@ import java.util.Random;
 
 import org.jetbrains.annotations.NotNull;
 
-public abstract class AbstractGunItem extends Item {
+public abstract class GunItem extends Item {
 
     private final MinecraftClient client;
 
+    private final AmmoLoadingType ammoLoadingType;
     protected final float gunDamage;
     private final int rateOfFire;
     private final int magSize;
@@ -66,8 +68,9 @@ public abstract class AbstractGunItem extends Item {
     private final int reloadStage2;
     private final int reloadStage3;
 
-    public AbstractGunItem(Settings settings, float gunDamage, int rateOfFire, int magSize, Item ammoType, int reloadCooldown, float bulletSpread, float gunRecoil, int pelletCount, int loadingType, SoundEvent reload1, SoundEvent reload2, SoundEvent reload3, SoundEvent shootSound, int reloadCycles, boolean isScoped, int reloadStage1, int reloadStage2, int reloadStage3) {
+    public GunItem(Settings settings, AmmoLoadingType ammoLoadingType, float gunDamage, int rateOfFire, int magSize, Item ammoType, int reloadCooldown, float bulletSpread, float gunRecoil, int pelletCount, int loadingType, SoundEvent reload1, SoundEvent reload2, SoundEvent reload3, SoundEvent shootSound, int reloadCycles, boolean isScoped, int reloadStage1, int reloadStage2, int reloadStage3) {
         super(settings);
+        this.ammoLoadingType = ammoLoadingType;
         this.gunDamage = gunDamage;
         this.rateOfFire = rateOfFire;
         this.magSize = magSize;
@@ -91,7 +94,7 @@ public abstract class AbstractGunItem extends Item {
     }
 
     public static boolean isLoaded(ItemStack stack) {
-        return AbstractGunItem.remainingAmmo(stack) > 0;
+        return GunItem.remainingAmmo(stack) > 0;
     }
 
     public static int remainingAmmo(ItemStack stack) {
@@ -113,8 +116,7 @@ public abstract class AbstractGunItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
-        // TODO change colour
-        tooltip.add(Text.of(String.format("%s/%s", AbstractGunItem.remainingAmmo(stack), this.magSize)));
+        tooltip.add(Text.literal(String.format("%s/%s", GunItem.remainingAmmo(stack), this.magSize)).formatted(Formatting.GRAY));
     }
 
     @Override
@@ -124,12 +126,12 @@ public abstract class AbstractGunItem extends Item {
         if (!(nbtCompound.contains("reloadTick") && nbtCompound.contains("Clip") && nbtCompound.contains("isScoped") && nbtCompound.contains("isReloading"))) {
             this.setDefaultNBT(nbtCompound);
         }
-        if (world.isClient() && ((PlayerEntity) entity).getStackInHand(Hand.MAIN_HAND) == stack && PixelGunsClient.reloadToggle.isPressed() && AbstractGunItem.remainingAmmo(stack) < this.magSize && AbstractGunItem.reserveAmmoCount((PlayerEntity) entity, this.ammoType) > 0 && !nbtCompound.getBoolean("isReloading")) {
+        if (world.isClient() && ((PlayerEntity) entity).getStackInHand(Hand.MAIN_HAND) == stack && PixelGunsClient.reloadToggle.isPressed() && GunItem.remainingAmmo(stack) < this.magSize && GunItem.reserveAmmoCount((PlayerEntity) entity, this.ammoType) > 0 && !nbtCompound.getBoolean("isReloading")) {
             PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
             buf.writeBoolean(true);
             ClientPlayNetworking.send(PixelGuns.res("reload"), buf);
         }
-        if (nbtCompound.getBoolean("isReloading") && (((PlayerEntity) entity).getStackInHand(Hand.MAIN_HAND) != stack || AbstractGunItem.reserveAmmoCount((PlayerEntity) entity, this.ammoType) <= 0 && this.reloadCycles <= 1 || nbtCompound.getInt("reloadTick") >= this.reloadCooldown || AbstractGunItem.remainingAmmo(stack) >= this.magSize && this.reloadCycles <= 1)) {
+        if (nbtCompound.getBoolean("isReloading") && (((PlayerEntity) entity).getStackInHand(Hand.MAIN_HAND) != stack || GunItem.reserveAmmoCount((PlayerEntity) entity, this.ammoType) <= 0 && this.reloadCycles <= 1 || nbtCompound.getInt("reloadTick") >= this.reloadCooldown || GunItem.remainingAmmo(stack) >= this.magSize && this.reloadCycles <= 1)) {
             nbtCompound.putBoolean("isReloading", false);
         }
         if (nbtCompound.getBoolean("isReloading")) {
@@ -156,17 +158,17 @@ public abstract class AbstractGunItem extends Item {
         }
         switch (this.loadingType) {
             case 1 -> {
-                if (rTick < this.reloadCooldown || AbstractGunItem.reserveAmmoCount(player, this.ammoType) <= 0) break;
+                if (rTick < this.reloadCooldown || GunItem.reserveAmmoCount(player, this.ammoType) <= 0) break;
                 nbtCompound.putInt("currentCycle", 1);
                 this.finishReload(player, stack);
                 nbtCompound.putInt("reloadTick", 0);
             }
             case 2 -> {
-                if (rTick < this.reloadStage3 || nbtCompound.getInt("currentCycle") >= this.reloadCycles || AbstractGunItem.reserveAmmoCount(player, this.ammoType) <= 0)
+                if (rTick < this.reloadStage3 || nbtCompound.getInt("currentCycle") >= this.reloadCycles || GunItem.reserveAmmoCount(player, this.ammoType) <= 0)
                     break;
                 nbtCompound.putInt("Clip", nbtCompound.getInt("Clip") + 1);
                 InventoryUtil.removeItemFromInventory(player, this.ammoType, 1);
-                if (AbstractGunItem.remainingAmmo(stack) < this.magSize && AbstractGunItem.reserveAmmoCount(player, this.ammoType) > 0) {
+                if (GunItem.remainingAmmo(stack) < this.magSize && GunItem.reserveAmmoCount(player, this.ammoType) > 0) {
                     nbtCompound.putInt("reloadTick", this.reloadStage2);
                 }
                 nbtCompound.putInt("currentCycle", nbtCompound.getInt("Clip"));
@@ -179,7 +181,7 @@ public abstract class AbstractGunItem extends Item {
         if (!client.options.attackKey.isPressed()) {
             return TypedActionResult.fail(itemStack);
         }
-        if (hand == Hand.MAIN_HAND && !user.isSprinting() && AbstractGunItem.isLoaded(itemStack)) {
+        if (hand == Hand.MAIN_HAND && !user.isSprinting() && GunItem.isLoaded(itemStack)) {
             this.shoot(world, user, itemStack);
             if (this.reloadCycles > 1) {
                 itemStack.getOrCreateNbt().putInt("currentCycle", itemStack.getOrCreateNbt().getInt("Clip"));
@@ -258,27 +260,33 @@ public abstract class AbstractGunItem extends Item {
     public void finishReload(PlayerEntity player, ItemStack stack) {
         NbtCompound nbtCompound = stack.getOrCreateNbt();
         if (nbtCompound.getInt("Clip") <= 0) {
-            if (AbstractGunItem.reserveAmmoCount(player, this.ammoType) > this.magSize) {
+            if (GunItem.reserveAmmoCount(player, this.ammoType) > this.magSize) {
                 nbtCompound.putInt("Clip", this.magSize);
                 InventoryUtil.removeItemFromInventory(player, this.ammoType, this.magSize);
             } else {
-                nbtCompound.putInt("Clip", AbstractGunItem.reserveAmmoCount(player, this.ammoType));
-                InventoryUtil.removeItemFromInventory(player, this.ammoType, AbstractGunItem.reserveAmmoCount(player, this.ammoType));
+                nbtCompound.putInt("Clip", GunItem.reserveAmmoCount(player, this.ammoType));
+                InventoryUtil.removeItemFromInventory(player, this.ammoType, GunItem.reserveAmmoCount(player, this.ammoType));
             }
         } else {
             int ammoToLoad = this.magSize - nbtCompound.getInt("Clip");
-            if (AbstractGunItem.reserveAmmoCount(player, this.ammoType) >= ammoToLoad) {
+            if (GunItem.reserveAmmoCount(player, this.ammoType) >= ammoToLoad) {
                 nbtCompound.putInt("Clip", nbtCompound.getInt("Clip") + ammoToLoad);
                 InventoryUtil.removeItemFromInventory(player, this.ammoType, ammoToLoad);
             } else {
-                nbtCompound.putInt("Clip", nbtCompound.getInt("Clip") + AbstractGunItem.reserveAmmoCount(player, this.ammoType));
-                InventoryUtil.removeItemFromInventory(player, this.ammoType, AbstractGunItem.reserveAmmoCount(player, this.ammoType));
+                nbtCompound.putInt("Clip", nbtCompound.getInt("Clip") + GunItem.reserveAmmoCount(player, this.ammoType));
+                InventoryUtil.removeItemFromInventory(player, this.ammoType, GunItem.reserveAmmoCount(player, this.ammoType));
             }
         }
     }
 
     public boolean allowNbtUpdateAnimation(PlayerEntity player, Hand hand, ItemStack oldStack, ItemStack newStack) {
         return false;
+    }
+
+    public enum AmmoLoadingType {
+        SEMI_AUTOMATIC,
+        BURST,
+        AUTOMATIC;
     }
 }
 

@@ -5,7 +5,6 @@ import com.ultreon.mods.pixelguns.client.armor.renderer.HazardArmorRenderer;
 import com.ultreon.mods.pixelguns.client.entity.renderer.*;
 import com.ultreon.mods.pixelguns.client.item.renderer.*;
 import com.ultreon.mods.pixelguns.entity.ModEntities;
-import com.ultreon.mods.pixelguns.entity.ufo.UfoInput;
 import com.ultreon.mods.pixelguns.item.ModItems;
 import com.ultreon.mods.pixelguns.util.ModelPredicateProvider;
 import net.fabricmc.api.ClientModInitializer;
@@ -52,9 +51,5 @@ public class PixelGunsClient implements ClientModInitializer {
         GeoItemRenderer.registerItemRenderer(ModItems.KATANA, new KatanaItemRenderer());
         GeoItemRenderer.registerItemRenderer(ModItems.CROWBAR, new CrowbarItemRenderer());
         GeoItemRenderer.registerItemRenderer(ModItems.GRENADE, new GrenadeItemRenderer());
-
-        EntityRendererRegistry.register(ModEntities.UFO, UfoEntityRenderer::new);
-
-        UfoInput.registerKeybinds();
     }
 }

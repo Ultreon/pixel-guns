@@ -25,12 +25,12 @@ public class ConfigScreen extends GenericMenuScreen {
             Config.save();
             reloadNames();
         });
+        reloadNames();
     }
 
     @Override
     protected void init() {
         super.init();
-        reloadNames();
     }
 
     private void reloadNames() {

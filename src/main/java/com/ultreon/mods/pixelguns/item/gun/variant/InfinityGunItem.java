@@ -1,7 +1,9 @@
-package com.ultreon.mods.pixelguns.item;
+package com.ultreon.mods.pixelguns.item.gun.variant;
 
 import com.ultreon.mods.pixelguns.NbtNames;
 import com.ultreon.mods.pixelguns.entity.damagesource.EnergyOrbDamageSource;
+import com.ultreon.mods.pixelguns.item.ModItems;
+import com.ultreon.mods.pixelguns.item.gun.GunItem;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
@@ -18,7 +20,6 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
 import net.minecraft.world.explosion.ExplosionBehavior;
-import com.ultreon.mods.pixelguns.item.gun.AbstractGunItem;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
@@ -28,19 +29,38 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class InfinityGunItem extends AbstractGunItem implements IAnimatable {
+public class InfinityGunItem extends GunItem implements IAnimatable {
 
     //TODO use for something
     public static final List<InfinityGunItem> BLUEPRINT_ITEM_LIST = new ArrayList<>();
 
-    public InfinityGunItem(Settings settings) {
-        super(settings, 80f, 30, 5, ModItems.ENERGY_GUN_BATTERY,
-                40, 0, 20, 1, 1,
-                SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN, SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN, SoundEvents.BLOCK_IRON_DOOR_OPEN,
-                SoundEvents.BLOCK_BEACON_DEACTIVATE, 1, false, 5, -1, -1);
-    }
 
     private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
+
+    public InfinityGunItem(Settings settings) {
+        super(
+                settings,
+                GunItem.AmmoLoadingType.SEMI_AUTOMATIC,
+                80f,
+                30,
+                5,
+                ModItems.ENERGY_GUN_BATTERY,
+                40,
+                0,
+                20,
+                1,
+                1,
+                SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN,
+                SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN,
+                SoundEvents.BLOCK_IRON_DOOR_OPEN,
+                SoundEvents.BLOCK_BEACON_DEACTIVATE,
+                1,
+                false,
+                5,
+                -1,
+                -1
+        );
+    }
 
     @Override
     public void registerControllers(AnimationData data) {}
