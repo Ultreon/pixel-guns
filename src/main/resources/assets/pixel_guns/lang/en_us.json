@@ -28,10 +28,10 @@
 	"item.pixel_guns.blueprint_shotgun_combat" : "Combat Shotgun Blueprint",
 	"item.pixel_guns.blueprint_sniper_classic" : "Hunting Rifle Blueprint",
 
-	"item.pixel_guns.standard_handgun_cartridge" : "Standard Handgun Cartridge",
-	"item.pixel_guns.standard_rifle_cartridge" : "Standard Rifle Cartridge",
-	"item.pixel_guns.heavy_handgun_cartridge" : "Heavy Handgun Cartridge",
-	"item.pixel_guns.heavy_rifle_cartridge" : "Heavy Rifle Cartridge",
+	"item.pixel_guns.standard_handgun_cartridge" : "Light Bullets",
+	"item.pixel_guns.heavy_handgun_cartridge" : "Light Bullets-H",
+	"item.pixel_guns.standard_rifle_cartridge" : "Medium Bullets",
+	"item.pixel_guns.heavy_rifle_cartridge" : "Heavy Bullets",
 	"item.pixel_guns.energy_gun_battery" : "Energy Gun Battery",
 	"item.pixel_guns.shotgun_shell" : "Shotgun Shell",
 
