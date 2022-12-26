@@ -29,6 +29,7 @@ import net.minecraft.world.WorldAccess;
 
 // TODO Block facing directions like the Anvil
 // TODO Fix non transparent part of texture
+// TODO Fix adjacent blocks preventing saw from being rendered
 public class WorkshopBlock extends Block implements Waterloggable {
 
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
