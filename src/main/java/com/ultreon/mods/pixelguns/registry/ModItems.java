@@ -1,9 +1,9 @@
-package com.ultreon.mods.pixelguns.item;
+package com.ultreon.mods.pixelguns.registry;
 
 import com.ultreon.mods.pixelguns.PixelGuns;
 import com.ultreon.mods.pixelguns.armor.ArmoredArmor;
 import com.ultreon.mods.pixelguns.armor.ModArmorMaterials;
-import com.ultreon.mods.pixelguns.block.ModBlocks;
+import com.ultreon.mods.pixelguns.item.*;
 import com.ultreon.mods.pixelguns.item.gun.variant.*;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -97,7 +97,7 @@ public class ModItems {
 
     // Blocks
     public static final Item UFO_INTERIOR = ModItems.register(ModBlocks.UFO_INTERIOR);
-    public static final Item WEAPON_TABLE = ModItems.register(ModBlocks.WEAPON_TABLE, ModCreativeTab.MISC);
+    public static final Item WORKSHOP = ModItems.register(ModBlocks.WORKSHOP, ModCreativeTab.MISC);
 
     private static Item register(Block block) {
         return ModItems.register(new BlockItem(block, new Item.Settings()));

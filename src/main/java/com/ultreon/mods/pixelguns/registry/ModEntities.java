@@ -1,6 +1,9 @@
-package com.ultreon.mods.pixelguns.entity;
+package com.ultreon.mods.pixelguns.registry;
 
 import com.ultreon.mods.pixelguns.PixelGuns;
+import com.ultreon.mods.pixelguns.entity.GasEntity;
+import com.ultreon.mods.pixelguns.entity.NuclearBombEntity;
+import com.ultreon.mods.pixelguns.entity.NuclearExplosionEntity;
 import com.ultreon.mods.pixelguns.entity.projectile.thrown.GrenadeEntity;
 
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
