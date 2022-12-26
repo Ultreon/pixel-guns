@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import com.ultreon.mods.pixelguns.item.gun.AbstractGunItem;
+import com.ultreon.mods.pixelguns.item.gun.GunItem;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -21,7 +21,7 @@ public class AnimationPrevention {
     // Prevent attack animation when holding gun
     @Inject(method = "doAttack", at = @At("HEAD"), cancellable = true)
     private void cancelGunAttack(CallbackInfoReturnable<Boolean> info) {
-        if (player.getMainHandStack().getItem() instanceof AbstractGunItem) {
+        if (player.getMainHandStack().getItem() instanceof GunItem) {
             info.setReturnValue(false);
         }
     }
@@ -29,7 +29,7 @@ public class AnimationPrevention {
     // Prevent mining animation when holding gun
     @Inject(method = "handleBlockBreaking", at = @At("HEAD"), cancellable = true)
     private void handleBlockBreaking(boolean b, CallbackInfo info) {
-        if (player.getMainHandStack().getItem() instanceof AbstractGunItem) {
+        if (player.getMainHandStack().getItem() instanceof GunItem) {
             info.cancel();
         }
     }

@@ -2,7 +2,6 @@ package com.ultreon.mods.pixelguns.entity;
 
 import com.ultreon.mods.pixelguns.PixelGuns;
 import com.ultreon.mods.pixelguns.entity.projectile.thrown.GrenadeEntity;
-import com.ultreon.mods.pixelguns.entity.ufo.UfoEntity;
 
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.Entity;
@@ -34,13 +33,6 @@ public class ModEntities {
             "nuclear_explosion",
             FabricEntityTypeBuilder.create(SpawnGroup.MISC, NuclearExplosionEntity::new)
                     .dimensions(EntityDimensions.fixed(15.0f, 100.0f))
-    );
-
-    private static final float ufoScale = 4.0f;
-    public static final EntityType<UfoEntity> UFO = ModEntities.register(
-        "ufo",
-        FabricEntityTypeBuilder.create(SpawnGroup.MISC, UfoEntity::new)
-            .dimensions(EntityDimensions.fixed(ufoScale * 3, ufoScale * 0.2f))
     );
 
     public static final EntityType<GasEntity> GAS = ModEntities.register(

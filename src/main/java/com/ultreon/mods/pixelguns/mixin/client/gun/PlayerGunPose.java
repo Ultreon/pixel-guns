@@ -1,8 +1,8 @@
 package com.ultreon.mods.pixelguns.mixin.client.gun;
 
 import com.ultreon.mods.pixelguns.NbtNames;
-import com.ultreon.mods.pixelguns.item.gun.AbstractGunItem;
-import com.ultreon.mods.pixelguns.item.InfinityGunItem;
+import com.ultreon.mods.pixelguns.item.gun.GunItem;
+import com.ultreon.mods.pixelguns.item.gun.variant.InfinityGunItem;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -26,11 +26,11 @@ import net.minecraft.util.math.Quaternion;
 public class PlayerGunPose {
     @Inject(method = "getArmPose", at = @At("TAIL"), cancellable = true)
     private static void gunPose(AbstractClientPlayerEntity player, Hand hand, CallbackInfoReturnable<BipedEntityModel.ArmPose> ci) {
-        if (player.getStackInHand(hand).getItem() instanceof AbstractGunItem && AbstractGunItem.isLoaded(player.getStackInHand(hand)) && player.getStackInHand(hand).getOrCreateNbt().getInt("reloadTick") <= 0) {
+        if (player.getStackInHand(hand).getItem() instanceof GunItem && GunItem.isLoaded(player.getStackInHand(hand)) && player.getStackInHand(hand).getOrCreateNbt().getInt("reloadTick") <= 0) {
             ci.setReturnValue(BipedEntityModel.ArmPose.BOW_AND_ARROW);
             return;
         }
-        if (player.getStackInHand(hand).getItem() instanceof AbstractGunItem && player.getStackInHand(hand).getOrCreateNbt().getInt("reloadTick") > 0) {
+        if (player.getStackInHand(hand).getItem() instanceof GunItem && player.getStackInHand(hand).getOrCreateNbt().getInt("reloadTick") > 0) {
             ci.setReturnValue(BipedEntityModel.ArmPose.CROSSBOW_CHARGE);
             return;
         }
