@@ -1,10 +1,7 @@
 package com.ultreon.mods.pixelguns.block;
 
 import com.ultreon.mods.pixelguns.screen.WorkshopScreenHandler;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.block.Waterloggable;
+import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -27,10 +24,9 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
-// TODO Block facing directions like the Anvil
 // TODO Fix non transparent part of texture
 // TODO Fix adjacent blocks preventing saw from being rendered
-public class WorkshopBlock extends Block implements Waterloggable {
+public class WorkshopBlock extends HorizontalFacingBlock implements Waterloggable {
 
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     private static final Text TITLE = Text.of("Weapon Table");
@@ -41,6 +37,7 @@ public class WorkshopBlock extends Block implements Waterloggable {
         setDefaultState(
                 getDefaultState()
                 .with(WATERLOGGED, false)
+                .with(Properties.HORIZONTAL_FACING, Direction.NORTH)
         );
     }
 
@@ -54,13 +51,14 @@ public class WorkshopBlock extends Block implements Waterloggable {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(WATERLOGGED);
+        builder.add(WATERLOGGED, Properties.HORIZONTAL_FACING);
     }
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState()
-                .with(WATERLOGGED, ctx.getWorld().getFluidState(ctx.getBlockPos()).getFluid() == Fluids.WATER);
+        return super.getPlacementState(ctx)
+                .with(WATERLOGGED, ctx.getWorld().getFluidState(ctx.getBlockPos()).getFluid() == Fluids.WATER)
+                .with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite());
     }
 
     @Override
