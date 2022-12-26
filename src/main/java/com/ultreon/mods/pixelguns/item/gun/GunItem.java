@@ -1,7 +1,7 @@
 package com.ultreon.mods.pixelguns.item.gun;
 
 import com.ultreon.mods.pixelguns.item.gun.variant.InfinityGunItem;
-import com.ultreon.mods.pixelguns.item.ModItems;
+import com.ultreon.mods.pixelguns.registry.ModItems;
 import io.netty.buffer.Unpooled;
 import com.ultreon.mods.pixelguns.PixelGuns;
 import com.ultreon.mods.pixelguns.PixelGunsClient;
