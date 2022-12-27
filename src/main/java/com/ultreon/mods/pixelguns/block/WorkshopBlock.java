@@ -21,7 +21,6 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-// TODO Fix non transparent part of texture
 // TODO Fix adjacent blocks preventing saw from being rendered
 public class WorkshopBlock extends EasyBlock {
 
