@@ -31,7 +31,7 @@ public abstract class AmmoHud {
             ItemStack heldItem = player.getMainHandStack();
             if (heldItem.getItem() instanceof GunItem) {
                 TextRenderer textRenderer = this.getTextRenderer();
-                String text = String.format("%s/%s", GunItem.remainingAmmo(heldItem), GunItem.reserveAmmoCount(player, ((GunItem) heldItem.getItem()).ammoType));
+                String text = String.format("%s/%s", GunItem.remainingAmmo(heldItem), GunItem.reserveAmmoCount(player, ((GunItem) heldItem.getItem()).ammunition));
                 int textWidth = textRenderer.getWidth(text);
                 textRenderer.drawWithShadow(matrixStack, text, this.scaledWidth - textWidth - 5, 5, 0xFFFFFF);
             }
