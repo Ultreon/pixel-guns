@@ -7,13 +7,14 @@
   ],
   "client": [
     "client.ModMenuMixin",
+
+    "client.gun.AdsPersistency",
     "client.gun.AdsSensitivityModifier",
     "client.gun.AdsSensitivityOption",
     "client.gun.AdsZoom",
     "client.gun.AmmoHud",
-    "client.gun.GunKeybinds",
-
     "client.gun.AnimationPrevention",
+    "client.gun.GunKeybinds",
     "client.gun.PlayerGunPose"
   ],
   "injectors": {
