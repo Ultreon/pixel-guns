@@ -1,6 +1,7 @@
 package com.ultreon.mods.pixelguns.client.gui.ingame;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.ultreon.mods.pixelguns.PixelGuns;
 import com.ultreon.mods.pixelguns.screen.WorkshopScreenHandler;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
@@ -10,11 +11,12 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class WorkshopScreen extends HandledScreen<WorkshopScreenHandler> {
-    // A path to the gui texture. In this example we use the texture from the dispenser
-    private static final Identifier TEXTURE = new Identifier("minecraft", "textures/gui/container/dispenser.png");
+    private static final Identifier TEXTURE = PixelGuns.res("textures/gui/container/workshop.png");
 
     public WorkshopScreen(WorkshopScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
+        this.backgroundWidth = 198;
+        this.backgroundHeight = 184;
     }
 
     @Override
