@@ -23,7 +23,6 @@ public class AdsSensitivityModifier {
         MinecraftClient client = MinecraftClient.getInstance();
         ItemStack gun = client.player.getStackInHand(Hand.MAIN_HAND);
         if (gun.getItem() instanceof GunItem && client.mouse.wasRightButtonClicked() && GunItem.isLoaded(gun)) {
-            PixelGuns.LOGGER.info("" + AdsSensitivity.getValue());
             args.set(0, deltaX * AdsSensitivity.getValue());
             args.set(1, deltaY * AdsSensitivity.getValue());
         }
