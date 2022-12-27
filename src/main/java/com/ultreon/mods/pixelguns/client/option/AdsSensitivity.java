@@ -13,10 +13,10 @@ public class AdsSensitivity {
             return GameOptions.getGenericValueText(text, Text.translatable("options.sensitivity.max"));
         }
         return AdsSensitivity.getPercentValueText(text, 2.0 * value);
-    }, SimpleOption.DoubleSliderCallbacks.INSTANCE, 0.5, double_ -> {});
+    }, SimpleOption.DoubleSliderCallbacks.INSTANCE, 0.5, value -> {});
 
     private static Text getPercentValueText(Text text, double d) {
-        return Text.translatable("options.percent_value", text, (int)(d * 100.0));
+        return Text.translatable("options.percent_value", text, (int) (d * 100.0));
     }
 
     public static SimpleOption<Double> getOption() {
@@ -24,6 +24,6 @@ public class AdsSensitivity {
     }
 
     public static double getValue() {
-        return adsSensitivity.getValue() * 2;
+        return 2.0 *  adsSensitivity.getValue();
     }
 }
