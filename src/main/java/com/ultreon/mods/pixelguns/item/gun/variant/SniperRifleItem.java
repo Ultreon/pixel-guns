@@ -10,6 +10,7 @@ public class SniperRifleItem extends GunItem {
                 settings,
                 GunItem.AmmoLoadingType.SEMI_AUTOMATIC,
                 22.0f,
+                500,
                 20,
                 5,
                 ModItems.HEAVY_RIFLE_BULLET,

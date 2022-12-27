@@ -10,6 +10,7 @@ public class CombatShotgunItem extends GunItem {
                 settings,
                 GunItem.AmmoLoadingType.SEMI_AUTOMATIC,
                 5.5f,
+                250,
                 14,
                 6,
                 ModItems.SHOTGUN_SHELL,

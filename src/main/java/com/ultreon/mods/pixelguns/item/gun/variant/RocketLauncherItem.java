@@ -16,6 +16,7 @@ public class RocketLauncherItem extends GunItem implements IAnimatable {
                 settings,
                 GunItem.AmmoLoadingType.SEMI_AUTOMATIC,
                 25.0f,
+                250,
                 160,
                 1,
                 ModItems.ROCKET,

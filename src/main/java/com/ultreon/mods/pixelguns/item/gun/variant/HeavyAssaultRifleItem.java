@@ -11,6 +11,7 @@ public class HeavyAssaultRifleItem extends GunItem {
                 settings,
                 GunItem.AmmoLoadingType.AUTOMATIC,
                 8.0f,
+                250,
                 3,
                 50,
                 ModItems.STANDARD_RIFLE_BULLET,

@@ -10,6 +10,7 @@ public class HeavyPistolItem extends GunItem {
                 settings,
                 GunItem.AmmoLoadingType.SEMI_AUTOMATIC,
                 11.0f,
+                250,
                 5,
                 7,
                 ModItems.HEAVY_HANDGUN_BULLET,

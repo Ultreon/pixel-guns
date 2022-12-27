@@ -42,6 +42,7 @@ public class InfinityGunItem extends GunItem implements IAnimatable {
                 settings,
                 GunItem.AmmoLoadingType.SEMI_AUTOMATIC,
                 80f,
+                250,
                 30,
                 5,
                 ModItems.ENERGY_GUN_BATTERY,

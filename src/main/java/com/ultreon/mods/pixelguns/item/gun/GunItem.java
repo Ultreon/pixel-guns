@@ -1,7 +1,6 @@
 package com.ultreon.mods.pixelguns.item.gun;
 
 import com.ultreon.mods.pixelguns.item.gun.variant.InfinityGunItem;
-import com.ultreon.mods.pixelguns.registry.ModItems;
 import io.netty.buffer.Unpooled;
 import com.ultreon.mods.pixelguns.PixelGuns;
 import com.ultreon.mods.pixelguns.PixelGunsClient;
@@ -49,41 +48,43 @@ public abstract class GunItem extends Item {
     private final MinecraftClient client;
 
     private final AmmoLoadingType ammoLoadingType;
-    protected final float gunDamage;
-    private final int fireRate;
-    private final int magSize;
-    public final Item ammoType;
+    protected final float damage;
+    private final int range;
+    private final int fireCooldown;
+    private final int magazineSize;
+    public final Item ammunition;
     private final int reloadCooldown;
     private final float bulletSpread;
-    private final float gunRecoil;
+    private final float recoil;
     private final int pelletCount;
     private final LoadingType loadingType;
     private final SoundEvent reload1;
     private final SoundEvent reload2;
     private final SoundEvent reload3;
-    protected final SoundEvent shootSound;
+    protected final SoundEvent fireAudio;
     private final int reloadCycles;
     private final boolean isScoped;
     private final int reloadStage1;
     private final int reloadStage2;
     private final int reloadStage3;
 
-    public GunItem(Settings settings, AmmoLoadingType ammoLoadingType, float gunDamage, int fireRate, int magSize, Item ammoType, int reloadCooldown, float bulletSpread, float gunRecoil, int pelletCount, LoadingType loadingType, SoundEvent reload1, SoundEvent reload2, SoundEvent reload3, SoundEvent shootSound, int reloadCycles, boolean isScoped, int reloadStage1, int reloadStage2, int reloadStage3) {
+    public GunItem(Settings settings, AmmoLoadingType ammoLoadingType, float damage, int range, int fireCooldown, int magazineSize, Item ammunition, int reloadCooldown, float bulletSpread, float recoil, int pelletCount, LoadingType loadingType, SoundEvent reload1, SoundEvent reload2, SoundEvent reload3, SoundEvent fireAudio, int reloadCycles, boolean isScoped, int reloadStage1, int reloadStage2, int reloadStage3) {
         super(settings);
         this.ammoLoadingType = ammoLoadingType;
-        this.gunDamage = gunDamage;
-        this.fireRate = fireRate;
-        this.magSize = magSize;
-        this.ammoType = ammoType;
+        this.damage = damage;
+        this.range = range;
+        this.fireCooldown = fireCooldown;
+        this.magazineSize = magazineSize;
+        this.ammunition = ammunition;
         this.reloadCooldown = reloadCooldown;
         this.bulletSpread = bulletSpread;
-        this.gunRecoil = gunRecoil;
+        this.recoil = recoil;
         this.pelletCount = pelletCount;
         this.loadingType = loadingType;
         this.reload1 = reload1;
         this.reload2 = reload2;
         this.reload3 = reload3;
-        this.shootSound = shootSound;
+        this.fireAudio = fireAudio;
         this.reloadCycles = reloadCycles;
         this.isScoped = isScoped;
         this.reloadStage1 = reloadStage1;
@@ -116,7 +117,7 @@ public abstract class GunItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(Text.literal(String.format("%s/%s", GunItem.remainingAmmo(stack), this.magSize)).formatted(Formatting.GRAY));
+        tooltip.add(Text.literal(String.format("%s/%s", GunItem.remainingAmmo(stack), this.magazineSize)).formatted(Formatting.GRAY));
     }
 
     @Override
@@ -126,12 +127,12 @@ public abstract class GunItem extends Item {
         if (!(nbtCompound.contains("reloadTick") && nbtCompound.contains("Clip") && nbtCompound.contains("isScoped") && nbtCompound.contains("isReloading"))) {
             this.setDefaultNBT(nbtCompound);
         }
-        if (world.isClient() && ((PlayerEntity) entity).getStackInHand(Hand.MAIN_HAND) == stack && PixelGunsClient.reloadToggle.isPressed() && GunItem.remainingAmmo(stack) < this.magSize && GunItem.reserveAmmoCount((PlayerEntity) entity, this.ammoType) > 0 && !nbtCompound.getBoolean("isReloading")) {
+        if (world.isClient() && ((PlayerEntity) entity).getStackInHand(Hand.MAIN_HAND) == stack && PixelGunsClient.reloadToggle.isPressed() && GunItem.remainingAmmo(stack) < this.magazineSize && GunItem.reserveAmmoCount((PlayerEntity) entity, this.ammunition) > 0 && !nbtCompound.getBoolean("isReloading")) {
             PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
             buf.writeBoolean(true);
             ClientPlayNetworking.send(PixelGuns.res("reload"), buf);
         }
-        if (nbtCompound.getBoolean("isReloading") && (((PlayerEntity) entity).getStackInHand(Hand.MAIN_HAND) != stack || GunItem.reserveAmmoCount((PlayerEntity) entity, this.ammoType) <= 0 && this.reloadCycles <= 1 || nbtCompound.getInt("reloadTick") >= this.reloadCooldown || GunItem.remainingAmmo(stack) >= this.magSize && this.reloadCycles <= 1)) {
+        if (nbtCompound.getBoolean("isReloading") && (((PlayerEntity) entity).getStackInHand(Hand.MAIN_HAND) != stack || GunItem.reserveAmmoCount((PlayerEntity) entity, this.ammunition) <= 0 && this.reloadCycles <= 1 || nbtCompound.getInt("reloadTick") >= this.reloadCooldown || GunItem.remainingAmmo(stack) >= this.magazineSize && this.reloadCycles <= 1)) {
             nbtCompound.putBoolean("isReloading", false);
         }
         if (nbtCompound.getBoolean("isReloading")) {
@@ -158,17 +159,17 @@ public abstract class GunItem extends Item {
         }
         switch (this.loadingType) {
             case CLIP -> {
-                if (rTick < this.reloadCooldown || GunItem.reserveAmmoCount(player, this.ammoType) <= 0) break;
+                if (rTick < this.reloadCooldown || GunItem.reserveAmmoCount(player, this.ammunition) <= 0) break;
                 nbtCompound.putInt("currentCycle", 1);
                 this.finishReload(player, stack);
                 nbtCompound.putInt("reloadTick", 0);
             }
             case INDIVIDUAL -> {
-                if (rTick < this.reloadStage3 || nbtCompound.getInt("currentCycle") >= this.reloadCycles || GunItem.reserveAmmoCount(player, this.ammoType) <= 0)
+                if (rTick < this.reloadStage3 || nbtCompound.getInt("currentCycle") >= this.reloadCycles || GunItem.reserveAmmoCount(player, this.ammunition) <= 0)
                     break;
                 nbtCompound.putInt("Clip", nbtCompound.getInt("Clip") + 1);
-                InventoryUtil.removeItemFromInventory(player, this.ammoType, 1);
-                if (GunItem.remainingAmmo(stack) < this.magSize && GunItem.reserveAmmoCount(player, this.ammoType) > 0) {
+                InventoryUtil.removeItemFromInventory(player, this.ammunition, 1);
+                if (GunItem.remainingAmmo(stack) < this.magazineSize && GunItem.reserveAmmoCount(player, this.ammunition) > 0) {
                     nbtCompound.putInt("reloadTick", this.reloadStage2);
                 }
                 nbtCompound.putInt("currentCycle", nbtCompound.getInt("Clip"));
@@ -207,23 +208,20 @@ public abstract class GunItem extends Item {
 
     public void shoot(World world, PlayerEntity user, ItemStack stack) {
         float kick = user.getPitch() - this.getRecoil();
-        user.getItemCooldownManager().set(this, this.fireRate);
+        user.getItemCooldownManager().set(this, this.fireCooldown);
         if (!world.isClient()) {
             for (int i = 0; i < this.pelletCount; ++i) {
-                int maxDistance;
-                if (this == ModItems.CLASSIC_SNIPER_RIFLE) maxDistance = 500;
-                else maxDistance = 250;
 
                 Random r = new Random();
                 Vec3d bulletVector = user.getRotationVector().add(new Vec3d(r.nextGaussian(), r.nextGaussian(), r.nextGaussian()).multiply(this.bulletSpread / 10));
 
-                HitResult result = getHitResult(world, user, user.getEyePos(), bulletVector, maxDistance);
+                HitResult result = getHitResult(world, user, user.getEyePos(), bulletVector, this.range);
                 if (this instanceof InfinityGunItem infinityGunItem) {
                     infinityGunItem.hit(result, world, user, stack);
                 }
 
                 if (result instanceof EntityHitResult entityHitResult) {
-                    float damage = this.gunDamage;
+                    float damage = this.damage;
                     entityHitResult.getEntity().damage(DamageSource.player(user), damage);
                 
                     PixelGuns.LOGGER.info(user.distanceTo(entityHitResult.getEntity()) + " " + damage + " " + entityHitResult.getEntity().getType().getUntranslatedName());
@@ -241,15 +239,15 @@ public abstract class GunItem extends Item {
             this.useAmmo(stack);
             stack.damage(10, (LivingEntity) user, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
         }
-        playShootSound(world, user, stack);
+        playFireAudio(world, user, stack);
     }
 
-    public void playShootSound(World world, PlayerEntity user, ItemStack stack) {
-        world.playSound(null, user.getX(), user.getY(), user.getZ(), this.shootSound, SoundCategory.MASTER, 1.0f, 1.0f);
+    public void playFireAudio(World world, PlayerEntity user, ItemStack stack) {
+        world.playSound(null, user.getX(), user.getY(), user.getZ(), this.fireAudio, SoundCategory.MASTER, 1.0f, 1.0f);
     }
 
     private float getRecoil() {
-        return client.options.useKey.isPressed() ? this.gunRecoil / 2.0f : this.gunRecoil;
+        return client.options.useKey.isPressed() ? this.recoil / 2.0f : this.recoil;
     }
 
     private void useAmmo(ItemStack stack) {
@@ -260,25 +258,26 @@ public abstract class GunItem extends Item {
     public void finishReload(PlayerEntity player, ItemStack stack) {
         NbtCompound nbtCompound = stack.getOrCreateNbt();
         if (nbtCompound.getInt("Clip") <= 0) {
-            if (GunItem.reserveAmmoCount(player, this.ammoType) > this.magSize) {
-                nbtCompound.putInt("Clip", this.magSize);
-                InventoryUtil.removeItemFromInventory(player, this.ammoType, this.magSize);
+            if (GunItem.reserveAmmoCount(player, this.ammunition) > this.magazineSize) {
+                nbtCompound.putInt("Clip", this.magazineSize);
+                InventoryUtil.removeItemFromInventory(player, this.ammunition, this.magazineSize);
             } else {
-                nbtCompound.putInt("Clip", GunItem.reserveAmmoCount(player, this.ammoType));
-                InventoryUtil.removeItemFromInventory(player, this.ammoType, GunItem.reserveAmmoCount(player, this.ammoType));
+                nbtCompound.putInt("Clip", GunItem.reserveAmmoCount(player, this.ammunition));
+                InventoryUtil.removeItemFromInventory(player, this.ammunition, GunItem.reserveAmmoCount(player, this.ammunition));
             }
         } else {
-            int ammoToLoad = this.magSize - nbtCompound.getInt("Clip");
-            if (GunItem.reserveAmmoCount(player, this.ammoType) >= ammoToLoad) {
+            int ammoToLoad = this.magazineSize - nbtCompound.getInt("Clip");
+            if (GunItem.reserveAmmoCount(player, this.ammunition) >= ammoToLoad) {
                 nbtCompound.putInt("Clip", nbtCompound.getInt("Clip") + ammoToLoad);
-                InventoryUtil.removeItemFromInventory(player, this.ammoType, ammoToLoad);
+                InventoryUtil.removeItemFromInventory(player, this.ammunition, ammoToLoad);
             } else {
-                nbtCompound.putInt("Clip", nbtCompound.getInt("Clip") + GunItem.reserveAmmoCount(player, this.ammoType));
-                InventoryUtil.removeItemFromInventory(player, this.ammoType, GunItem.reserveAmmoCount(player, this.ammoType));
+                nbtCompound.putInt("Clip", nbtCompound.getInt("Clip") + GunItem.reserveAmmoCount(player, this.ammunition));
+                InventoryUtil.removeItemFromInventory(player, this.ammunition, GunItem.reserveAmmoCount(player, this.ammunition));
             }
         }
     }
 
+    @Override
     public boolean allowNbtUpdateAnimation(PlayerEntity player, Hand hand, ItemStack oldStack, ItemStack newStack) {
         return false;
     }

@@ -10,6 +10,7 @@ public class MagnumRevolverItem extends GunItem {
                 settings,
                 GunItem.AmmoLoadingType.SEMI_AUTOMATIC,
                 11.0f,
+                250,
                 10,
                 6,
                 ModItems.HEAVY_HANDGUN_BULLET,

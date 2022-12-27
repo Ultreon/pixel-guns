@@ -10,6 +10,7 @@ public class MachinePistolItem extends GunItem {
                 settings,
                 GunItem.AmmoLoadingType.AUTOMATIC,
                 5.0f,
+                250,
                 1,
                 30,
                 ModItems.STANDARD_HANDGUN_BULLET,
