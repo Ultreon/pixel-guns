@@ -8,9 +8,19 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 
-public class UfoInteriorBlock extends Block {
+public class UfoInteriorBlock extends EasyBlock {
     public UfoInteriorBlock(Settings settings) {
         super(settings);
+    }
+
+    @Override
+    protected boolean isWaterloggable() {
+        return true;
+    }
+
+    @Override
+    protected boolean isRotatable() {
+        return true;
     }
 
     @Override
