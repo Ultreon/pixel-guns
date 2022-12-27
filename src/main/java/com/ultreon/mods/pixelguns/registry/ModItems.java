@@ -40,10 +40,10 @@ public class ModItems {
 
     // Ammunition
     public static final Item STANDARD_HANDGUN_BULLET = ModItems.register("standard_handgun_cartridge", new Item(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(64)));
+    public static final Item SHOTGUN_SHELL = ModItems.register("shotgun_shell", new Item(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(64)));
     public static final Item HEAVY_HANDGUN_BULLET = ModItems.register("heavy_handgun_cartridge", new Item(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(64)));
     public static final Item STANDARD_RIFLE_BULLET = ModItems.register("standard_rifle_cartridge", new Item(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(64)));
     public static final Item HEAVY_RIFLE_BULLET = ModItems.register("heavy_rifle_cartridge", new Item(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(64)));
-    public static final Item SHOTGUN_SHELL = ModItems.register("shotgun_shell", new Item(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(64)));
     public static final Item ENERGY_GUN_BATTERY = ModItems.register("energy_gun_battery", new Item(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(12)){
         @Override
         public boolean hasGlint(ItemStack itemStack) {
@@ -55,10 +55,10 @@ public class ModItems {
     public static final Item PISTOL = ModItems.register("pistol_light", new LightPistolItem(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(1)));
     public static final Item HEAVY_PISTOL = ModItems.register("pistol_heavy", new HeavyPistolItem(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(1)));
     public static final Item MAGNUM_REVOLVER = ModItems.register("revolver_magnum", new MagnumRevolverItem(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(1)));
+    public static final Item COMBAT_SHOTGUN = ModItems.register("shotgun_combat", new CombatShotgunItem(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(1)));
     public static final Item MACHINE_PISTOL = ModItems.register("smg_machinepistol", new MachinePistolItem(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(1)));
     public static final Item LIGHT_ASSAULT_RIFLE = ModItems.register("assaultrifle_light", new AssaultRifleItem(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(1)));
     public static final Item HEAVY_ASSAULT_RIFLE = ModItems.register("assaultrifle_heavy", new HeavyAssaultRifleItem(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(1)));
-    public static final Item COMBAT_SHOTGUN = ModItems.register("shotgun_combat", new CombatShotgunItem(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(1)));
     public static final Item CLASSIC_SNIPER_RIFLE = ModItems.register("sniper_classic", new SniperRifleItem(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(1)));
     public static final Item INFINITY_GUN = ModItems.register("infinity_gun", new InfinityGunItem(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(1)));
     public static final Item ROCKET_LAUNCHER = ModItems.register("rocket_launcher", new RocketLauncherItem(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(1)));
