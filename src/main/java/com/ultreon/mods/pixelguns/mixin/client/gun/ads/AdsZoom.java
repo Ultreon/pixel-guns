@@ -1,4 +1,4 @@
-package com.ultreon.mods.pixelguns.mixin.client.gun;
+package com.ultreon.mods.pixelguns.mixin.client.gun.ads;
 
 import com.mojang.authlib.GameProfile;
 import com.ultreon.mods.pixelguns.item.gun.GunItem;

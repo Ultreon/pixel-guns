@@ -1,4 +1,4 @@
-package com.ultreon.mods.pixelguns.mixin.client.gun;
+package com.ultreon.mods.pixelguns.mixin.client.gun.ads;
 
 import com.ultreon.mods.pixelguns.client.option.AdsSensitivity;
 import net.minecraft.client.gui.screen.option.MouseOptionsScreen;

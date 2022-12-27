@@ -1,6 +1,5 @@
-package com.ultreon.mods.pixelguns.mixin.client.gun;
+package com.ultreon.mods.pixelguns.mixin.client.gun.ads;
 
-import com.ultreon.mods.pixelguns.PixelGuns;
 import com.ultreon.mods.pixelguns.client.option.AdsSensitivity;
 import com.ultreon.mods.pixelguns.item.gun.GunItem;
 import net.minecraft.client.MinecraftClient;

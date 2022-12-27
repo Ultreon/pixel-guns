@@ -7,11 +7,10 @@
   ],
   "client": [
     "client.ModMenuMixin",
-
-    "client.gun.AdsPersistency",
-    "client.gun.AdsSensitivityModifier",
-    "client.gun.AdsSensitivityOption",
-    "client.gun.AdsZoom",
+    "client.gun.ads.AdsSensitivityPersistency",
+    "client.gun.ads.AdsSensitivityModifier",
+    "client.gun.ads.AdsSensitivityOption",
+    "client.gun.ads.AdsZoom",
     "client.gun.AmmoHud",
     "client.gun.AnimationPrevention",
     "client.gun.GunKeybinds",
