@@ -26,12 +26,13 @@ import net.minecraft.util.math.Quaternion;
 public class PlayerGunPose {
     @Inject(method = "getArmPose", at = @At("TAIL"), cancellable = true)
     private static void gunPose(AbstractClientPlayerEntity player, Hand hand, CallbackInfoReturnable<BipedEntityModel.ArmPose> ci) {
-        if (player.getStackInHand(hand).getItem() instanceof GunItem && GunItem.isLoaded(player.getStackInHand(hand)) && player.getStackInHand(hand).getOrCreateNbt().getInt("reloadTick") <= 0) {
-            ci.setReturnValue(BipedEntityModel.ArmPose.BOW_AND_ARROW);
-            return;
-        }
-        if (player.getStackInHand(hand).getItem() instanceof GunItem && player.getStackInHand(hand).getOrCreateNbt().getInt("reloadTick") > 0) {
-            ci.setReturnValue(BipedEntityModel.ArmPose.CROSSBOW_CHARGE);
+        if (player.getStackInHand(hand).getItem() instanceof GunItem) {
+            if (player.getStackInHand(hand).getOrCreateNbt().getInt("reloadTick") > 0) {
+                ci.setReturnValue(BipedEntityModel.ArmPose.CROSSBOW_CHARGE);
+            }
+            else if (GunItem.isLoaded(player.getStackInHand(hand))) {
+                ci.setReturnValue(BipedEntityModel.ArmPose.BOW_AND_ARROW);
+            }
             return;
         }
         ci.setReturnValue(BipedEntityModel.ArmPose.ITEM);
