@@ -53,6 +53,7 @@
 	"item.pixel_guns.katana" : "Katana",
 	"item.pixel_guns.gas_mask" : "Gas Mask",
 
+	"block.pixel_guns.ufo_interior" : "UFO Interior",
 	"block.pixel_guns.workshop" : "Workshop",
 
 	"attack.pixel_guns.energy_orb": "%1$s got obliterated from an Energy Orb",
