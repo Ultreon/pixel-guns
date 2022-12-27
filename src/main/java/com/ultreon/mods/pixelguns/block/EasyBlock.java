@@ -2,6 +2,7 @@ package com.ultreon.mods.pixelguns.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
@@ -11,6 +12,9 @@ import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 
 public abstract class EasyBlock extends Block {
@@ -21,6 +25,33 @@ public abstract class EasyBlock extends Block {
 
     protected abstract boolean isWaterloggable();
     protected abstract boolean isRotatable();
+    protected VoxelShape getShape() {
+        return VoxelShapes.fullCube();
+    }
+
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext ctx) {
+        Direction dir = state.get(Properties.HORIZONTAL_FACING);
+        return switch (dir) {
+            case NORTH -> rotateShape(0, this.getShape());
+            case SOUTH -> rotateShape(2, this.getShape());
+            case EAST -> rotateShape(1, this.getShape());
+            case WEST -> rotateShape(3, this.getShape());
+            default -> VoxelShapes.fullCube();
+        };
+    }
+
+    private static VoxelShape rotateShape(int times, VoxelShape shape) {
+        VoxelShape[] buffer = new VoxelShape[]{shape, VoxelShapes.empty()};
+
+        for (int i = 0; i < times; i++) {
+            buffer[0].forEachBox((minX, minY, minZ, maxX, maxY, maxZ) -> buffer[1] = VoxelShapes.union(buffer[1], VoxelShapes.cuboid(1 - maxZ, minY, minX, 1 - minZ, maxY, maxX)));
+            buffer[0] = buffer[1];
+            buffer[1] = VoxelShapes.empty();
+        }
+
+        return buffer[0];
+    }
 
     @Override
     public BlockState rotate(BlockState state, BlockRotation rotation) {
