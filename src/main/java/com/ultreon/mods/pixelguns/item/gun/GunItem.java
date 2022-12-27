@@ -57,7 +57,7 @@ public abstract class GunItem extends Item {
     private final float bulletSpread;
     private final float gunRecoil;
     private final int pelletCount;
-    private final int loadingType;
+    private final LoadingType loadingType;
     private final SoundEvent reload1;
     private final SoundEvent reload2;
     private final SoundEvent reload3;
@@ -68,7 +68,7 @@ public abstract class GunItem extends Item {
     private final int reloadStage2;
     private final int reloadStage3;
 
-    public GunItem(Settings settings, AmmoLoadingType ammoLoadingType, float gunDamage, int fireRate, int magSize, Item ammoType, int reloadCooldown, float bulletSpread, float gunRecoil, int pelletCount, int loadingType, SoundEvent reload1, SoundEvent reload2, SoundEvent reload3, SoundEvent shootSound, int reloadCycles, boolean isScoped, int reloadStage1, int reloadStage2, int reloadStage3) {
+    public GunItem(Settings settings, AmmoLoadingType ammoLoadingType, float gunDamage, int fireRate, int magSize, Item ammoType, int reloadCooldown, float bulletSpread, float gunRecoil, int pelletCount, LoadingType loadingType, SoundEvent reload1, SoundEvent reload2, SoundEvent reload3, SoundEvent shootSound, int reloadCycles, boolean isScoped, int reloadStage1, int reloadStage2, int reloadStage3) {
         super(settings);
         this.ammoLoadingType = ammoLoadingType;
         this.gunDamage = gunDamage;
@@ -157,13 +157,13 @@ public abstract class GunItem extends Item {
             }
         }
         switch (this.loadingType) {
-            case 1 -> {
+            case CLIP -> {
                 if (rTick < this.reloadCooldown || GunItem.reserveAmmoCount(player, this.ammoType) <= 0) break;
                 nbtCompound.putInt("currentCycle", 1);
                 this.finishReload(player, stack);
                 nbtCompound.putInt("reloadTick", 0);
             }
-            case 2 -> {
+            case INDIVIDUAL -> {
                 if (rTick < this.reloadStage3 || nbtCompound.getInt("currentCycle") >= this.reloadCycles || GunItem.reserveAmmoCount(player, this.ammoType) <= 0)
                     break;
                 nbtCompound.putInt("Clip", nbtCompound.getInt("Clip") + 1);
@@ -287,6 +287,11 @@ public abstract class GunItem extends Item {
         SEMI_AUTOMATIC,
         BURST,
         AUTOMATIC;
+    }
+
+    public enum LoadingType {
+        INDIVIDUAL,
+        CLIP
     }
 }
 

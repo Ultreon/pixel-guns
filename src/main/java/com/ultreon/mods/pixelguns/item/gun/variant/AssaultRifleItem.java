@@ -17,7 +17,7 @@ public class AssaultRifleItem extends GunItem {
                 0.15f,
                 1.625f,
                 1,
-                1,
+                LoadingType.CLIP,
                 ModSounds.RELOAD_GENERIC_AR_P1,
                 ModSounds.RELOAD_GENERIC_AR_P2,
                 ModSounds.RELOAD_GENERIC_AR_P3,

@@ -17,7 +17,7 @@ public class HeavyPistolItem extends GunItem {
                 0.25f,
                 7.5f,
                 1,
-                1,
+                LoadingType.CLIP,
                 ModSounds.RELOAD_GENERIC_PISTOL_P1,
                 ModSounds.RELOAD_GENERIC_PISTOL_P2,
                 ModSounds.RELOAD_GENERIC_PISTOL_P3,

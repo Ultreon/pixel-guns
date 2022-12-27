@@ -17,7 +17,7 @@ public class PumpShotgunItem extends GunItem {
                 9.25f,
                 8.25f,
                 5,
-                2,
+                LoadingType.INDIVIDUAL,
                 ModSounds.RELOAD_COMBAT_SHOTGUN_P1,
                 ModSounds.RELOAD_COMBAT_SHOTGUN_P2,
                 ModSounds.RELOAD_COMBAT_SHOTGUN_P3,

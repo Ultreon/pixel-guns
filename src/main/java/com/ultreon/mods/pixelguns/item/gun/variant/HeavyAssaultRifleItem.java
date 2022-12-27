@@ -28,7 +28,7 @@ public class HeavyAssaultRifleItem extends GunItem {
                 0.125f,
                 2.5f,
                 1,
-                1,
+                LoadingType.CLIP,
                 ModSounds.RELOAD_HEAVY_AR_P1,
                 ModSounds.RELOAD_HEAVY_AR_P2,
                 ModSounds.RELOAD_HEAVY_AR_P3,

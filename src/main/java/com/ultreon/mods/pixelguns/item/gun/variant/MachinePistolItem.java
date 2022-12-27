@@ -17,7 +17,7 @@ public class MachinePistolItem extends GunItem {
                 5.0f,
                 2.0f,
                 1,
-                1,
+                LoadingType.CLIP,
                 ModSounds.RELOAD_GENERIC_SMG_P1,
                 ModSounds.RELOAD_GENERIC_SMG_P2,
                 ModSounds.RELOAD_GENERIC_SMG_P3,

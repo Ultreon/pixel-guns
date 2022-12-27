@@ -1,6 +1,7 @@
 package com.ultreon.mods.pixelguns.item.gun.variant;
 
 import com.ultreon.mods.pixelguns.item.gun.GunItem;
+import com.ultreon.mods.pixelguns.registry.ModItems;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
@@ -14,20 +15,20 @@ public class RocketLauncherItem extends GunItem implements IAnimatable {
         super(
                 settings,
                 GunItem.AmmoLoadingType.SEMI_AUTOMATIC,
+                25.0f,
+                160,
+                1,
+                ModItems.ROCKET,
+                160,
                 0,
                 0,
-                0,
-                null,
-                0,
-                0,
-                0,
-                0,
-                0,
-                null,
-                null,
+                1,
+                LoadingType.INDIVIDUAL,
                 null,
                 null,
-                0,
+                null,
+                null,
+                1,
                 false,
                 0,
                 0,

@@ -17,7 +17,7 @@ public class MagnumRevolverItem extends GunItem {
                 0.125f,
                 6.5f,
                 1,
-                1,
+                LoadingType.CLIP,
                 ModSounds.RELOAD_GENERIC_REVOLVER_P1,
                 ModSounds.RELOAD_GENERIC_REVOLVER_P2,
                 ModSounds.RELOAD_GENERIC_REVOLVER_P3,

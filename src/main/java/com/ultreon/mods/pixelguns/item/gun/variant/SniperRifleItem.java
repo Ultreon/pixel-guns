@@ -17,7 +17,7 @@ public class SniperRifleItem extends GunItem {
                 0.01f,
                 8.25f,
                 1,
-                2,
+                LoadingType.INDIVIDUAL,
                 ModSounds.RELOAD_GENERIC_SNIPER_P1,
                 ModSounds.RELOAD_CLASSIC_SNIPER_P2,
                 ModSounds.RELOAD_GENERIC_SNIPER_P3,

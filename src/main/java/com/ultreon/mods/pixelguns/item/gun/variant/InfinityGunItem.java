@@ -49,7 +49,7 @@ public class InfinityGunItem extends GunItem implements IAnimatable {
                 0,
                 20,
                 1,
-                1,
+                LoadingType.CLIP,
                 SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN,
                 SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN,
                 SoundEvents.BLOCK_IRON_DOOR_OPEN,
