@@ -44,6 +44,7 @@ public class ModItems {
     public static final Item HEAVY_HANDGUN_BULLET = ModItems.register("heavy_handgun_cartridge", new Item(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(64)));
     public static final Item STANDARD_RIFLE_BULLET = ModItems.register("standard_rifle_cartridge", new Item(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(64)));
     public static final Item HEAVY_RIFLE_BULLET = ModItems.register("heavy_rifle_cartridge", new Item(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(64)));
+    public static final Item ROCKET = ModItems.register("rocket", new Item(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(64)));
     public static final Item ENERGY_GUN_BATTERY = ModItems.register("energy_gun_battery", new Item(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(12)){
         @Override
         public boolean hasGlint(ItemStack itemStack) {

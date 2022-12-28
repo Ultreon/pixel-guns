@@ -30,10 +30,13 @@
 
 	"item.pixel_guns.standard_handgun_cartridge" : "Light Bullets",
 	"item.pixel_guns.heavy_handgun_cartridge" : "Light Bullets-H",
+	"item.pixel_guns.shotgun_shell" : "Shotgun Shell",
 	"item.pixel_guns.standard_rifle_cartridge" : "Medium Bullets",
 	"item.pixel_guns.heavy_rifle_cartridge" : "Heavy Bullets",
+	"item.pixel_guns.rocket" : "Rockets",
 	"item.pixel_guns.energy_gun_battery" : "Energy Gun Battery",
-	"item.pixel_guns.shotgun_shell" : "Shotgun Shell",
+
+
 
 	"item.pixel_guns.pistol_light" : "Pistol",
 	"item.pixel_guns.pistol_heavy" : "Heavy Pistol",
