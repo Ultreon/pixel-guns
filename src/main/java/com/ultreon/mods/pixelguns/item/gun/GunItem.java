@@ -49,14 +49,14 @@ public abstract class GunItem extends Item {
 
     private final AmmoLoadingType ammoLoadingType;
     protected final float damage;
-    private final int range;
-    private final int fireCooldown;
+    protected final int range;
+    protected final int fireCooldown;
     private final int magazineSize;
     public final Item ammunition;
     private final int reloadCooldown;
-    private final float bulletSpread;
-    private final float recoil;
-    private final int pelletCount;
+    protected final float bulletSpread;
+    protected final float recoil;
+    protected final int pelletCount;
     private final LoadingType loadingType;
     private final SoundEvent reload1;
     private final SoundEvent reload2;
@@ -246,11 +246,11 @@ public abstract class GunItem extends Item {
         world.playSound(null, user.getX(), user.getY(), user.getZ(), this.fireAudio, SoundCategory.MASTER, 1.0f, 1.0f);
     }
 
-    private float getRecoil() {
+    protected float getRecoil() {
         return client.options.useKey.isPressed() ? this.recoil / 2.0f : this.recoil;
     }
 
-    private void useAmmo(ItemStack stack) {
+    protected void useAmmo(ItemStack stack) {
         NbtCompound nbtCompound = stack.getOrCreateNbt();
         nbtCompound.putInt("Clip", nbtCompound.getInt("Clip") - 1);
     }
