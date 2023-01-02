@@ -56,6 +56,7 @@ public class ModItems {
     public static final Item PISTOL = ModItems.register("pistol_light", new LightPistolItem(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(1)));
     public static final Item HEAVY_PISTOL = ModItems.register("pistol_heavy", new HeavyPistolItem(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(1)));
     public static final Item MAGNUM_REVOLVER = ModItems.register("revolver_magnum", new MagnumRevolverItem(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(1)));
+    public static final Item PUMP_SHOTGUN = ModItems.register("pump_shotgun", new PumpShotgunItem(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(1)));
     public static final Item COMBAT_SHOTGUN = ModItems.register("shotgun_combat", new CombatShotgunItem(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(1)));
     public static final Item MACHINE_PISTOL = ModItems.register("smg_machinepistol", new MachinePistolItem(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(1)));
     public static final Item LIGHT_ASSAULT_RIFLE = ModItems.register("assaultrifle_light", new AssaultRifleItem(new FabricItemSettings().group(ModCreativeTab.WEAPONS).maxCount(1)));
