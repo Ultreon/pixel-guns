@@ -1,6 +1,5 @@
 package com.ultreon.mods.pixelguns.item.gun;
 
-import com.ultreon.mods.pixelguns.item.gun.variant.InfinityGunItem;
 import io.netty.buffer.Unpooled;
 import com.ultreon.mods.pixelguns.PixelGuns;
 import com.ultreon.mods.pixelguns.PixelGunsClient;
@@ -12,8 +11,6 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
@@ -194,6 +191,7 @@ public abstract class GunItem extends Item {
     }
 
     public HitResult getHitResult(World world, PlayerEntity player, Vec3d origin, Vec3d direction, double maxDistance) {
+        long time = System.currentTimeMillis();
         Vec3d destination = origin.add(direction.multiply(maxDistance));
         HitResult hitResult = world.raycast(new RaycastContext(origin, destination, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, player));
         if (hitResult.getType() != HitResult.Type.MISS) {
@@ -203,7 +201,26 @@ public abstract class GunItem extends Item {
         if (entityHitResult != null) {
             hitResult = entityHitResult;
         }
+        long result = System.currentTimeMillis() - time;
+        if (result > 100) {
+            PixelGuns.LOGGER.info("" + result);
+            PixelGuns.LOGGER.info("" + hitResult.getPos());
+            PixelGuns.LOGGER.info("" + hitResult.getType());
+        }
+
         return hitResult;
+    }
+
+    protected void handleHit(HitResult result, World world, PlayerEntity damageSource) {
+        if (result instanceof EntityHitResult entityHitResult) {
+            float damage = this.damage;
+            entityHitResult.getEntity().damage(DamageSource.player(damageSource), damage);
+
+//            PixelGuns.LOGGER.info(damageSource.distanceTo(entityHitResult.getEntity()) + " " + damage + " " + entityHitResult.getEntity().getType().getUntranslatedName());
+        } else {
+            BlockHitResult blockHitResult = (BlockHitResult) result;
+            ((ServerWorld) world).spawnParticles(new BlockStateParticleEffect(ParticleTypes.BLOCK, world.getBlockState(blockHitResult.getBlockPos())), blockHitResult.getPos().x, blockHitResult.getPos().y, blockHitResult.getPos().z, 1, 0, 0, 0, 1);
+        }
     }
 
     public void shoot(World world, PlayerEntity user, ItemStack stack) {
@@ -215,20 +232,8 @@ public abstract class GunItem extends Item {
                 Random r = new Random();
                 Vec3d bulletVector = user.getRotationVector().add(new Vec3d(r.nextGaussian(), r.nextGaussian(), r.nextGaussian()).multiply(this.bulletSpread / 10));
 
-                HitResult result = getHitResult(world, user, user.getEyePos(), bulletVector, this.range);
-                if (this instanceof InfinityGunItem infinityGunItem) {
-                    infinityGunItem.hit(result, world, user, stack);
-                }
+                handleHit(getHitResult(world, user, user.getEyePos(), bulletVector, this.range), world, user);
 
-                if (result instanceof EntityHitResult entityHitResult) {
-                    float damage = this.damage;
-                    entityHitResult.getEntity().damage(DamageSource.player(user), damage);
-                
-                    PixelGuns.LOGGER.info(user.distanceTo(entityHitResult.getEntity()) + " " + damage + " " + entityHitResult.getEntity().getType().getUntranslatedName());
-                } else {
-                    BlockHitResult blockHitResult = (BlockHitResult) result;
-                    ((ServerWorld) world).spawnParticles(new BlockStateParticleEffect(ParticleTypes.BLOCK, world.getBlockState(blockHitResult.getBlockPos())), blockHitResult.getPos().x, blockHitResult.getPos().y, blockHitResult.getPos().z, 1, 0, 0, 0, 1);
-                }
             }
             PacketByteBuf buf = PacketByteBufs.create();
             buf.writeFloat(kick);
@@ -237,12 +242,12 @@ public abstract class GunItem extends Item {
         }
         if (!user.getAbilities().creativeMode) {
             this.useAmmo(stack);
-            stack.damage(10, (LivingEntity) user, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
+//            stack.damage(10, (LivingEntity) user, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
         }
-        playFireAudio(world, user, stack);
+        playFireAudio(world, user);
     }
 
-    public void playFireAudio(World world, PlayerEntity user, ItemStack stack) {
+    public void playFireAudio(World world, PlayerEntity user) {
         world.playSound(null, user.getX(), user.getY(), user.getZ(), this.fireAudio, SoundCategory.MASTER, 1.0f, 1.0f);
     }
 
@@ -285,7 +290,7 @@ public abstract class GunItem extends Item {
     public enum AmmoLoadingType {
         SEMI_AUTOMATIC,
         BURST,
-        AUTOMATIC;
+        AUTOMATIC
     }
 
     public enum LoadingType {

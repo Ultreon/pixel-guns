@@ -89,7 +89,13 @@ public class InfinityGunItem extends GunItem implements IAnimatable {
         return super.isUsedOnRelease(stack);
     }
 
-    public void hit(HitResult result, World world, PlayerEntity user, ItemStack stack) {
+    @Override
+    protected void handleHit(HitResult result, World world, PlayerEntity user) {
+        this.hit(result, world, user);
+        super.handleHit(result, world, user);
+    }
+
+    public void hit(HitResult result, World world, PlayerEntity user) {
         Vec3d look = user.getEyePos().relativize(result.getPos()).normalize();
         Vec3d iter = look.multiply(8);
         Vec3d curPos = result.getPos();
