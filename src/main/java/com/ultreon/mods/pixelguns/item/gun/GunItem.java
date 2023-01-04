@@ -37,6 +37,10 @@ import net.minecraft.world.World;
 
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -191,22 +195,18 @@ public abstract class GunItem extends Item {
     }
 
     public HitResult getHitResult(World world, PlayerEntity player, Vec3d origin, Vec3d direction, double maxDistance) {
-        long time = System.currentTimeMillis();
         Vec3d destination = origin.add(direction.multiply(maxDistance));
-        HitResult hitResult = world.raycast(new RaycastContext(origin, destination, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, player));
+        // The following line of code needs optimizing
+        HitResult hitResult = world.raycast(new RaycastContext(origin, destination, RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, player));
         if (hitResult.getType() != HitResult.Type.MISS) {
             destination = hitResult.getPos();
         }
+        // Maybe this line too, run a test to find out
         EntityHitResult entityHitResult = ProjectileUtil.getEntityCollision(world, player, origin, destination, player.getBoundingBox().stretch(direction.multiply(maxDistance)).expand(1.0), (entity) -> true);
         if (entityHitResult != null) {
             hitResult = entityHitResult;
         }
-        long result = System.currentTimeMillis() - time;
-        if (result > 100) {
-            PixelGuns.LOGGER.info("" + result);
-            PixelGuns.LOGGER.info("" + hitResult.getPos());
-            PixelGuns.LOGGER.info("" + hitResult.getType());
-        }
+
 
         return hitResult;
     }
@@ -223,6 +223,8 @@ public abstract class GunItem extends Item {
         }
     }
 
+    public boolean done = false;
+
     public void shoot(World world, PlayerEntity user, ItemStack stack) {
         float kick = user.getPitch() - this.getRecoil();
         user.getItemCooldownManager().set(this, this.fireCooldown);
@@ -232,7 +234,27 @@ public abstract class GunItem extends Item {
                 Random r = new Random();
                 Vec3d bulletVector = user.getRotationVector().add(new Vec3d(r.nextGaussian(), r.nextGaussian(), r.nextGaussian()).multiply(this.bulletSpread / 10));
 
-                handleHit(getHitResult(world, user, user.getEyePos(), bulletVector, this.range), world, user);
+                int range = this.range;
+
+                final Runnable stuffToDo = new Thread() {
+                    @Override
+                    public void run() {
+                        handleHit(getHitResult(world, user, user.getEyePos(), bulletVector, range), world, user);
+                    }
+                };
+                final ExecutorService executor = Executors.newSingleThreadExecutor();
+                final Future future = executor.submit(stuffToDo);
+                executor.shutdown(); // This does not cancel the already-scheduled task.
+
+                try {
+                    future.get(2, TimeUnit.MILLISECONDS);
+                }
+                catch (Exception ie) {
+                    /* Handle the interruption. Or ignore it. */
+                }
+                if (!executor.isTerminated())
+                    executor.shutdownNow(); // If you want to stop the code that hasn't finished.
+
 
             }
             PacketByteBuf buf = PacketByteBufs.create();
