@@ -45,7 +45,7 @@ public class InfinityGunItem extends GunItem implements IAnimatable {
                 250,
                 30,
                 5,
-                ModItems.ENERGY_GUN_BATTERY,
+                ModItems.ENERGY_BATTERY,
                 40,
                 0,
                 20,
