@@ -15,7 +15,7 @@ public class MachinePistolItem extends GunItem {
                 30,
                 ModItems.STANDARD_HANDGUN_BULLET,
                 44,
-                5.0f,
+                0.0f,
                 2.0f,
                 1,
                 LoadingType.CLIP,
