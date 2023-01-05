@@ -90,7 +90,7 @@ public class InfinityGunItem extends GunItem implements IAnimatable {
     }
 
     @Override
-    protected void handleHit(HitResult result, World world, PlayerEntity user) {
+    protected void handleHit(HitResult result, ServerWorld world, PlayerEntity user) {
         this.hit(result, world, user);
         super.handleHit(result, world, user);
     }

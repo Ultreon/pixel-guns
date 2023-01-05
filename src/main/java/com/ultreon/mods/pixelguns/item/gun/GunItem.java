@@ -211,7 +211,7 @@ public abstract class GunItem extends Item {
         return hitResult;
     }
 
-    protected void handleHit(HitResult result, World world, PlayerEntity damageSource) {
+    protected void handleHit(HitResult result, ServerWorld world, PlayerEntity damageSource) {
         if (result instanceof EntityHitResult entityHitResult) {
             float damage = this.damage;
             entityHitResult.getEntity().damage(DamageSource.player(damageSource), damage);
@@ -219,11 +219,11 @@ public abstract class GunItem extends Item {
 //            PixelGuns.LOGGER.info(damageSource.distanceTo(entityHitResult.getEntity()) + " " + damage + " " + entityHitResult.getEntity().getType().getUntranslatedName());
         } else {
             BlockHitResult blockHitResult = (BlockHitResult) result;
-            ((ServerWorld) world).spawnParticles(new BlockStateParticleEffect(ParticleTypes.BLOCK, world.getBlockState(blockHitResult.getBlockPos())), blockHitResult.getPos().x, blockHitResult.getPos().y, blockHitResult.getPos().z, 1, 0, 0, 0, 1);
+            world.spawnParticles(new BlockStateParticleEffect(ParticleTypes.BLOCK, world.getBlockState(blockHitResult.getBlockPos())), blockHitResult.getPos().x, blockHitResult.getPos().y, blockHitResult.getPos().z, 1, 0, 0, 0, 1);
         }
     }
 
-    public boolean done = false;
+
 
     public void shoot(World world, PlayerEntity user, ItemStack stack) {
         float kick = user.getPitch() - this.getRecoil();
@@ -236,12 +236,10 @@ public abstract class GunItem extends Item {
 
                 int range = this.range;
 
-                final Runnable stuffToDo = new Thread() {
-                    @Override
-                    public void run() {
-                        handleHit(getHitResult(world, user, user.getEyePos(), bulletVector, range), world, user);
-                    }
-                };
+                // The following code handles the hit detection within 2ms, otherwise it silently fails
+                final Runnable stuffToDo = new Thread(() -> {
+                    handleHit(getHitResult(world, user, user.getEyePos(), bulletVector, range), (ServerWorld) world, user);
+                });
                 final ExecutorService executor = Executors.newSingleThreadExecutor();
                 final Future future = executor.submit(stuffToDo);
                 executor.shutdown(); // This does not cancel the already-scheduled task.
@@ -254,7 +252,7 @@ public abstract class GunItem extends Item {
                 }
                 if (!executor.isTerminated())
                     executor.shutdownNow(); // If you want to stop the code that hasn't finished.
-
+                // end of "the following code"
 
             }
             PacketByteBuf buf = PacketByteBufs.create();
