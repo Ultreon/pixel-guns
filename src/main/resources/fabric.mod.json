@@ -27,8 +27,7 @@
     ]
   },
   "mixins": [
-    "pixel_guns.mixins.json",
-    "multipart.mixins.json"
+    "pixel_guns.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.13.3",
