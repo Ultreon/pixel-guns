@@ -1,48 +1,60 @@
 package com.ultreon.mods.pixelguns.entity.projectile;
 
 import com.ultreon.mods.pixelguns.registry.ModEntities;
+import com.ultreon.mods.pixelguns.registry.ModItems;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.Packet;
-import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
+import net.minecraft.item.Item;
+import net.minecraft.util.hit.EntityHitResult;
+import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
 
+import net.minecraft.world.explosion.Explosion;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
-public class RocketEntity extends Entity implements IAnimatable {
+public class RocketEntity extends ThrownItemEntity implements IAnimatable {
 
     public RocketEntity(EntityType<? extends RocketEntity> entityType, World world) {
         super(entityType, world);
     }
 
-    public RocketEntity(World world) {
-        super(ModEntities.ROCKET, world);
+    public RocketEntity(World world, LivingEntity owner) {
+        super(ModEntities.ROCKET, owner, world);
     }
 
     @Override
-    public void tick() {
-        this.setPosition(this.getPos().add(this.getVelocity()));
-        super.tick();
+    protected void onEntityHit(EntityHitResult entityHitResult) {
+        super.onEntityHit(entityHitResult);
+        entityHitResult.getEntity().damage(DamageSource.thrownProjectile(this, this.getOwner()), 0.0f);
+    }
+
+    private void explode() {
+        if (this.world.isClient) return;
+
+        this.world.createExplosion(this, this.getX(), this.getY(), this.getZ(), 2.0f, false, Explosion.DestructionType.DESTROY);
+        this.discard();
     }
 
     @Override
-    protected void readCustomDataFromNbt(NbtCompound nbtCompound) {
-
+    protected void onCollision(HitResult hitResult) {
+        super.onCollision(hitResult);
+        this.explode();
     }
 
     @Override
-    protected void writeCustomDataToNbt(NbtCompound nbtCompound) {
-
+    public boolean hasNoGravity() {
+        return true;
     }
 
     @Override
-    public Packet<?> createSpawnPacket() {
-        return new EntitySpawnS2CPacket(this);
+    protected Item getDefaultItem() {
+        return ModItems.ROCKET;
     }
 
     @Override
