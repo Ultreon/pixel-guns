@@ -1,11 +1,10 @@
 package com.ultreon.mods.pixelguns.registry;
 
 import com.ultreon.mods.pixelguns.PixelGuns;
-import com.ultreon.mods.pixelguns.entity.GasEntity;
-import com.ultreon.mods.pixelguns.entity.NuclearBombEntity;
-import com.ultreon.mods.pixelguns.entity.NuclearExplosionEntity;
-import com.ultreon.mods.pixelguns.entity.projectile.thrown.GrenadeEntity;
+import com.ultreon.mods.pixelguns.entity.*;
 
+import com.ultreon.mods.pixelguns.entity.projectile.thrown.GrenadeEntity;
+import com.ultreon.mods.pixelguns.entity.projectile.RocketEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityDimensions;
@@ -24,6 +23,16 @@ public class ModEntities {
         )
         .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
         .trackRangeBlocks(4).trackedUpdateRate(20)
+    );
+
+    public static final EntityType<RocketEntity> ROCKET = ModEntities.register(
+            "rocket",
+            FabricEntityTypeBuilder.<RocketEntity>create(
+                            SpawnGroup.MISC,
+                            RocketEntity::new
+                    )
+                    .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
+                    .trackRangeBlocks(4).trackedUpdateRate(20)
     );
 
     public static final EntityType<NuclearBombEntity> NUCLEAR_BOMB = ModEntities.register(
