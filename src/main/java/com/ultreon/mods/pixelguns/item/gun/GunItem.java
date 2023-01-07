@@ -66,7 +66,7 @@ public abstract class GunItem extends Item {
     private final int reloadCycles;
     private final boolean isScoped;
 
-    public GunItem(Settings settings, AmmoLoadingType ammoLoadingType, float damage, int range, int fireCooldown, int magazineSize, Item ammunition, int reloadCooldown, float bulletSpread, float recoil, int pelletCount, LoadingType loadingType, SoundEvent reload1, SoundEvent reload2, SoundEvent reload3, SoundEvent fireAudio, int reloadCycles, boolean isScoped, int reloadStage1, int reloadStage2, int reloadStage3) {
+    public GunItem(Settings settings, AmmoLoadingType ammoLoadingType, float damage, int range, int fireCooldown, int magazineSize, Item ammunition, int reloadCooldown, float bulletSpread, float recoil, int pelletCount, LoadingType loadingType, SoundEvent[] reloadSounds, SoundEvent fireAudio, int reloadCycles, boolean isScoped, int[] reloadStages) {
         super(settings);
         this.ammoLoadingType = ammoLoadingType;
         this.damage = damage;
@@ -79,17 +79,11 @@ public abstract class GunItem extends Item {
         this.recoil = recoil;
         this.pelletCount = pelletCount;
         this.loadingType = loadingType;
-        this.reloadSounds = new SoundEvent[3];
-        this.reloadSounds[0] = reload1;
-        this.reloadSounds[1] = reload2;
-        this.reloadSounds[2] = reload3;
+        this.reloadSounds = reloadSounds;
         this.fireAudio = fireAudio;
         this.reloadCycles = reloadCycles;
         this.isScoped = isScoped;
-        this.reloadSoundStages = new int[3];
-        this.reloadSoundStages[0] = reloadStage1;
-        this.reloadSoundStages[1] = reloadStage2;
-        this.reloadSoundStages[2] = reloadStage3;
+        this.reloadSoundStages = reloadStages;
 
         client = MinecraftClient.getInstance();
     }

@@ -15,6 +15,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.World;
 import software.bernie.geckolib3.core.AnimationState;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -47,15 +48,11 @@ public class RocketLauncherItem extends GunItem implements IAnimatable, ISyncabl
                 0,
                 1,
                 LoadingType.INDIVIDUAL,
-                ModSounds.RELOAD_GENERIC_SNIPER_P1,
-                ModSounds.RELOAD_GENERIC_SNIPER_P2,
-                ModSounds.RELOAD_GENERIC_SNIPER_P3,
+                new SoundEvent[] {ModSounds.RELOAD_GENERIC_SNIPER_P1, ModSounds.RELOAD_GENERIC_SNIPER_P2, ModSounds.RELOAD_GENERIC_SNIPER_P3},
                 ModSounds.SNIPER_CLASSIC,
                 1,
                 false,
-                1,
-                8,
-                17
+                new int[] {1, 8, 17}
         );
         GeckoLibNetwork.registerSyncable(this);
     }

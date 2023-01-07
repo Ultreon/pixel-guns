@@ -3,6 +3,7 @@ package com.ultreon.mods.pixelguns.item.gun.variant;
 import com.ultreon.mods.pixelguns.registry.ModItems;
 import com.ultreon.mods.pixelguns.item.gun.GunItem;
 import com.ultreon.mods.pixelguns.sound.ModSounds;
+import net.minecraft.sound.SoundEvent;
 
 public class CombatShotgunItem extends GunItem {
     public CombatShotgunItem(Settings settings) {
@@ -19,15 +20,11 @@ public class CombatShotgunItem extends GunItem {
                 8.25f,
                 5,
                 LoadingType.INDIVIDUAL,
-                ModSounds.RELOAD_COMBAT_SHOTGUN_P1,
-                ModSounds.RELOAD_COMBAT_SHOTGUN_P2,
-                ModSounds.RELOAD_COMBAT_SHOTGUN_P3,
+                new SoundEvent[] {ModSounds.RELOAD_COMBAT_SHOTGUN_P1, ModSounds.RELOAD_COMBAT_SHOTGUN_P2, ModSounds.RELOAD_COMBAT_SHOTGUN_P3},
                 ModSounds.SHOTGUN_COMBAT,
                 6,
                 false,
-                1,
-                4,
-                13
+                new int[] {1, 4, 13}
         );
     }
 }

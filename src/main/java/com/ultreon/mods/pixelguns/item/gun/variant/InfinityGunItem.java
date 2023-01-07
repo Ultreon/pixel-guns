@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
@@ -51,15 +52,11 @@ public class InfinityGunItem extends GunItem implements IAnimatable {
                 20,
                 1,
                 LoadingType.CLIP,
-                SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN,
-                SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN,
-                SoundEvents.BLOCK_IRON_DOOR_OPEN,
+                new SoundEvent[] {SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN, SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN, SoundEvents.BLOCK_IRON_DOOR_OPEN},
                 SoundEvents.BLOCK_BEACON_DEACTIVATE,
                 1,
                 false,
-                5,
-                -1,
-                -1
+                new int[] {5, -1, -1}
         );
     }
 

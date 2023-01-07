@@ -3,6 +3,7 @@ package com.ultreon.mods.pixelguns.item.gun.variant;
 import com.ultreon.mods.pixelguns.registry.ModItems;
 import com.ultreon.mods.pixelguns.item.gun.GunItem;
 import com.ultreon.mods.pixelguns.sound.ModSounds;
+import net.minecraft.sound.SoundEvent;
 
 public class MagnumRevolverItem extends GunItem {
     public MagnumRevolverItem(Settings settings) {
@@ -19,15 +20,11 @@ public class MagnumRevolverItem extends GunItem {
                 6.5f,
                 1,
                 LoadingType.CLIP,
-                ModSounds.RELOAD_GENERIC_REVOLVER_P1,
-                ModSounds.RELOAD_GENERIC_REVOLVER_P2,
-                ModSounds.RELOAD_GENERIC_REVOLVER_P3,
+                new SoundEvent[] {ModSounds.RELOAD_GENERIC_REVOLVER_P1, ModSounds.RELOAD_GENERIC_REVOLVER_P2, ModSounds.RELOAD_GENERIC_REVOLVER_P3},
                 ModSounds.REVOLVER_MAGNUM,
                 1,
                 false,
-                1,
-                26,
-                34
+                new int[] {1, 26, 34}
         );
     }
 }

@@ -3,6 +3,7 @@ package com.ultreon.mods.pixelguns.item.gun.variant;
 import com.ultreon.mods.pixelguns.registry.ModItems;
 import com.ultreon.mods.pixelguns.item.gun.GunItem;
 import com.ultreon.mods.pixelguns.sound.ModSounds;
+import net.minecraft.sound.SoundEvent;
 
 public class HeavyPistolItem extends GunItem {
     public HeavyPistolItem(Settings settings) {
@@ -19,15 +20,11 @@ public class HeavyPistolItem extends GunItem {
                 7.5f,
                 1,
                 LoadingType.CLIP,
-                ModSounds.RELOAD_GENERIC_PISTOL_P1,
-                ModSounds.RELOAD_GENERIC_PISTOL_P2,
-                ModSounds.RELOAD_GENERIC_PISTOL_P3,
+                new SoundEvent[] {ModSounds.RELOAD_GENERIC_PISTOL_P1, ModSounds.RELOAD_GENERIC_PISTOL_P2, ModSounds.RELOAD_GENERIC_PISTOL_P3},
                 ModSounds.PISTOL_HEAVY,
                 1,
                 false,
-                6,
-                16,
-                20
+                new int[] {6, 16, 20}
         );
     }
 }
