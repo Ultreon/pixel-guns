@@ -69,8 +69,9 @@ public class RocketLauncherItem extends GunItem implements IAnimatable, ISyncabl
         float kick = player.getPitch() - this.getRecoil();
         player.getItemCooldownManager().set(this, this.fireCooldown);
         if (!world.isClient()) {
-            RocketEntity rocket = new RocketEntity(world);
+            RocketEntity rocket = new RocketEntity(world, player);
             rocket.setPosition(player.getEyePos().subtract(0, 0.1, 0));
+            rocket.setPitch(player.getPitch());
 
             rocket.setVelocity(player.getRotationVector().normalize().multiply(1.5));
             world.spawnEntity(rocket);
