@@ -18,6 +18,7 @@ public class ModelPredicateProvider {
         ModelPredicateProvider.registerGun(ModItems.HEAVY_ASSAULT_RIFLE);
         ModelPredicateProvider.registerGun(ModItems.COMBAT_SHOTGUN);
         ModelPredicateProvider.registerGun(ModItems.CLASSIC_SNIPER_RIFLE);
+        ModelPredicateProviderRegistry.register(ModItems.ROCKET_LAUNCHER, new Identifier("pixel_guns", "aiming"), (stack, world, entity, seed) -> entity != null && MinecraftClient.getInstance().options.useKey.isPressed() && GunItem.isLoaded(stack) ? 1.0f : 0.0f);
     }
 
     public static void registerGun(Item gun) {
