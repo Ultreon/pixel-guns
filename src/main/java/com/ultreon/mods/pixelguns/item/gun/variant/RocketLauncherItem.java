@@ -1,13 +1,18 @@
 package com.ultreon.mods.pixelguns.item.gun.variant;
 
+import com.ultreon.mods.pixelguns.PixelGuns;
+import com.ultreon.mods.pixelguns.entity.projectile.RocketEntity;
 import com.ultreon.mods.pixelguns.item.gun.GunItem;
 import com.ultreon.mods.pixelguns.registry.ModItems;
 import com.ultreon.mods.pixelguns.sound.ModSounds;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
@@ -34,7 +39,7 @@ public class RocketLauncherItem extends GunItem implements IAnimatable, ISyncabl
                 GunItem.AmmoLoadingType.SEMI_AUTOMATIC,
                 25.0f,
                 250,
-                0,
+                30,
                 1,
                 ModItems.ROCKET,
                 30,
@@ -58,30 +63,49 @@ public class RocketLauncherItem extends GunItem implements IAnimatable, ISyncabl
     @Override
     public void shoot(World world, PlayerEntity player, ItemStack stack) {
         if (world instanceof ServerWorld serverWorld) {
-            final int id = GeckoLibUtil.guaranteeIDForStack(stack, serverWorld);
-            GeckoLibNetwork.syncAnimation(player, this, id, ANIM_FIRE);
-            for (ServerPlayerEntity otherPlayer : PlayerLookup.tracking(player)) {
-                GeckoLibNetwork.syncAnimation(otherPlayer, this, id, ANIM_FIRE);
-            }
+            sendAnimationPacket(ANIM_FIRE, serverWorld, player, stack);
         }
-        super.shoot(world, player, stack);
+
+        float kick = player.getPitch() - this.getRecoil();
+        player.getItemCooldownManager().set(this, this.fireCooldown);
+        if (!world.isClient()) {
+            RocketEntity rocket = new RocketEntity(world);
+            rocket.setPosition(player.getEyePos().subtract(0, 0.1, 0));
+
+            rocket.setVelocity(player.getRotationVector().normalize().multiply(1.5));
+            world.spawnEntity(rocket);
+
+
+            PacketByteBuf buf = PacketByteBufs.create();
+            buf.writeFloat(kick);
+            ServerPlayNetworking.send((ServerPlayerEntity) player, PixelGuns.RECOIL_PACKET_ID, buf);
+        }
+        if (!player.getAbilities().creativeMode) {
+            this.useAmmo(stack);
+        }
+        playFireAudio(world, player);
     }
 
     @Override
     protected void doReloadTick(World world, NbtCompound nbtCompound, PlayerEntity player, ItemStack stack) {
         int reloadTick = nbtCompound.getInt("reloadTick");
         if (reloadTick == 0 && (world instanceof ServerWorld serverWorld)) {
-            final int id = GeckoLibUtil.guaranteeIDForStack(stack, serverWorld);
-            GeckoLibNetwork.syncAnimation(player, this, id, ANIM_RELOAD);
-            for (ServerPlayerEntity otherPlayer : PlayerLookup.tracking(player)) {
-                GeckoLibNetwork.syncAnimation(otherPlayer, this, id, ANIM_RELOAD);
-            }
+            sendAnimationPacket(ANIM_RELOAD, serverWorld, player, stack);
         }
         super.doReloadTick(world, nbtCompound, player, stack);
     }
 
+    /*
+     * ANIMATION SIDE
+     */
 
-
+    protected void sendAnimationPacket(int animation, ServerWorld world, PlayerEntity player, ItemStack stack) {
+        final int id = GeckoLibUtil.guaranteeIDForStack(stack, world);
+        GeckoLibNetwork.syncAnimation(player, this, id, animation);
+        for (ServerPlayerEntity otherPlayer : PlayerLookup.tracking(player)) {
+            GeckoLibNetwork.syncAnimation(otherPlayer, this, id, animation);
+        }
+    }
 
     public <P extends Item & IAnimatable> PlayState predicate(AnimationEvent<P> event) {
         return PlayState.CONTINUE;
