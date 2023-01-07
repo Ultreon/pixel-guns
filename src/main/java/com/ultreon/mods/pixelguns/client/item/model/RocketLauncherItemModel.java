@@ -10,7 +10,7 @@ public class RocketLauncherItemModel extends AnimatedGeoModel<RocketLauncherItem
 
     @Override
     public Identifier getAnimationResource(RocketLauncherItem animatable) {
-        return null;
+        return PixelGuns.res("animations/rocket_launcher.animation.json");
     }
 
     @Override
@@ -20,6 +20,6 @@ public class RocketLauncherItemModel extends AnimatedGeoModel<RocketLauncherItem
 
     @Override
     public Identifier getTextureResource(RocketLauncherItem object) {
-        return PixelGuns.res("textures/item/rocket_launcher.png");
+        return PixelGuns.res("textures/gun/rocket_launcher.png");
     }
 }
