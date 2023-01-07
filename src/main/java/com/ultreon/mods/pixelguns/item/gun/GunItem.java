@@ -19,6 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.particle.BlockStateParticleEffect;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -59,15 +60,11 @@ public abstract class GunItem extends Item {
     protected final float recoil;
     protected final int pelletCount;
     private final LoadingType loadingType;
-    private final SoundEvent reload1;
-    private final SoundEvent reload2;
-    private final SoundEvent reload3;
+    private final SoundEvent[] reloadSounds;
+    private final int[] reloadSoundStages;
     protected final SoundEvent fireAudio;
     private final int reloadCycles;
     private final boolean isScoped;
-    private final int reloadStage1;
-    private final int reloadStage2;
-    private final int reloadStage3;
 
     public GunItem(Settings settings, AmmoLoadingType ammoLoadingType, float damage, int range, int fireCooldown, int magazineSize, Item ammunition, int reloadCooldown, float bulletSpread, float recoil, int pelletCount, LoadingType loadingType, SoundEvent reload1, SoundEvent reload2, SoundEvent reload3, SoundEvent fireAudio, int reloadCycles, boolean isScoped, int reloadStage1, int reloadStage2, int reloadStage3) {
         super(settings);
@@ -82,15 +79,17 @@ public abstract class GunItem extends Item {
         this.recoil = recoil;
         this.pelletCount = pelletCount;
         this.loadingType = loadingType;
-        this.reload1 = reload1;
-        this.reload2 = reload2;
-        this.reload3 = reload3;
+        this.reloadSounds = new SoundEvent[3];
+        this.reloadSounds[0] = reload1;
+        this.reloadSounds[1] = reload2;
+        this.reloadSounds[2] = reload3;
         this.fireAudio = fireAudio;
         this.reloadCycles = reloadCycles;
         this.isScoped = isScoped;
-        this.reloadStage1 = reloadStage1;
-        this.reloadStage2 = reloadStage2;
-        this.reloadStage3 = reloadStage3;
+        this.reloadSoundStages = new int[3];
+        this.reloadSoundStages[0] = reloadStage1;
+        this.reloadSoundStages[1] = reloadStage2;
+        this.reloadSoundStages[2] = reloadStage3;
 
         client = MinecraftClient.getInstance();
     }
@@ -139,39 +138,39 @@ public abstract class GunItem extends Item {
         if (nbtCompound.getBoolean("isReloading")) {
             this.doReloadTick(world, nbtCompound, (PlayerEntity) entity, stack);
         } else {
-            if (nbtCompound.getInt("reloadTick") > this.reloadStage3 && nbtCompound.getInt("reloadTick") <= this.reloadCooldown) {
+            if (nbtCompound.getInt("reloadTick") > this.reloadSoundStages[2] && nbtCompound.getInt("reloadTick") <= this.reloadCooldown) {
                 this.finishReload((PlayerEntity) entity, stack);
             }
             nbtCompound.putInt("reloadTick", 0);
         }
     }
 
-    private void doReloadTick(World world, NbtCompound nbtCompound, PlayerEntity player, ItemStack stack) {
-        int rTick = nbtCompound.getInt("reloadTick");
+    protected void doReloadTick(World world, NbtCompound nbtCompound, PlayerEntity player, ItemStack stack) {
+        int reloadTick = nbtCompound.getInt("reloadTick");
         nbtCompound.putInt("reloadTick", nbtCompound.getInt("reloadTick") + 1);
         if (!world.isClient()) {
-            if (rTick == this.reloadStage1) {
-                world.playSound(null, player.getX(), player.getY(), player.getZ(), this.reload1, SoundCategory.MASTER, 1.0f, 1.0f);
-            } else if (rTick == this.reloadStage2) {
-                world.playSound(null, player.getX(), player.getY(), player.getZ(), this.reload2, SoundCategory.MASTER, 1.0f, 1.0f);
-            } else if (rTick == this.reloadStage3 + 1) {
-                world.playSound(null, player.getX(), player.getY(), player.getZ(), this.reload3, SoundCategory.MASTER, 1.0f, 1.0f);
+            if (reloadTick == this.reloadSoundStages[0]) {
+                world.playSound(null, player.getX(), player.getY(), player.getZ(), this.reloadSounds[0], SoundCategory.MASTER, 1.0f, 1.0f);
+            } else if (reloadTick == this.reloadSoundStages[1]) {
+                world.playSound(null, player.getX(), player.getY(), player.getZ(), this.reloadSounds[1], SoundCategory.MASTER, 1.0f, 1.0f);
+            } else if (reloadTick == this.reloadSoundStages[2]) {
+                world.playSound(null, player.getX(), player.getY(), player.getZ(), this.reloadSounds[2], SoundCategory.MASTER, 1.0f, 1.0f);
             }
         }
         switch (this.loadingType) {
             case CLIP -> {
-                if (rTick < this.reloadCooldown || GunItem.reserveAmmoCount(player, this.ammunition) <= 0) break;
+                if (reloadTick < this.reloadCooldown || GunItem.reserveAmmoCount(player, this.ammunition) <= 0) break;
                 nbtCompound.putInt("currentCycle", 1);
                 this.finishReload(player, stack);
                 nbtCompound.putInt("reloadTick", 0);
             }
             case INDIVIDUAL -> {
-                if (rTick < this.reloadStage3 || nbtCompound.getInt("currentCycle") >= this.reloadCycles || GunItem.reserveAmmoCount(player, this.ammunition) <= 0)
+                if (reloadTick < this.reloadSoundStages[2] || nbtCompound.getInt("currentCycle") >= this.reloadCycles || GunItem.reserveAmmoCount(player, this.ammunition) <= 0)
                     break;
                 nbtCompound.putInt("Clip", nbtCompound.getInt("Clip") + 1);
                 InventoryUtil.removeItemFromInventory(player, this.ammunition, 1);
                 if (GunItem.remainingAmmo(stack) < this.magazineSize && GunItem.reserveAmmoCount(player, this.ammunition) > 0) {
-                    nbtCompound.putInt("reloadTick", this.reloadStage2);
+                    nbtCompound.putInt("reloadTick", this.reloadSoundStages[1]);
                 }
                 nbtCompound.putInt("currentCycle", nbtCompound.getInt("Clip"));
             }
@@ -213,13 +212,13 @@ public abstract class GunItem extends Item {
 
     protected void handleHit(HitResult result, ServerWorld world, PlayerEntity damageSource) {
         if (result instanceof EntityHitResult entityHitResult) {
-            float damage = this.damage;
-            entityHitResult.getEntity().damage(DamageSource.player(damageSource), damage);
+            entityHitResult.getEntity().damage(DamageSource.player(damageSource), this.damage);
 
 //            PixelGuns.LOGGER.info(damageSource.distanceTo(entityHitResult.getEntity()) + " " + damage + " " + entityHitResult.getEntity().getType().getUntranslatedName());
         } else {
             BlockHitResult blockHitResult = (BlockHitResult) result;
-            world.spawnParticles(new BlockStateParticleEffect(ParticleTypes.BLOCK, world.getBlockState(blockHitResult.getBlockPos())), blockHitResult.getPos().x, blockHitResult.getPos().y, blockHitResult.getPos().z, 1, 0, 0, 0, 1);
+            ParticleEffect particleEffect = new BlockStateParticleEffect(ParticleTypes.BLOCK, world.getBlockState(blockHitResult.getBlockPos()));
+            world.spawnParticles(particleEffect, blockHitResult.getPos().x, blockHitResult.getPos().y, blockHitResult.getPos().z, 1, 0, 0, 0, 1);
         }
     }
 
