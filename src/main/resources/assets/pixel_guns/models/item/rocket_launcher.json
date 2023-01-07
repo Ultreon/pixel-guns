@@ -1,51 +1,63 @@
 {
   "credit": "Made with Blockbench",
   "parent": "builtin/entity",
+  "overrides": [
+    {"predicate":  {"pixel_guns:aiming": 1}, "model": "pixel_guns:item/gun_aim/rocket_launcher"}
+  ],
+  "texture_size": [
+    128,
+    128
+  ],
   "display": {
     "thirdperson_righthand": {
       "translation": [
         0,
-        -2.75,
-        -5.75
+        1,
+        -2.5
       ],
       "scale": [
         0.5,
         0.5,
-        0.58
+        0.5
       ]
     },
     "thirdperson_lefthand": {
       "translation": [
         0,
-        -2.75,
-        -5.75
+        1,
+        -2.5
       ],
       "scale": [
         0.5,
         0.5,
-        0.58
+        0.5
       ]
     },
     "firstperson_righthand": {
       "translation": [
-        5.5,
-        1.25,
-        0
+        0,
+        3,
+        -2.5
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
       ]
     },
     "firstperson_lefthand": {
       "translation": [
-        2,
-        1.25,
-        -1
+        0,
+        0.5,
+        -2.5
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
       ]
     },
     "ground": {
-      "translation": [
-        0,
-        -2.75,
-        -5.75
-      ],
       "scale": [
         0.4,
         0.4,
@@ -54,31 +66,33 @@
     },
     "gui": {
       "rotation": [
-        90,
+        70,
         45,
-        -105
-      ],
-      "translation": [
-        -7,
-        1,
-        0
+        -70
       ],
       "scale": [
-        0.5,
-        0.5,
-        0.5
+        0.4,
+        0.4,
+        0.4
+      ]
+    },
+    "head": {
+      "translation": [
+        0,
+        -3.25,
+        2
+      ],
+      "scale": [
+        0,
+        0,
+        0
       ]
     },
     "fixed": {
       "rotation": [
         90,
-        45,
+        60,
         -90
-      ],
-      "translation": [
-        -6.25,
-        0.5,
-        0.5
       ],
       "scale": [
         0.4,
