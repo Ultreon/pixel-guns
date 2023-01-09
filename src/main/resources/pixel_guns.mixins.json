@@ -6,6 +6,8 @@
   "mixins": [
   ],
   "client": [
+    "client.ClientPlayerInteractionMixin",
+    "client.CustomSwordSounds",
     "client.ModMenuMixin",
 
     "client.gun.AdsZoom",
