@@ -7,6 +7,8 @@
   ],
   "client": [
     "client.ItemRendererMixin",
+    "client.ClientPlayerInteractionMixin",
+    "client.CustomSwordSounds",
     "client.ModMenuMixin",
 
     "client.gun.AdsZoom",

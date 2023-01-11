@@ -86,6 +86,11 @@
 			"pixel_guns:katana/katana_swoop_1"
 		]
 	},
+	"katana_hit": {
+		"category": "master", "sounds": [
+			"pixel_guns:katana/katana_hit_1"
+		]
+	},
 	"grenade_explode": {
 		"category": "master", "sounds": [
 			"pixel_guns:grenade_explode"
