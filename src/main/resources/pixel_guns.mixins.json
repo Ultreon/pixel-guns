@@ -14,7 +14,8 @@
     "client.gun.AmmoHud",
     "client.gun.AnimationPrevention",
     "client.gun.GunKeybinds",
-    "client.gun.PlayerGunPose"
+    "client.gun.PlayerGunPose",
+    "client.gun.ScopedCrosshairRemover"
   ],
   "injectors": {
     "defaultRequire": 1

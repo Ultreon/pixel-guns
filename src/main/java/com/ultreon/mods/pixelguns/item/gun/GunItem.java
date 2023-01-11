@@ -64,7 +64,7 @@ public abstract class GunItem extends Item {
     private final int[] reloadSoundStages;
     protected final SoundEvent fireAudio;
     private final int reloadCycles;
-    private final boolean isScoped;
+    public final boolean isScoped;
 
     public GunItem(Settings settings, AmmoLoadingType ammoLoadingType, float damage, int range, int fireCooldown, int magazineSize, Item ammunition, int reloadCooldown, float bulletSpread, float recoil, int pelletCount, LoadingType loadingType, SoundEvent[] reloadSounds, SoundEvent fireAudio, int reloadCycles, boolean isScoped, int[] reloadStages) {
         super(settings);
