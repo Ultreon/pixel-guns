@@ -4,31 +4,26 @@ import com.ultreon.mods.pixelguns.client.armor.renderer.ArmoredArmorRenderer;
 import com.ultreon.mods.pixelguns.client.armor.renderer.HazardArmorRenderer;
 import com.ultreon.mods.pixelguns.client.gui.ingame.WorkshopScreen;
 import com.ultreon.mods.pixelguns.client.item.renderer.*;
-import com.ultreon.mods.pixelguns.registry.BlockRegistry;
-import com.ultreon.mods.pixelguns.registry.EntityRegistry;
-import com.ultreon.mods.pixelguns.registry.ItemRegistry;
-import com.ultreon.mods.pixelguns.registry.ModScreenHandlerType;
+import com.ultreon.mods.pixelguns.registry.*;
 import com.ultreon.mods.pixelguns.util.ModelPredicateProvider;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
-import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.util.InputUtil;
 import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 import software.bernie.geckolib3.renderers.geo.GeoItemRenderer;
 
 @Environment(value = EnvType.CLIENT)
 public class PixelGunsClient implements ClientModInitializer {
-    public static KeyBinding reloadToggle = new KeyBinding("key.pixel_guns.reloadtoggle", InputUtil.Type.KEYSYM, 82, "category.pixel_guns.binds");
+
 
     public void onInitializeClient() {
         BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.WORKSHOP, RenderLayer.getCutout());
-        KeyBindingHelper.registerKeyBinding(reloadToggle);
+
+        KeybindRegistry.registerKeybinds();
 
         HandledScreens.register(ModScreenHandlerType.WORKSHOP_SCREEN_HANDLER, WorkshopScreen::new);
 
