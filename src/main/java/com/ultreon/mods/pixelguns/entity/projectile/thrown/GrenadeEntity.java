@@ -2,7 +2,7 @@ package com.ultreon.mods.pixelguns.entity.projectile.thrown;
 
 import com.ultreon.mods.pixelguns.registry.EntityRegistry;
 import com.ultreon.mods.pixelguns.registry.ItemRegistry;
-import com.ultreon.mods.pixelguns.sound.ModSounds;
+import com.ultreon.mods.pixelguns.registry.SoundRegistry;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -53,7 +53,7 @@ public class GrenadeEntity extends ThrownItemEntity implements IAnimatable {
     protected void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);
         explode();
-        world.playSound(hitResult.getPos().x, hitResult.getPos().y, hitResult.getPos().z, ModSounds.GRENADE_EXPLODE, SoundCategory.MASTER, 0.8f, 0.8f, false);
+        world.playSound(hitResult.getPos().x, hitResult.getPos().y, hitResult.getPos().z, SoundRegistry.GRENADE_EXPLODE, SoundCategory.MASTER, 0.8f, 0.8f, false);
     }
 
     @Override

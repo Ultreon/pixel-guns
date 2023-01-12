@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.At.Shift;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.ultreon.mods.pixelguns.registry.ItemRegistry;
-import com.ultreon.mods.pixelguns.sound.ModSounds;
+import com.ultreon.mods.pixelguns.registry.SoundRegistry;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -27,7 +27,7 @@ public class CustomSwordSounds {
         assert player != null;
         if (player.getMainHandStack().getItem() == ItemRegistry.KATANA || player.getMainHandStack().getItem() == ItemRegistry.CROWBAR) {
             assert world != null;
-            world.playSound(this.player.getBlockPos(), ModSounds.KATANA_SWING, SoundCategory.PLAYERS, 1, 1, false);
+            world.playSound(this.player.getBlockPos(), SoundRegistry.KATANA_SWING, SoundCategory.PLAYERS, 1, 1, false);
         }
     }
 }

@@ -4,7 +4,7 @@ import com.ultreon.mods.pixelguns.PixelGuns;
 import com.ultreon.mods.pixelguns.entity.projectile.RocketEntity;
 import com.ultreon.mods.pixelguns.item.gun.GunItem;
 import com.ultreon.mods.pixelguns.registry.ItemRegistry;
-import com.ultreon.mods.pixelguns.sound.ModSounds;
+import com.ultreon.mods.pixelguns.registry.SoundRegistry;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -48,8 +48,8 @@ public class RocketLauncherItem extends GunItem implements IAnimatable, ISyncabl
                 0,
                 1,
                 LoadingType.INDIVIDUAL,
-                new SoundEvent[] {ModSounds.RELOAD_GENERIC_SNIPER_P1, ModSounds.RELOAD_GENERIC_SNIPER_P2, ModSounds.RELOAD_GENERIC_SNIPER_P3},
-                ModSounds.SNIPER_CLASSIC,
+                new SoundEvent[] {SoundRegistry.RELOAD_GENERIC_SNIPER_P1, SoundRegistry.RELOAD_GENERIC_SNIPER_P2, SoundRegistry.RELOAD_GENERIC_SNIPER_P3},
+                SoundRegistry.SNIPER_CLASSIC,
                 1,
                 false,
                 new int[] {1, 8, 17}
