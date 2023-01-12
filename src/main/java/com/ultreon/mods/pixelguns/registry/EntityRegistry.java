@@ -1,10 +1,12 @@
 package com.ultreon.mods.pixelguns.registry;
 
 import com.ultreon.mods.pixelguns.PixelGuns;
+import com.ultreon.mods.pixelguns.client.entity.renderer.*;
 import com.ultreon.mods.pixelguns.entity.*;
 
 import com.ultreon.mods.pixelguns.entity.projectile.thrown.GrenadeEntity;
 import com.ultreon.mods.pixelguns.entity.projectile.RocketEntity;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityDimensions;
@@ -59,5 +61,13 @@ public class EntityRegistry {
             new Identifier(PixelGuns.MOD_ID, name),
             type.build()
         );
+    }
+
+    public static void registerRenderers() {
+        EntityRendererRegistry.register(EntityRegistry.GRENADE, GrenadeEntityRenderer::new);
+        EntityRendererRegistry.register(EntityRegistry.ROCKET, RocketEntityRenderer::new);
+        EntityRendererRegistry.register(EntityRegistry.NUCLEAR_BOMB, NuclearBombEntityRenderer::new);
+        EntityRendererRegistry.register(EntityRegistry.NUCLEAR_EXPLOSION, NuclearExplosionEntityRenderer::new);
+        EntityRendererRegistry.register(EntityRegistry.GAS, GasRenderer::new);
     }
 }

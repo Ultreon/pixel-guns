@@ -2,7 +2,6 @@ package com.ultreon.mods.pixelguns;
 
 import com.ultreon.mods.pixelguns.client.armor.renderer.ArmoredArmorRenderer;
 import com.ultreon.mods.pixelguns.client.armor.renderer.HazardArmorRenderer;
-import com.ultreon.mods.pixelguns.client.entity.renderer.*;
 import com.ultreon.mods.pixelguns.client.gui.ingame.WorkshopScreen;
 import com.ultreon.mods.pixelguns.client.item.renderer.*;
 import com.ultreon.mods.pixelguns.registry.BlockRegistry;
@@ -16,7 +15,6 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.render.RenderLayer;
@@ -36,11 +34,7 @@ public class PixelGunsClient implements ClientModInitializer {
 
         ModelPredicateProvider.registerModels();
 
-        EntityRendererRegistry.register(EntityRegistry.GRENADE, GrenadeEntityRenderer::new);
-        EntityRendererRegistry.register(EntityRegistry.ROCKET, RocketEntityRenderer::new);
-        EntityRendererRegistry.register(EntityRegistry.NUCLEAR_BOMB, NuclearBombEntityRenderer::new);
-        EntityRendererRegistry.register(EntityRegistry.NUCLEAR_EXPLOSION, NuclearExplosionEntityRenderer::new);
-        EntityRendererRegistry.register(EntityRegistry.GAS, GasRenderer::new);
+        EntityRegistry.registerRenderers();
 
         GeoArmorRenderer.registerArmorRenderer(new ArmoredArmorRenderer(), ItemRegistry.ARMORED_VEST);
         GeoArmorRenderer.registerArmorRenderer(new HazardArmorRenderer(), ItemRegistry.GAS_MASK);
