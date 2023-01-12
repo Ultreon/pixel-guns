@@ -1,8 +1,8 @@
 package com.ultreon.mods.pixelguns.item.gun;
 
+import com.ultreon.mods.pixelguns.registry.KeybindRegistry;
 import io.netty.buffer.Unpooled;
 import com.ultreon.mods.pixelguns.PixelGuns;
-import com.ultreon.mods.pixelguns.PixelGunsClient;
 import com.ultreon.mods.pixelguns.util.InventoryUtil;
 
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -47,8 +47,6 @@ import org.jetbrains.annotations.NotNull;
 
 public abstract class GunItem extends Item {
 
-    private final MinecraftClient client;
-
     private final AmmoLoadingType ammoLoadingType;
     protected final float damage;
     protected final int range;
@@ -84,8 +82,6 @@ public abstract class GunItem extends Item {
         this.reloadCycles = reloadCycles;
         this.isScoped = isScoped;
         this.reloadSoundStages = reloadStages;
-
-        client = MinecraftClient.getInstance();
     }
 
     public static boolean isLoaded(ItemStack stack) {
@@ -121,7 +117,7 @@ public abstract class GunItem extends Item {
         if (!(nbtCompound.contains("reloadTick") && nbtCompound.contains("Clip") && nbtCompound.contains("isScoped") && nbtCompound.contains("isReloading"))) {
             this.setDefaultNBT(nbtCompound);
         }
-        if (world.isClient() && ((PlayerEntity) entity).getStackInHand(Hand.MAIN_HAND) == stack && PixelGunsClient.reloadToggle.isPressed() && GunItem.remainingAmmo(stack) < this.magazineSize && GunItem.reserveAmmoCount((PlayerEntity) entity, this.ammunition) > 0 && !nbtCompound.getBoolean("isReloading")) {
+        if (world.isClient() && ((PlayerEntity) entity).getStackInHand(Hand.MAIN_HAND) == stack && KeybindRegistry.reload.isPressed() && GunItem.remainingAmmo(stack) < this.magazineSize && GunItem.reserveAmmoCount((PlayerEntity) entity, this.ammunition) > 0 && !nbtCompound.getBoolean("isReloading")) {
             PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
             buf.writeBoolean(true);
             ClientPlayNetworking.send(PixelGuns.res("reload"), buf);
@@ -173,7 +169,7 @@ public abstract class GunItem extends Item {
 
     public TypedActionResult<ItemStack> use(@NotNull World world, PlayerEntity user, @NotNull Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
-        if (!client.options.attackKey.isPressed()) {
+        if (world.isClient && !MinecraftClient.getInstance().options.attackKey.isPressed()) {
             return TypedActionResult.fail(itemStack);
         }
         if (hand == Hand.MAIN_HAND && !user.isSprinting() && GunItem.isLoaded(itemStack)) {
@@ -265,7 +261,7 @@ public abstract class GunItem extends Item {
     }
 
     protected float getRecoil() {
-        return client.options.useKey.isPressed() ? this.recoil / 2.0f : this.recoil;
+        return MinecraftClient.getInstance().options.useKey.isPressed() ? this.recoil / 2.0f : this.recoil;
     }
 
     protected void useAmmo(ItemStack stack) {
