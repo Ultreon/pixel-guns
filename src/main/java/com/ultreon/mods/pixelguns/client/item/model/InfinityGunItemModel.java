@@ -1,13 +1,13 @@
 package com.ultreon.mods.pixelguns.client.item.model;
 
-import com.ultreon.mods.pixelguns.PixelGuns;
 import com.ultreon.mods.pixelguns.item.gun.variant.InfinityGunItem;
+import com.ultreon.mods.pixelguns.util.ResourcePath;
 import net.minecraft.util.Identifier;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class InfinityGunItemModel extends AnimatedGeoModel<InfinityGunItem> {
-    private static final Identifier modelResource = PixelGuns.res("geo/infinity_gun.geo.json");
-    private static final Identifier textureResource = PixelGuns.res("textures/gun/infinity_gun.png");
+    private static final Identifier modelResource = ResourcePath.get("geo/infinity_gun.geo.json");
+    private static final Identifier textureResource = ResourcePath.get("textures/gun/infinity_gun.png");
 
     @Override
     public Identifier getModelResource(InfinityGunItem item) {

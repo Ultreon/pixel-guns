@@ -25,7 +25,7 @@ public class PixelGunsClient implements ClientModInitializer {
 
         KeybindRegistry.registerKeybinds();
 
-        HandledScreens.register(ModScreenHandlerType.WORKSHOP_SCREEN_HANDLER, WorkshopScreen::new);
+        HandledScreens.register(ScreenHandlerRegistry.WORKSHOP_SCREEN_HANDLER, WorkshopScreen::new);
 
         ModelPredicateProvider.registerModels();
 

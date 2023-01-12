@@ -21,10 +21,6 @@ public class PixelGuns implements ModInitializer {
     
     public static final String NBT_NAME = "pixelGuns";
 
-    public static Identifier res(String path) {
-        return new Identifier(MOD_ID, path);
-    }
-
     public void onInitialize() {
         new EntityRegistry();
         new ItemRegistry();

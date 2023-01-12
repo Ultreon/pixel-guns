@@ -1,11 +1,11 @@
 package com.ultreon.mods.pixelguns.registry;
 
-import com.ultreon.mods.pixelguns.PixelGuns;
 import com.ultreon.mods.pixelguns.armor.ArmoredArmor;
 import com.ultreon.mods.pixelguns.armor.ModArmorMaterials;
 import com.ultreon.mods.pixelguns.item.*;
 import com.ultreon.mods.pixelguns.item.gun.variant.*;
 
+import com.ultreon.mods.pixelguns.util.ResourcePath;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EquipmentSlot;
@@ -118,7 +118,7 @@ public class ItemRegistry {
     }
 
     private static Item register(String name, Item item) {
-        return ItemRegistry.register(PixelGuns.res(name), item);
+        return ItemRegistry.register(ResourcePath.get(name), item);
     }
 
     private static Item register(Identifier identifier, Item item) {

@@ -1,8 +1,8 @@
 package com.ultreon.mods.pixelguns.client.gui.ingame;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.ultreon.mods.pixelguns.PixelGuns;
 import com.ultreon.mods.pixelguns.screen.WorkshopScreenHandler;
+import com.ultreon.mods.pixelguns.util.ResourcePath;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
@@ -11,7 +11,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class WorkshopScreen extends HandledScreen<WorkshopScreenHandler> {
-    private static final Identifier TEXTURE = PixelGuns.res("textures/gui/container/workshop.png");
+    private static final Identifier TEXTURE = ResourcePath.get("textures/gui/container/workshop.png");
 
     public WorkshopScreen(WorkshopScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);

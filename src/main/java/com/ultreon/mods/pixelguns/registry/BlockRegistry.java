@@ -1,8 +1,8 @@
 package com.ultreon.mods.pixelguns.registry;
 
-import com.ultreon.mods.pixelguns.PixelGuns;
 import com.ultreon.mods.pixelguns.block.UfoInteriorBlock;
 import com.ultreon.mods.pixelguns.block.WorkshopBlock;
+import com.ultreon.mods.pixelguns.util.ResourcePath;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
@@ -15,6 +15,6 @@ public class BlockRegistry {
     public static final Block WORKSHOP = BlockRegistry.register("workshop", new WorkshopBlock(FabricBlockSettings.of(Material.WOOD).strength(2.5f).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
     private static Block register(String name, Block block) {
-        return Registry.register(Registry.BLOCK, PixelGuns.res(name), block);
+        return Registry.register(Registry.BLOCK, ResourcePath.get(name), block);
     }
 }

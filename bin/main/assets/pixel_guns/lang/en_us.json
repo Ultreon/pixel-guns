@@ -1,6 +1,8 @@
 {
 	"category.pixel_guns.binds" : "Simple Animated Guns",
-	"key.pixel_guns.reloadtoggle" : "Reload Gun",
+	"key.pixel_guns.fire" : "Fire Gun",
+	"key.pixel_guns.aim" : "Aim Down Sights",
+	"key.pixel_guns.reload" : "Reload Gun",
 	"itemGroup.pixel_guns.misc" : "S.A.G. Misc",
 	"itemGroup.pixel_guns.guns" : "S.A.G. Guns",
 
@@ -47,7 +49,7 @@
 
 	"config.pixel_guns": "Pixel Guns Config",
 	"config.pixel_guns.do_recoil": "Do Recoil: %s",
-	"config.pixel_guns.use_custom_config_gui": "Use Custom Config GUI: %s"
+	"config.pixel_guns.use_custom_config_gui": "Use Custom Config GUI: %s",
   
 	"item.pixel_guns.sniper_classic" : "Hunting Rifle"
 }

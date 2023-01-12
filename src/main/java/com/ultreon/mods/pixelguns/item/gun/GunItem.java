@@ -1,6 +1,7 @@
 package com.ultreon.mods.pixelguns.item.gun;
 
 import com.ultreon.mods.pixelguns.registry.KeybindRegistry;
+import com.ultreon.mods.pixelguns.util.ResourcePath;
 import io.netty.buffer.Unpooled;
 import com.ultreon.mods.pixelguns.PixelGuns;
 import com.ultreon.mods.pixelguns.util.InventoryUtil;
@@ -120,7 +121,7 @@ public abstract class GunItem extends Item {
         if (world.isClient() && ((PlayerEntity) entity).getStackInHand(Hand.MAIN_HAND) == stack && KeybindRegistry.reload.isPressed() && GunItem.remainingAmmo(stack) < this.magazineSize && GunItem.reserveAmmoCount((PlayerEntity) entity, this.ammunition) > 0 && !nbtCompound.getBoolean("isReloading")) {
             PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
             buf.writeBoolean(true);
-            ClientPlayNetworking.send(PixelGuns.res("reload"), buf);
+            ClientPlayNetworking.send(ResourcePath.get("reload"), buf);
         }
         if (nbtCompound.getBoolean("isReloading") && (((PlayerEntity) entity).getStackInHand(Hand.MAIN_HAND) != stack || GunItem.reserveAmmoCount((PlayerEntity) entity, this.ammunition) <= 0 && this.reloadCycles <= 1 || nbtCompound.getInt("reloadTick") >= this.reloadCooldown || GunItem.remainingAmmo(stack) >= this.magazineSize && this.reloadCycles <= 1)) {
             nbtCompound.putBoolean("isReloading", false);
