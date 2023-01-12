@@ -5,7 +5,7 @@ import com.ultreon.mods.pixelguns.client.armor.renderer.HazardArmorRenderer;
 import com.ultreon.mods.pixelguns.client.entity.renderer.*;
 import com.ultreon.mods.pixelguns.client.gui.ingame.WorkshopScreen;
 import com.ultreon.mods.pixelguns.client.item.renderer.*;
-import com.ultreon.mods.pixelguns.registry.ModBlocks;
+import com.ultreon.mods.pixelguns.registry.BlockRegistry;
 import com.ultreon.mods.pixelguns.registry.ModEntities;
 import com.ultreon.mods.pixelguns.registry.ModItems;
 import com.ultreon.mods.pixelguns.registry.ModScreenHandlerType;
@@ -29,7 +29,7 @@ public class PixelGunsClient implements ClientModInitializer {
     public static KeyBinding reloadToggle = new KeyBinding("key.pixel_guns.reloadtoggle", InputUtil.Type.KEYSYM, 82, "category.pixel_guns.binds");
 
     public void onInitializeClient() {
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WORKSHOP, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.WORKSHOP, RenderLayer.getCutout());
         KeyBindingHelper.registerKeyBinding(reloadToggle);
 
         HandledScreens.register(ModScreenHandlerType.WORKSHOP_SCREEN_HANDLER, WorkshopScreen::new);

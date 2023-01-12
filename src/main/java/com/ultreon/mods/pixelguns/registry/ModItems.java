@@ -98,8 +98,8 @@ public class ModItems {
     );
 
     // Blocks
-    public static final Item UFO_INTERIOR = ModItems.register(ModBlocks.UFO_INTERIOR);
-    public static final Item WORKSHOP = ModItems.register(ModBlocks.WORKSHOP, ModCreativeTab.MISC);
+    public static final Item UFO_INTERIOR = ModItems.register(BlockRegistry.UFO_INTERIOR);
+    public static final Item WORKSHOP = ModItems.register(BlockRegistry.WORKSHOP, ModCreativeTab.MISC);
 
     private static Item register(Block block) {
         return ModItems.register(new BlockItem(block, new Item.Settings()));
