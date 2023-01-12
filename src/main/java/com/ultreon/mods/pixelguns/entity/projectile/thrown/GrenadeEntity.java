@@ -1,6 +1,6 @@
 package com.ultreon.mods.pixelguns.entity.projectile.thrown;
 
-import com.ultreon.mods.pixelguns.registry.ModEntities;
+import com.ultreon.mods.pixelguns.registry.EntityRegistry;
 import com.ultreon.mods.pixelguns.registry.ModItems;
 import com.ultreon.mods.pixelguns.sound.ModSounds;
 
@@ -33,7 +33,7 @@ public class GrenadeEntity extends ThrownItemEntity implements IAnimatable {
     }
 
     public GrenadeEntity(World world, LivingEntity owner) {
-        super(ModEntities.GRENADE, owner, world);
+        super(EntityRegistry.GRENADE, owner, world);
     }
 
     @Override

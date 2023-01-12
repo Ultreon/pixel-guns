@@ -13,9 +13,9 @@ import net.minecraft.entity.SpawnGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-public class ModEntities {
+public class EntityRegistry {
 
-    public static final EntityType<GrenadeEntity> GRENADE = ModEntities.register(
+    public static final EntityType<GrenadeEntity> GRENADE = EntityRegistry.register(
         "grenade", 
         FabricEntityTypeBuilder.<GrenadeEntity>create(
             SpawnGroup.MISC,
@@ -25,7 +25,7 @@ public class ModEntities {
         .trackRangeBlocks(4).trackedUpdateRate(20)
     );
 
-    public static final EntityType<RocketEntity> ROCKET = ModEntities.register(
+    public static final EntityType<RocketEntity> ROCKET = EntityRegistry.register(
             "rocket",
             FabricEntityTypeBuilder.<RocketEntity>create(
                             SpawnGroup.MISC,
@@ -35,19 +35,19 @@ public class ModEntities {
                     .trackRangeBlocks(4).trackedUpdateRate(20)
     );
 
-    public static final EntityType<NuclearBombEntity> NUCLEAR_BOMB = ModEntities.register(
+    public static final EntityType<NuclearBombEntity> NUCLEAR_BOMB = EntityRegistry.register(
         "nuclear_bomb",
             FabricEntityTypeBuilder.create(SpawnGroup.MISC, NuclearBombEntity::new)
                     .dimensions(EntityDimensions.fixed(1.0f, 0.5f))
     );
 
-    public static final EntityType<NuclearExplosionEntity> NUCLEAR_EXPLOSION = ModEntities.register(
+    public static final EntityType<NuclearExplosionEntity> NUCLEAR_EXPLOSION = EntityRegistry.register(
             "nuclear_explosion",
             FabricEntityTypeBuilder.create(SpawnGroup.MISC, NuclearExplosionEntity::new)
                     .dimensions(EntityDimensions.fixed(15.0f, 100.0f))
     );
 
-    public static final EntityType<GasEntity> GAS = ModEntities.register(
+    public static final EntityType<GasEntity> GAS = EntityRegistry.register(
         "gas",
         FabricEntityTypeBuilder.create(SpawnGroup.MISC, GasEntity::new)
             .dimensions(EntityDimensions.fixed(1, 1))

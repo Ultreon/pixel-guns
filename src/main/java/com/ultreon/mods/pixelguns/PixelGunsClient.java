@@ -6,7 +6,7 @@ import com.ultreon.mods.pixelguns.client.entity.renderer.*;
 import com.ultreon.mods.pixelguns.client.gui.ingame.WorkshopScreen;
 import com.ultreon.mods.pixelguns.client.item.renderer.*;
 import com.ultreon.mods.pixelguns.registry.BlockRegistry;
-import com.ultreon.mods.pixelguns.registry.ModEntities;
+import com.ultreon.mods.pixelguns.registry.EntityRegistry;
 import com.ultreon.mods.pixelguns.registry.ModItems;
 import com.ultreon.mods.pixelguns.registry.ModScreenHandlerType;
 import com.ultreon.mods.pixelguns.util.ModelPredicateProvider;
@@ -36,11 +36,11 @@ public class PixelGunsClient implements ClientModInitializer {
 
         ModelPredicateProvider.registerModels();
 
-        EntityRendererRegistry.register(ModEntities.GRENADE, GrenadeEntityRenderer::new);
-        EntityRendererRegistry.register(ModEntities.ROCKET, RocketEntityRenderer::new);
-        EntityRendererRegistry.register(ModEntities.NUCLEAR_BOMB, NuclearBombEntityRenderer::new);
-        EntityRendererRegistry.register(ModEntities.NUCLEAR_EXPLOSION, NuclearExplosionEntityRenderer::new);
-        EntityRendererRegistry.register(ModEntities.GAS, GasRenderer::new);
+        EntityRendererRegistry.register(EntityRegistry.GRENADE, GrenadeEntityRenderer::new);
+        EntityRendererRegistry.register(EntityRegistry.ROCKET, RocketEntityRenderer::new);
+        EntityRendererRegistry.register(EntityRegistry.NUCLEAR_BOMB, NuclearBombEntityRenderer::new);
+        EntityRendererRegistry.register(EntityRegistry.NUCLEAR_EXPLOSION, NuclearExplosionEntityRenderer::new);
+        EntityRendererRegistry.register(EntityRegistry.GAS, GasRenderer::new);
 
         GeoArmorRenderer.registerArmorRenderer(new ArmoredArmorRenderer(), ModItems.ARMORED_VEST);
         GeoArmorRenderer.registerArmorRenderer(new HazardArmorRenderer(), ModItems.GAS_MASK);

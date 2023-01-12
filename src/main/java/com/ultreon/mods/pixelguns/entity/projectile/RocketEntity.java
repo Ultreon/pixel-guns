@@ -1,6 +1,6 @@
 package com.ultreon.mods.pixelguns.entity.projectile;
 
-import com.ultreon.mods.pixelguns.registry.ModEntities;
+import com.ultreon.mods.pixelguns.registry.EntityRegistry;
 import com.ultreon.mods.pixelguns.registry.ModItems;
 
 import net.minecraft.entity.EntityType;
@@ -25,7 +25,7 @@ public class RocketEntity extends ThrownItemEntity implements IAnimatable {
     }
 
     public RocketEntity(World world, LivingEntity owner) {
-        super(ModEntities.ROCKET, owner, world);
+        super(EntityRegistry.ROCKET, owner, world);
     }
 
     @Override
