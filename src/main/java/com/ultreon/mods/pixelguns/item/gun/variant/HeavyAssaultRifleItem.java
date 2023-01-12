@@ -1,6 +1,6 @@
 package com.ultreon.mods.pixelguns.item.gun.variant;
 
-import com.ultreon.mods.pixelguns.registry.ModItems;
+import com.ultreon.mods.pixelguns.registry.ItemRegistry;
 import com.ultreon.mods.pixelguns.item.gun.GunItem;
 import com.ultreon.mods.pixelguns.sound.ModSounds;
 import net.minecraft.sound.SoundEvent;
@@ -15,7 +15,7 @@ public class HeavyAssaultRifleItem extends GunItem {
                 250,
                 3,
                 50,
-                ModItems.STANDARD_RIFLE_BULLET,
+                ItemRegistry.STANDARD_RIFLE_BULLET,
                 48,
                 0.125f,
                 2.5f,

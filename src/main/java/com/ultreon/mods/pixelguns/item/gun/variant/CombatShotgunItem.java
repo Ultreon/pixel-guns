@@ -1,6 +1,6 @@
 package com.ultreon.mods.pixelguns.item.gun.variant;
 
-import com.ultreon.mods.pixelguns.registry.ModItems;
+import com.ultreon.mods.pixelguns.registry.ItemRegistry;
 import com.ultreon.mods.pixelguns.item.gun.GunItem;
 import com.ultreon.mods.pixelguns.sound.ModSounds;
 import net.minecraft.sound.SoundEvent;
@@ -14,7 +14,7 @@ public class CombatShotgunItem extends GunItem {
                 250,
                 14,
                 6,
-                ModItems.SHOTGUN_SHELL,
+                ItemRegistry.SHOTGUN_SHELL,
                 26,
                 9.25f,
                 8.25f,

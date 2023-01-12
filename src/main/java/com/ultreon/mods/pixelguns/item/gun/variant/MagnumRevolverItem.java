@@ -1,6 +1,6 @@
 package com.ultreon.mods.pixelguns.item.gun.variant;
 
-import com.ultreon.mods.pixelguns.registry.ModItems;
+import com.ultreon.mods.pixelguns.registry.ItemRegistry;
 import com.ultreon.mods.pixelguns.item.gun.GunItem;
 import com.ultreon.mods.pixelguns.sound.ModSounds;
 import net.minecraft.sound.SoundEvent;
@@ -14,7 +14,7 @@ public class MagnumRevolverItem extends GunItem {
                 250,
                 10,
                 6,
-                ModItems.HEAVY_HANDGUN_BULLET,
+                ItemRegistry.HEAVY_HANDGUN_BULLET,
                 40,
                 0.125f,
                 6.5f,

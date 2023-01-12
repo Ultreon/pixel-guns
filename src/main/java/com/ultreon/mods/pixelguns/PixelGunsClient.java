@@ -7,7 +7,7 @@ import com.ultreon.mods.pixelguns.client.gui.ingame.WorkshopScreen;
 import com.ultreon.mods.pixelguns.client.item.renderer.*;
 import com.ultreon.mods.pixelguns.registry.BlockRegistry;
 import com.ultreon.mods.pixelguns.registry.EntityRegistry;
-import com.ultreon.mods.pixelguns.registry.ModItems;
+import com.ultreon.mods.pixelguns.registry.ItemRegistry;
 import com.ultreon.mods.pixelguns.registry.ModScreenHandlerType;
 import com.ultreon.mods.pixelguns.util.ModelPredicateProvider;
 import net.fabricmc.api.ClientModInitializer;
@@ -42,8 +42,8 @@ public class PixelGunsClient implements ClientModInitializer {
         EntityRendererRegistry.register(EntityRegistry.NUCLEAR_EXPLOSION, NuclearExplosionEntityRenderer::new);
         EntityRendererRegistry.register(EntityRegistry.GAS, GasRenderer::new);
 
-        GeoArmorRenderer.registerArmorRenderer(new ArmoredArmorRenderer(), ModItems.ARMORED_VEST);
-        GeoArmorRenderer.registerArmorRenderer(new HazardArmorRenderer(), ModItems.GAS_MASK);
+        GeoArmorRenderer.registerArmorRenderer(new ArmoredArmorRenderer(), ItemRegistry.ARMORED_VEST);
+        GeoArmorRenderer.registerArmorRenderer(new HazardArmorRenderer(), ItemRegistry.GAS_MASK);
 
         ClientPlayNetworking.registerGlobalReceiver(PixelGuns.RECOIL_PACKET_ID, (client, handler, buf, sender) -> {
             float kick = buf.readFloat();
@@ -56,10 +56,10 @@ public class PixelGunsClient implements ClientModInitializer {
             });
         });
         
-        GeoItemRenderer.registerItemRenderer(ModItems.INFINITY_GUN, new InfinityGunItemRenderer());
-        GeoItemRenderer.registerItemRenderer(ModItems.ROCKET_LAUNCHER, new RocketLauncherItemRenderer());
-        GeoItemRenderer.registerItemRenderer(ModItems.KATANA, new KatanaItemRenderer());
-        GeoItemRenderer.registerItemRenderer(ModItems.CROWBAR, new CrowbarItemRenderer());
-        GeoItemRenderer.registerItemRenderer(ModItems.GRENADE, new GrenadeItemRenderer());
+        GeoItemRenderer.registerItemRenderer(ItemRegistry.INFINITY_GUN, new InfinityGunItemRenderer());
+        GeoItemRenderer.registerItemRenderer(ItemRegistry.ROCKET_LAUNCHER, new RocketLauncherItemRenderer());
+        GeoItemRenderer.registerItemRenderer(ItemRegistry.KATANA, new KatanaItemRenderer());
+        GeoItemRenderer.registerItemRenderer(ItemRegistry.CROWBAR, new CrowbarItemRenderer());
+        GeoItemRenderer.registerItemRenderer(ItemRegistry.GRENADE, new GrenadeItemRenderer());
     }
 }

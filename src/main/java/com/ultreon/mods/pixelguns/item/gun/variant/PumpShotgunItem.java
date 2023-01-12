@@ -1,6 +1,6 @@
 package com.ultreon.mods.pixelguns.item.gun.variant;
 
-import com.ultreon.mods.pixelguns.registry.ModItems;
+import com.ultreon.mods.pixelguns.registry.ItemRegistry;
 import com.ultreon.mods.pixelguns.item.gun.GunItem;
 import com.ultreon.mods.pixelguns.sound.ModSounds;
 import net.minecraft.sound.SoundEvent;
@@ -14,7 +14,7 @@ public class PumpShotgunItem extends GunItem {
                 250,
                 5,
                 5,
-                ModItems.SHOTGUN_SHELL,
+                ItemRegistry.SHOTGUN_SHELL,
                 20,
                 0.25f,
                 0.0f,

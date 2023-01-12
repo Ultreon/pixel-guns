@@ -3,7 +3,7 @@ package com.ultreon.mods.pixelguns.item.gun.variant;
 import com.ultreon.mods.pixelguns.PixelGuns;
 import com.ultreon.mods.pixelguns.entity.projectile.RocketEntity;
 import com.ultreon.mods.pixelguns.item.gun.GunItem;
-import com.ultreon.mods.pixelguns.registry.ModItems;
+import com.ultreon.mods.pixelguns.registry.ItemRegistry;
 import com.ultreon.mods.pixelguns.sound.ModSounds;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
@@ -42,7 +42,7 @@ public class RocketLauncherItem extends GunItem implements IAnimatable, ISyncabl
                 250,
                 30,
                 1,
-                ModItems.ROCKET,
+                ItemRegistry.ROCKET,
                 30,
                 0,
                 0,

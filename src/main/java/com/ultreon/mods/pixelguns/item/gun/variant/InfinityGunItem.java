@@ -2,7 +2,7 @@ package com.ultreon.mods.pixelguns.item.gun.variant;
 
 import com.ultreon.mods.pixelguns.NbtNames;
 import com.ultreon.mods.pixelguns.entity.damagesource.EnergyOrbDamageSource;
-import com.ultreon.mods.pixelguns.registry.ModItems;
+import com.ultreon.mods.pixelguns.registry.ItemRegistry;
 import com.ultreon.mods.pixelguns.item.gun.GunItem;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -46,7 +46,7 @@ public class InfinityGunItem extends GunItem implements IAnimatable {
                 250,
                 30,
                 5,
-                ModItems.ENERGY_BATTERY,
+                ItemRegistry.ENERGY_BATTERY,
                 40,
                 0,
                 20,

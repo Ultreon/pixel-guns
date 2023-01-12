@@ -3,7 +3,7 @@ package com.ultreon.mods.pixelguns.item;
 import java.util.function.Predicate;
 
 import com.ultreon.mods.pixelguns.entity.projectile.thrown.GrenadeEntity;
-import com.ultreon.mods.pixelguns.registry.ModItems;
+import com.ultreon.mods.pixelguns.registry.ItemRegistry;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -81,7 +81,7 @@ public class GrenadeItem extends RangedWeaponItem implements IAnimatable {
 
     @Override
     public Predicate<ItemStack> getProjectiles() {
-        return stack -> stack.isOf(ModItems.GRENADE);
+        return stack -> stack.isOf(ItemRegistry.GRENADE);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.ultreon.mods.pixelguns.item.gun.variant;
 
-import com.ultreon.mods.pixelguns.registry.ModItems;
+import com.ultreon.mods.pixelguns.registry.ItemRegistry;
 import com.ultreon.mods.pixelguns.item.gun.GunItem;
 import com.ultreon.mods.pixelguns.sound.ModSounds;
 import net.minecraft.sound.SoundEvent;
@@ -14,7 +14,7 @@ public class LightPistolItem extends GunItem {
                 250,
                 4,
                 12,
-                ModItems.STANDARD_HANDGUN_BULLET,
+                ItemRegistry.STANDARD_HANDGUN_BULLET,
                 26,
                 0.25f,
                 2.5f,

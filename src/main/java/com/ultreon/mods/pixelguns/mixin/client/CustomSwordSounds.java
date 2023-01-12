@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.At.Shift;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import com.ultreon.mods.pixelguns.registry.ModItems;
+import com.ultreon.mods.pixelguns.registry.ItemRegistry;
 import com.ultreon.mods.pixelguns.sound.ModSounds;
 
 import net.minecraft.client.MinecraftClient;
@@ -25,7 +25,7 @@ public class CustomSwordSounds {
     @Inject(method = "doAttack", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerInteractionManager;hasLimitedAttackSpeed()Z", shift = Shift.BEFORE))
     private void onAttackMiss(CallbackInfoReturnable<Boolean> info) {
         assert player != null;
-        if (player.getMainHandStack().getItem() == ModItems.KATANA || player.getMainHandStack().getItem() == ModItems.CROWBAR) {
+        if (player.getMainHandStack().getItem() == ItemRegistry.KATANA || player.getMainHandStack().getItem() == ItemRegistry.CROWBAR) {
             assert world != null;
             world.playSound(this.player.getBlockPos(), ModSounds.KATANA_SWING, SoundCategory.PLAYERS, 1, 1, false);
         }

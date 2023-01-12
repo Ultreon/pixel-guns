@@ -1,7 +1,7 @@
 package com.ultreon.mods.pixelguns.entity.projectile;
 
 import com.ultreon.mods.pixelguns.registry.EntityRegistry;
-import com.ultreon.mods.pixelguns.registry.ModItems;
+import com.ultreon.mods.pixelguns.registry.ItemRegistry;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -54,7 +54,7 @@ public class RocketEntity extends ThrownItemEntity implements IAnimatable {
 
     @Override
     protected Item getDefaultItem() {
-        return ModItems.ROCKET;
+        return ItemRegistry.ROCKET;
     }
 
     @Override

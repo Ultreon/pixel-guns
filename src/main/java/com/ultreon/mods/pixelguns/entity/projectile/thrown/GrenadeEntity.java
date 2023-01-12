@@ -1,7 +1,7 @@
 package com.ultreon.mods.pixelguns.entity.projectile.thrown;
 
 import com.ultreon.mods.pixelguns.registry.EntityRegistry;
-import com.ultreon.mods.pixelguns.registry.ModItems;
+import com.ultreon.mods.pixelguns.registry.ItemRegistry;
 import com.ultreon.mods.pixelguns.sound.ModSounds;
 
 import net.minecraft.entity.EntityType;
@@ -58,7 +58,7 @@ public class GrenadeEntity extends ThrownItemEntity implements IAnimatable {
 
     @Override
     protected Item getDefaultItem() {
-        return ModItems.GRENADE;
+        return ItemRegistry.GRENADE;
     }
 
     private PlayState predicate(AnimationEvent<GrenadeEntity> event) {
